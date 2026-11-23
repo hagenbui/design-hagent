@@ -153,6 +153,17 @@ Button groups (a button rule in the base or app RULES block wins over this list)
 - Primary plus a destructive choice plus cancel: Primary, Destructive Secondary, Ghost. One red button per group.
 - A row that opens a delete confirm stays a row. The red appears on the confirm button.
 
+## Standard app flows (checklist)
+
+Every app sitemap includes these flows unless the brief rules one out. Mark each "to confirm" when the brief doesn't say. Reference builds: the old source app (Settings section) and the trial app (sections 1, 12, 13).
+- Language: a first-run step after Splash and before Onboarding (Language Option list, device language preselected, Continue in the bottom bar, no Back), and a Settings Language row (current language as trailing text) that opens a list where the choice applies right away, with no Save.
+- Settings Support group, in this order: Feedback, Rate App, Invite Friends, Privacy Policy, About the Developer, then the app version.
+- Rate App: "Enjoying [app]?" (Love it / Not really), then a star dialog (Rate disabled until a star is picked). 1 to 3 stars or Not really go to Feedback. 4 to 5 stars open the system store review prompt (iOS App Store, Google Play in-app review), which is system UI and drawn only as a labeled mock. An automatic ask only at a happy moment, never on app open, and within store limits.
+- Feedback: a sheet with a multi-line field (Send disabled while empty), typed state, Thank you dialog, and a send-failed case with no internet (Try again, Cancel, message kept).
+- Invite Friends: the system share sheet, no custom screen.
+- App update: Update available (soft, Later and Update, at most once per version) and Update required (blocking, Update now only, no Back or Close).
+- No internet: a full-screen state with Try again and a retrying state, plus inline offline cases for actions that need the network.
+
 ## Describing a part
 
 Every public base part and every app part has a description in a fixed form (Use for, Do not use for, Pairs with, Properties, States, Invalid combinations, rule refs). Before you write or change one, read references/wraps.md.
@@ -190,6 +201,7 @@ Run the base text node "DONE CHECK SCRIPT" (page AGENT RULES, base rule 10.1) ex
 - every wrap you touched covers its base part's full variant set, except what its description lists under "Left out on purpose" (compare the base set's variant properties with the wrap's)
 - no real names, emails, phone numbers, addresses or websites of people, developers, studios or companies in any text layer (search text for known names and replace them with placeholders)
 - language flow: first-run language step and the Settings Language row and list are both in the sitemap and on page Design (or the brief says single-language), the Settings list has no Save button, exactly one option is Selected, and every name is in its own language
+- standard app flows: each flow in "Standard app flows" is in the sitemap and on page Design, or the brief rules it out
 
 Report the check compactly: only counts that aren't zero, with up to 10 node ids each, never full node dumps. Then take a screenshot of the screens you touched, at a small size, and look at it. A screenshot shows resolved variables, so it can't show wrong bindings or fallback colors: the counts come first, the screenshot second. Rewrite the HANDOFF block if it's older than the newest changelog line.
 
