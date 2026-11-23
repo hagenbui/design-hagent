@@ -164,6 +164,7 @@ You read the RULES block in full, so its numbers are not copied here (layout lad
 - The annotation layer follows the same rules: jump tags, case labels, notes and preview boards. Build each one once as a part with styles and tokens, and instance it. Never build tags or labels from raw text in a script.
 - After a new pattern or part, scan the whole file for the same job (text, layer names, part usage) and reapply it in the same pass. Log what you replaced and what you left on purpose, with the reason.
 - No dead ends: every button, icon and link on a flows page ends in an arrow or a jump tag to the screen it opens.
+- No confidential or personal info. Never put a real person's, developer's, studio's, company's or employer's name, email, phone, address, website or links into screens, copy, art, notes or annotations, even if known from memory, other files or earlier chats. Use neutral placeholders ("Studio name", "support@example.com", "Website") and mark them "to confirm" in the UX COPY block.
 
 ## Flows page layout
 
@@ -186,6 +187,7 @@ Run the base text node "DONE CHECK SCRIPT" (page AGENT RULES, base rule 10.1) ex
 - instances whose fills, strokes or effects differ from their main component (leftover overrides)
 - screen sizes against the current rule (re-read it, another session may have changed it)
 - every wrap you touched covers its base part's full variant set, except what its description lists under "Left out on purpose" (compare the base set's variant properties with the wrap's)
+- no real names, emails, phone numbers, addresses or websites of people, developers, studios or companies in any text layer (search text for known names and replace them with placeholders)
 
 Report the check compactly: only counts that aren't zero, with up to 10 node ids each, never full node dumps. Then take a screenshot of the screens you touched, at a small size, and look at it. A screenshot shows resolved variables, so it can't show wrong bindings or fallback colors: the counts come first, the screenshot second. Rewrite the HANDOFF block if it's older than the newest changelog line.
 
