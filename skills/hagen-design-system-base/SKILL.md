@@ -144,6 +144,7 @@ Pick a part by the job it does, never by which one looks closest. If the job isn
 - Status: a checklist item, not tappable.
 - Two big choices: picture cards. Short picks and survey answers: option cards. Suggestions: chips.
 - Share on a result: an icon button in the header.
+- Choose a language: base Language Option cards (flag, native name, check when selected), five or more stacked with group-gap. On first run: a Continue button in the bottom bar. In Settings: the choice applies right away, no Save button. The Settings row is a list row with the current language as trailing text. Never write a language name in another language.
 
 Button groups (a button rule in the base or app RULES block wins over this list):
 - One action on an empty or error screen: Primary, hugging its label.
@@ -188,6 +189,7 @@ Run the base text node "DONE CHECK SCRIPT" (page AGENT RULES, base rule 10.1) ex
 - screen sizes against the current rule (re-read it, another session may have changed it)
 - every wrap you touched covers its base part's full variant set, except what its description lists under "Left out on purpose" (compare the base set's variant properties with the wrap's)
 - no real names, emails, phone numbers, addresses or websites of people, developers, studios or companies in any text layer (search text for known names and replace them with placeholders)
+- language flow: first-run language step and the Settings Language row and list are both in the sitemap and on page Design (or the brief says single-language), the Settings list has no Save button, exactly one option is Selected, and every name is in its own language
 
 Report the check compactly: only counts that aren't zero, with up to 10 node ids each, never full node dumps. Then take a screenshot of the screens you touched, at a small size, and look at it. A screenshot shows resolved variables, so it can't show wrong bindings or fallback colors: the counts come first, the screenshot second. Rewrite the HANDOFF block if it's older than the newest changelog line.
 
