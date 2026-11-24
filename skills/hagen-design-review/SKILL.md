@@ -5,7 +5,7 @@ description: "Read-only UX and accessibility review of mobile app screens in Hag
 
 # Hagen design review
 
-**Skill version 1.0-test (2026-11-24).** Rewritten from the legacy Varmeta skill mobile-design-review (rulebook 2.0.0, verified 2026-09-20). Status: test branch varmeta-adapt-test, not approved.
+**Skill version 1.0 (2026-11-24).** Rewritten from the legacy Varmeta skill mobile-design-review (rulebook 2.0.0, verified 2026-09-20).
 
 This skill judges whether screens work for people: legibility, tap areas, navigation, states, errors, paywall honesty, permissions. It never changes the design.
 

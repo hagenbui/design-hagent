@@ -57,7 +57,7 @@ footer{color:var(--mute);font-size:13px;margin-top:16px}
 </style></head><body>
 <main>
 <h1>How the skill builds a design</h1>
-<p class="meta">Hagen Design System Base · skill 2.11 · updated 24 Nov 2026 · click a step to see how it works under the hood · <a href="#terms">Terms</a></p>
+<p class="meta">Hagen Design System Base · skill 2.12 · updated 24 Nov 2026 · click a step to see how it works under the hood · <a href="#terms">Terms</a></p>
 <svg viewBox="0 0 680 660" role="img" aria-labelledby="st"><title id="st">Skill flow: session checks, five new app stages, every batch, approval loop</title>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
 <text class="lab" x="40" y="30">Start of every session</text><text class="lab" x="360" y="30">New app: 5 stages, your OK after each</text>
@@ -152,7 +152,7 @@ const steps = [
  {id:'check', lane:'batch', t:'Done check', s:'Run the script',
   what:'A script in the base file counts rule breaks across the whole file. The agent reports numbers, not impressions.',
   reads:['The text node DONE CHECK SCRIPT on the base page AGENT RULES'],
-  does:['Runs it exactly as written in the file being checked','Reports only counts that are not zero, with up to 10 node ids each','Checks the remaining items by hand: full variant sets, real names, language flow, standard flows','If counts are not zero: fixes, reapplies and runs again'],
+  does:['Runs it exactly as written in the file being checked','Reports only counts that are not zero, with up to 10 node ids each','Checks the remaining items by hand: full variant sets, real names, language flow, standard flows','If counts are not zero: fixes, reapplies and runs again','When a flow section is finished, offers the separate read-only review hagen-design-review (contrast, tap size, navigation, states, paywall, permissions)'],
   writes:['Fixes only'],
   stop:'Never says "clean" without counts. Names any item it skipped.',
   src:'SKILL.md: Done check'},

@@ -5,7 +5,7 @@ description: "Process skill for Hagen's mobile design system in Figma. Load it f
 
 # Hagen Design System Base: how to work
 
-**Skill version 2.12-test (2026-11-24, branch varmeta-adapt-test).** Changes per version: README.md.
+**Skill version 2.12 (2026-11-24).** Changes per version: README.md.
 
 The goal is an agent-ready mobile design system for IAA/IAP (ad and in-app-purchase monetized) apps. An agent given a prompt should be able to build a full working app from components, tokens and rules only, without inventing layout.
 
