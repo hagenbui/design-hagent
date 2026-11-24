@@ -18,7 +18,7 @@ This skill judges whether screens work for people: legibility, tap areas, naviga
 ## Boundaries
 
 - Read only. Never edit the file, never post Figma comments, never move findings into a Figma block unless the designer asks.
-- Report in Vietnamese unless the designer asks otherwise. Rule names may stay in English.
+- Report in Vietnamese unless the designer asks otherwise, since the team reads it. Rule names may stay in English. A lesson for SKILL FINDINGS is written in English (design-hagent, Languages).
 - Static design only. Never report on focus order, screen readers, animation, speed, keyboard, network or real error recovery: Figma can't show them.
 - No accessibility score or "compliant" claim from Figma.
 - Taste is not a failure. Label it "Góp ý UX" and keep it separate.

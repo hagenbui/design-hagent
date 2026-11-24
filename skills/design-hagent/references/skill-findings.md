@@ -20,7 +20,7 @@ Block SKILL FINDINGS on page AGENT RULES (PROJECT) of each tier 2 file. Find it 
 <open SF ids and what each waits on>
 ```
 
-Field labels stay in English so every agent finds them. The text after a label follows the file's note language (Vietnamese in app files). Keep existing text when you restructure an item: move it into the fields, don't translate or shorten it.
+Write findings in English, labels and text, since agents read them (SKILL.md, Languages). Older items written in Vietnamese stay as they are. Keep existing text when you restructure an item: move it into the fields, don't translate or shorten it.
 
 ## Entry format
 

@@ -5,7 +5,7 @@ description: "Process skill for Hagen's mobile design system in Figma. Load it f
 
 # Design Hagent: how to work
 
-**Skill version 2.14 (2026-11-24).** Changes per version: README.md.
+**Skill version 2.15 (2026-11-24).** Changes per version: README.md.
 
 The goal is an agent-ready mobile design system for IAA/IAP (ad and in-app-purchase monetized) apps. An agent given a prompt should be able to build a full working app from components, tokens and rules only, without inventing layout.
 
@@ -200,7 +200,7 @@ Report the check compactly: only counts that aren't zero, with up to 10 node ids
 - Read order, then claim the flow section you own.
 - Search the file for a screen doing the same job and reuse its pattern (reapply rule).
 - Build only from the app's wraps and base parts, bound to tokens. Share is a header icon button. The two follow-ups are stacked full width, Primary first, then Ghost (references/choosing-parts.md).
-- Every action ends in an arrow or jump tag. Notes are in Vietnamese.
+- Every action ends in an arrow or jump tag. Notes are in Vietnamese (see Languages).
 - Run the done check, paste its counts, take a screenshot, log a CHANGELOG line, release the claim.
 
 ## Design judgment
@@ -220,10 +220,18 @@ For IAA/IAP apps, think about where ads and upsells fire: native ad between cont
 - This skill sits on top of the Figma plugin skills and does not repeat their API rules. Load `figma-use` once per session, before the first `use_figma` call. Load `figma-generate-design` once when you first draw or change a screen, and `figma-generate-library` only when you build a part, a variable collection or a style. Don't load them again in the same session.
 - Read references/figma-gotchas.md before your first use_figma call in a session (spec blocks, swaps, bound paint fallbacks, tints, unsupported API, small reads).
 
+## Languages: agents in English, the team in Vietnamese
+
+Pick the language by who reads it. If agents read it, write it in English. If only the team (designers, PO, devs) reads it, write it in Vietnamese.
+- English: this skill and its reference files, every agent block in the Figma files (RULES, FLOWS, MAPPING, FINDINGS, SKILL FINDINGS, CHANGELOG, PROGRESS and HANDOFF, LOCKS, ROADMAP, AUDIT, BRIEF, SITEMAP), layer, component, variant, variable and style names, component descriptions, and image prompts.
+- Vietnamese: annotations, sticky notes and dev notes on the canvas, the design review report, and pages made for the team, such as the flow page docs/skill-flow.html.
+- Screen copy and UX COPY stay in the app's language.
+- In chat, reply in the language the designer writes in.
+- Existing text in the other language stays as it is until that part is edited. Don't translate whole blocks unasked.
+
 ## Talking to the designer
 
 - Plain language, no code talk, no em dashes. Short replies, and lead with the result or the ask.
-- In app files, every annotation, sticky note and dev note is in Vietnamese. Screen copy stays in the app's language, and image prompts stay in English.
 - Summarize a plan before long work.
 - Say clearly what changed, what didn't, and what is waiting on them.
 - When you end a session in the base, rewrite the PROGRESS HANDOFF so the next agent can start cold. In a tier 2 file, report the open SF ids (see Skill findings).

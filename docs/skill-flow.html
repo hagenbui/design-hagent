@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Skill design flow</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -56,129 +56,164 @@ footer{color:var(--mute);font-size:13px;margin-top:16px}
 @media(prefers-reduced-motion:no-preference){.ov.on .card{animation:in .18s ease-out}@keyframes in{from{opacity:0;transform:translateY(8px)}}}
 </style></head><body>
 <main>
-<h1>How the skill builds a design</h1>
-<p class="meta">Design Hagent · skill 2.14 · updated 24 Nov 2026 · click a step to see how it works under the hood · <a href="#terms">Terms</a></p>
-<svg viewBox="0 0 680 660" role="img" aria-labelledby="st"><title id="st">Skill flow: session checks, five new app stages, every batch, approval loop</title>
+<h1>Skill dựng thiết kế như thế nào</h1>
+<p class="meta">Design Hagent · skill 2.15 · cập nhật 24/11/2026 · bấm vào một bước để xem agent làm gì bên trong · <a href="#terms">Thuật ngữ</a></p>
+<svg viewBox="0 0 680 660" role="img" aria-labelledby="st"><title id="st">Quy trình skill: kiểm tra đầu phiên, năm giai đoạn app mới, mỗi batch, vòng duyệt</title>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
-<text class="lab" x="40" y="30">Start of every session</text><text class="lab" x="360" y="30">New app: 5 stages, your OK after each</text>
-<line x1="180" y1="106" x2="180" y2="128" class="arr"/><line x1="180" y1="186" x2="180" y2="208" class="arr"/><line x1="180" y1="266" x2="180" y2="288" class="arr"/><line x1="500" y1="106" x2="500" y2="128" class="arr"/><line x1="500" y1="186" x2="500" y2="208" class="arr"/><line x1="500" y1="266" x2="500" y2="288" class="arr"/><line x1="500" y1="346" x2="500" y2="368" class="arr"/><path d="M320 318 L340 318 L340 78 L358 78" class="arr"/><path d="M500 426 L500 450 L105 450 L105 474" class="arr"/><line x1="170" y1="504" x2="193" y2="504" class="arr"/><line x1="325" y1="504" x2="348" y2="504" class="arr"/><line x1="480" y1="504" x2="503" y2="504" class="arr"/><g class="node gray" data-id="file" tabindex="0" role="button" aria-label="Is it a system file?"><rect x="40" y="50" width="280" height="56" rx="8"/><text class="th" x="180.0" y="70" text-anchor="middle" dominant-baseline="central">Is it a system file?</text><text class="ts" x="180.0" y="90" text-anchor="middle" dominant-baseline="central">Base, template or AGENT RULES</text></g><g class="node gray" data-id="read" tabindex="0" role="button" aria-label="Read the rules"><rect x="40" y="130" width="280" height="56" rx="8"/><text class="th" x="180.0" y="150" text-anchor="middle" dominant-baseline="central">Read the rules</text><text class="ts" x="180.0" y="170" text-anchor="middle" dominant-baseline="central">HANDOFF, RULES in full, LOCKS</text></g><g class="node gray" data-id="version" tabindex="0" role="button" aria-label="Check versions"><rect x="40" y="210" width="280" height="56" rx="8"/><text class="th" x="180.0" y="230" text-anchor="middle" dominant-baseline="central">Check versions</text><text class="ts" x="180.0" y="250" text-anchor="middle" dominant-baseline="central">App stamp vs base and skill</text></g><g class="node gray" data-id="claim" tabindex="0" role="button" aria-label="Claim your area"><rect x="40" y="290" width="280" height="56" rx="8"/><text class="th" x="180.0" y="310" text-anchor="middle" dominant-baseline="central">Claim your area</text><text class="ts" x="180.0" y="330" text-anchor="middle" dominant-baseline="central">LOCKS row or Claims line</text></g><g class="node purple" data-id="context" tabindex="0" role="button" aria-label="1. Context"><rect x="360" y="50" width="280" height="56" rx="8"/><text class="th" x="500.0" y="70" text-anchor="middle" dominant-baseline="central">1. Context</text><text class="ts" x="500.0" y="90" text-anchor="middle" dominant-baseline="central">Fill AGENT BRIEF</text></g><g class="node purple" data-id="sitemap" tabindex="0" role="button" aria-label="2. Sitemap"><rect x="360" y="130" width="280" height="56" rx="8"/><text class="th" x="500.0" y="150" text-anchor="middle" dominant-baseline="central">2. Sitemap</text><text class="ts" x="500.0" y="170" text-anchor="middle" dominant-baseline="central">Screens, states, standard flows</text></g><g class="node purple" data-id="style" tabindex="0" role="button" aria-label="3. Visual style"><rect x="360" y="210" width="280" height="56" rx="8"/><text class="th" x="500.0" y="230" text-anchor="middle" dominant-baseline="central">3. Visual style</text><text class="ts" x="500.0" y="250" text-anchor="middle" dominant-baseline="central">Style tile on page Design</text></g><g class="node purple" data-id="wire" tabindex="0" role="button" aria-label="4. Wireframe"><rect x="360" y="290" width="280" height="56" rx="8"/><text class="th" x="500.0" y="310" text-anchor="middle" dominant-baseline="central">4. Wireframe</text><text class="ts" x="500.0" y="330" text-anchor="middle" dominant-baseline="central">Grayscale base parts, parts list</text></g><g class="node purple" data-id="build" tabindex="0" role="button" aria-label="5. Build"><rect x="360" y="370" width="280" height="56" rx="8"/><text class="th" x="500.0" y="390" text-anchor="middle" dominant-baseline="central">5. Build</text><text class="ts" x="500.0" y="410" text-anchor="middle" dominant-baseline="central">Starter wraps, then screens</text></g><g class="node teal" data-id="batch" tabindex="0" role="button" aria-label="Build batch"><rect x="40" y="476" width="130" height="56" rx="8"/><text class="th" x="105.0" y="496" text-anchor="middle" dominant-baseline="central">Build batch</text><text class="ts" x="105.0" y="516" text-anchor="middle" dominant-baseline="central">Tokens only</text></g><g class="node teal" data-id="check" tabindex="0" role="button" aria-label="Done check"><rect x="195" y="476" width="130" height="56" rx="8"/><text class="th" x="260.0" y="496" text-anchor="middle" dominant-baseline="central">Done check</text><text class="ts" x="260.0" y="516" text-anchor="middle" dominant-baseline="central">Run the script</text></g><g class="node teal" data-id="shot" tabindex="0" role="button" aria-label="Screenshot"><rect x="350" y="476" width="130" height="56" rx="8"/><text class="th" x="415.0" y="496" text-anchor="middle" dominant-baseline="central">Screenshot</text><text class="ts" x="415.0" y="516" text-anchor="middle" dominant-baseline="central">Touched screens</text></g><g class="node teal" data-id="log" tabindex="0" role="button" aria-label="Log, handoff"><rect x="505" y="476" width="130" height="56" rx="8"/><text class="th" x="570.0" y="496" text-anchor="middle" dominant-baseline="central">Log, handoff</text><text class="ts" x="570.0" y="516" text-anchor="middle" dominant-baseline="central">Release claim</text></g>
-<line x1="180" y1="346" x2="180" y2="368" class="arr"/><line x1="180" y1="426" x2="180" y2="450" style="stroke:var(--g-s);stroke-width:1.5"/><g class="node coral" data-id="return" tabindex="0" role="button" aria-label="Returning to an app"><rect x="40" y="370" width="280" height="56" rx="8"/><text class="th" x="180" y="390" text-anchor="middle" dominant-baseline="central">Returning to an app</text><text class="ts" x="180" y="410" text-anchor="middle" dominant-baseline="central">Catch up, then Every batch</text></g><text class="lab" x="182" y="554" text-anchor="middle">↻ counts not zero: fix, reapply, rerun</text>
-<g class="node box" data-id="approval" tabindex="0" role="button" aria-label="Approval loop"><rect x="40" y="572" width="595" height="44" rx="8"/><text class="t" x="337" y="594" text-anchor="middle" dominant-baseline="central">Any rule, token or component change: propose, preview, your OK, build, log</text></g>
-<text class="lab" x="40" y="644">Gray: every session · Purple: new app · Coral: existing app · Teal: every batch · Click any step</text></svg>
-<section class="terms" id="terms"><h2>Terms</h2><div class="tgrid"><div class="tgroup"><h3>Files</h3><dl><dt>Base (tier 1)</dt><dd>The shared file "Design System Base". Plain parts, tokens and rules every app uses. Its Inter typeface and colors are placeholders.</dd><dt>App file (tier 2)</dt><dd>One Figma file per app, such as the trial app or the first app. It uses the base as a library and holds the app’s own look and rules.</dd><dt>Tier 2 Template</dt><dd>A clean app file you duplicate to start a new app. It already has the agent pages, blocks, text styles and 15 starter wraps.</dd><dt>Agent pages</dt><dd>Pages in a file written for agents to read: AGENT RULES, AGENT PROGRESS, AGENT ROADMAP in the base; AGENT RULES (PROJECT), AGENT BRIEF and AGENT SITEMAP in an app file.</dd><dt>Spec block</dt><dd>A text block on an agent page that an agent can find by name and read in parts. RULES, FLOWS, MAPPING and CHANGELOG are spec blocks.</dd></dl></div><div class="tgroup"><h3>Blocks the agent reads</h3><dl><dt>RULES</dt><dd>The approved rules of a file. Read in full every session. It also has a "What to read, and when" table that says which other blocks a task needs.</dd><dt>HANDOFF</dt><dd>A short note in the base PROGRESS block: what the last session did and what the next one should do. It lets a new session start without context.</dd><dt>BRIEF and SITEMAP</dt><dd>The app’s goal, audience and features (BRIEF), and the numbered tree of every screen and state (SITEMAP).</dd><dt>MAPPING</dt><dd>The table of an app’s parts: which base part each one uses, and whether it is a wrap, fork or local part.</dd><dt>CHANGELOG</dt><dd>The dated log of changes. Agents read only its top lines and add one line per change.</dd><dt>FINDINGS</dt><dd>Gaps in the base that an app ran into, such as a missing part or a color a wrap can’t change. Each one is a T item.</dd><dt>SKILL FINDINGS</dt><dd>Lessons about how agents work, such as a correction you made or a repeated mistake. Each one is an SF item. Only you approve them.</dd></dl></div><div class="tgroup"><h3>Working together</h3><dl><dt>Lock</dt><dd>A row in the LOCKS block of the base file saying which session is editing which base part right now. A "do not touch, I’m working here" sign for the base.</dd><dt>Claim</dt><dd>The same sign in an app file: a line in the Claims section of its RULES block. It names the session, what it owns (pages, flow sections, parts) and the date. It is removed when the session ends.</dd><dt>Stamp ("Built on")</dt><dd>A line on an app’s RULES block saying which base rules version and skill version the app was last checked against. Agents compare it at the start of a session.</dd><dt>Your OK</dt><dd>Your explicit approval in chat. "Looks fine" does not count. Needed for every rule, token or component change, and at the end of each new app stage.</dd><dt>Rules maintenance OK</dt><dd>A separate OK to change the rules pages themselves, such as adding a block. An OK to build a screen is not one.</dd></dl></div><div class="tgroup"><h3>Parts</h3><dl><dt>Token / variable</dt><dd>A named value (color, spacing, radius, size) stored in Figma variables. Screens use tokens, never raw numbers.</dd><dt>Wrap</dt><dd>An app part that holds a base part inside and restyles it with the app’s colors and text styles. Named like the trial app/Button. The default way to make an app part.</dd><dt>Fork</dt><dd>An app copy of a base part with a changed structure. Only when a wrap can’t do the job, with the reason written down.</dd><dt>Local part</dt><dd>An app part with no base match. Logged as a candidate to add to the base later.</dd><dt>Full set</dt><dd>A wrap includes every variant of its base part (sizes, states, styles), not only the ones screens use today.</dd><dt>Starter wraps</dt><dd>The 15 wraps already in the Tier 2 Template, such as Button, Header and ListItem. A new app renames and restyles them.</dd></dl></div><div class="tgroup"><h3>Checking</h3><dl><dt>Batch</dt><dd>One unit of work: one flow section, one set of parts or one rule reapplied. The done check runs after each batch.</dd><dt>Done check script</dt><dd>A script stored in the base file that counts rule breaks across a whole file: unbound colors, raw spacing, missing text styles, detached parts and more.</dd><dt>Reapply scan</dt><dd>After a new rule or pattern, the agent searches the whole file for the same job and applies the rule everywhere, not only on the new screen.</dd><dt>Fallback color</dt><dd>The raw color Figma stores behind a color variable. A wrong one looks fine in screenshots, which is why counts come before the screenshot.</dd></dl></div></div></section>
-<footer>Made from SKILL.md and its reference files. Update this page whenever the skill version changes (README, Update step 2). Where this page and the skill disagree, the skill wins, and the Figma file wins over both.</footer>
+<text class="lab" x="40" y="30">Đầu mỗi phiên</text><text class="lab" x="360" y="30">App mới: 5 giai đoạn, bạn OK sau mỗi bước</text>
+<line x1="180" y1="106" x2="180" y2="128" class="arr"/><line x1="180" y1="186" x2="180" y2="208" class="arr"/><line x1="180" y1="266" x2="180" y2="288" class="arr"/><line x1="500" y1="106" x2="500" y2="128" class="arr"/><line x1="500" y1="186" x2="500" y2="208" class="arr"/><line x1="500" y1="266" x2="500" y2="288" class="arr"/><line x1="500" y1="346" x2="500" y2="368" class="arr"/><path d="M320 318 L340 318 L340 78 L358 78" class="arr"/><path d="M500 426 L500 450 L105 450 L105 474" class="arr"/><line x1="170" y1="504" x2="193" y2="504" class="arr"/><line x1="325" y1="504" x2="348" y2="504" class="arr"/><line x1="480" y1="504" x2="503" y2="504" class="arr"/><g class="node gray" data-id="file" tabindex="0" role="button" aria-label="File có thuộc hệ thống?"><rect x="40" y="50" width="280" height="56" rx="8"/><text class="th" x="180.0" y="70" text-anchor="middle" dominant-baseline="central">File có thuộc hệ thống?</text><text class="ts" x="180.0" y="90" text-anchor="middle" dominant-baseline="central">Base, template hoặc AGENT RULES</text></g><g class="node gray" data-id="read" tabindex="0" role="button" aria-label="Đọc rules"><rect x="40" y="130" width="280" height="56" rx="8"/><text class="th" x="180.0" y="150" text-anchor="middle" dominant-baseline="central">Đọc rules</text><text class="ts" x="180.0" y="170" text-anchor="middle" dominant-baseline="central">HANDOFF, đọc hết RULES, LOCKS</text></g><g class="node gray" data-id="version" tabindex="0" role="button" aria-label="Kiểm tra phiên bản"><rect x="40" y="210" width="280" height="56" rx="8"/><text class="th" x="180.0" y="230" text-anchor="middle" dominant-baseline="central">Kiểm tra phiên bản</text><text class="ts" x="180.0" y="250" text-anchor="middle" dominant-baseline="central">Stamp của app so với base và skill</text></g><g class="node gray" data-id="claim" tabindex="0" role="button" aria-label="Nhận phần việc"><rect x="40" y="290" width="280" height="56" rx="8"/><text class="th" x="180.0" y="310" text-anchor="middle" dominant-baseline="central">Nhận phần việc</text><text class="ts" x="180.0" y="330" text-anchor="middle" dominant-baseline="central">Dòng LOCKS hoặc dòng Claims</text></g><g class="node purple" data-id="context" tabindex="0" role="button" aria-label="1. Bối cảnh"><rect x="360" y="50" width="280" height="56" rx="8"/><text class="th" x="500.0" y="70" text-anchor="middle" dominant-baseline="central">1. Bối cảnh</text><text class="ts" x="500.0" y="90" text-anchor="middle" dominant-baseline="central">Điền AGENT BRIEF</text></g><g class="node purple" data-id="sitemap" tabindex="0" role="button" aria-label="2. Sitemap"><rect x="360" y="130" width="280" height="56" rx="8"/><text class="th" x="500.0" y="150" text-anchor="middle" dominant-baseline="central">2. Sitemap</text><text class="ts" x="500.0" y="170" text-anchor="middle" dominant-baseline="central">Màn hình, trạng thái, flow chuẩn</text></g><g class="node purple" data-id="style" tabindex="0" role="button" aria-label="3. Phong cách"><rect x="360" y="210" width="280" height="56" rx="8"/><text class="th" x="500.0" y="230" text-anchor="middle" dominant-baseline="central">3. Phong cách</text><text class="ts" x="500.0" y="250" text-anchor="middle" dominant-baseline="central">Style tile trên trang Design</text></g><g class="node purple" data-id="wire" tabindex="0" role="button" aria-label="4. Wireframe"><rect x="360" y="290" width="280" height="56" rx="8"/><text class="th" x="500.0" y="310" text-anchor="middle" dominant-baseline="central">4. Wireframe</text><text class="ts" x="500.0" y="330" text-anchor="middle" dominant-baseline="central">Part base màu xám, danh sách part</text></g><g class="node purple" data-id="build" tabindex="0" role="button" aria-label="5. Dựng"><rect x="360" y="370" width="280" height="56" rx="8"/><text class="th" x="500.0" y="390" text-anchor="middle" dominant-baseline="central">5. Dựng</text><text class="ts" x="500.0" y="410" text-anchor="middle" dominant-baseline="central">Starter wrap, rồi màn hình</text></g><g class="node teal" data-id="batch" tabindex="0" role="button" aria-label="Dựng batch"><rect x="40" y="476" width="130" height="56" rx="8"/><text class="th" x="105.0" y="496" text-anchor="middle" dominant-baseline="central">Dựng batch</text><text class="ts" x="105.0" y="516" text-anchor="middle" dominant-baseline="central">Chỉ dùng token</text></g><g class="node teal" data-id="check" tabindex="0" role="button" aria-label="Done check"><rect x="195" y="476" width="130" height="56" rx="8"/><text class="th" x="260.0" y="496" text-anchor="middle" dominant-baseline="central">Done check</text><text class="ts" x="260.0" y="516" text-anchor="middle" dominant-baseline="central">Chạy script</text></g><g class="node teal" data-id="shot" tabindex="0" role="button" aria-label="Chụp màn hình"><rect x="350" y="476" width="130" height="56" rx="8"/><text class="th" x="415.0" y="496" text-anchor="middle" dominant-baseline="central">Chụp màn hình</text><text class="ts" x="415.0" y="516" text-anchor="middle" dominant-baseline="central">Màn đã sửa</text></g><g class="node teal" data-id="log" tabindex="0" role="button" aria-label="Log, handoff"><rect x="505" y="476" width="130" height="56" rx="8"/><text class="th" x="570.0" y="496" text-anchor="middle" dominant-baseline="central">Log, handoff</text><text class="ts" x="570.0" y="516" text-anchor="middle" dominant-baseline="central">Bỏ claim</text></g>
+<line x1="180" y1="346" x2="180" y2="368" class="arr"/><line x1="180" y1="426" x2="180" y2="450" style="stroke:var(--g-s);stroke-width:1.5"/><g class="node coral" data-id="return" tabindex="0" role="button" aria-label="Quay lại một app"><rect x="40" y="370" width="280" height="56" rx="8"/><text class="th" x="180" y="390" text-anchor="middle" dominant-baseline="central">Quay lại một app</text><text class="ts" x="180" y="410" text-anchor="middle" dominant-baseline="central">Cập nhật, rồi vào Mỗi batch</text></g><text class="lab" x="182" y="554" text-anchor="middle">↻ số lỗi khác 0: sửa, áp lại, chạy lại</text>
+<g class="node box" data-id="approval" tabindex="0" role="button" aria-label="Vòng duyệt"><rect x="40" y="572" width="595" height="44" rx="8"/><text class="t" x="337" y="594" text-anchor="middle" dominant-baseline="central">Mọi thay đổi rule, token, component: đề xuất, preview, bạn OK, dựng, log</text></g>
+<text class="lab" x="40" y="644">Xám: mỗi phiên · Tím: app mới · Cam: app có sẵn · Xanh: mỗi batch · Bấm vào bước bất kỳ</text></svg>
+<section class="terms" id="terms"><h2>Thuật ngữ</h2><div class="tgrid">
+<div class="tgroup"><h3>File</h3><dl>
+<dt>Base (tier 1)</dt><dd>File dùng chung "Design System Base". Part, token và rule trơn mà mọi app dùng. Font Inter và màu trong đó chỉ là tạm.</dd>
+<dt>File app (tier 2)</dt><dd>Mỗi app một file Figma, ví dụ the trial app hay the first app. Dùng base làm library và giữ giao diện, rule riêng của app.</dd>
+<dt>Tier 2 Template</dt><dd>File app sạch, bạn duplicate để bắt đầu app mới. Có sẵn trang agent, block, text style và 15 starter wrap.</dd>
+<dt>Trang agent</dt><dd>Các trang viết cho agent đọc: AGENT RULES, AGENT PROGRESS, AGENT ROADMAP trong base; AGENT RULES (PROJECT), AGENT BRIEF và AGENT SITEMAP trong file app.</dd>
+<dt>Spec block</dt><dd>Khối text trên trang agent, agent tìm theo tên và đọc từng phần. RULES, FLOWS, MAPPING và CHANGELOG là spec block.</dd>
+<dt>Ngôn ngữ</dt><dd>Cái agent đọc và viết (skill, mọi block agent, tên layer và component, prompt ảnh) bằng tiếng Anh. Cái chỉ team đọc (ghi chú trên canvas, báo cáo review, trang này) bằng tiếng Việt. Copy trên màn hình theo ngôn ngữ của app.</dd></dl></div>
+<div class="tgroup"><h3>Block agent đọc</h3><dl>
+<dt>RULES</dt><dd>Các rule đã duyệt của một file. Đọc hết mỗi phiên. Có bảng "What to read, and when" cho biết task cần đọc thêm block nào.</dd>
+<dt>HANDOFF</dt><dd>Ghi chú ngắn trong block PROGRESS của base: phiên trước làm gì, phiên sau cần làm gì. Giúp phiên mới bắt đầu mà không cần ngữ cảnh.</dd>
+<dt>BRIEF và SITEMAP</dt><dd>Mục tiêu, người dùng và tính năng của app (BRIEF), và cây đánh số mọi màn hình, trạng thái (SITEMAP).</dd>
+<dt>MAPPING</dt><dd>Bảng các part của app: mỗi part dùng part base nào, và là wrap, fork hay local part.</dd>
+<dt>CHANGELOG</dt><dd>Nhật ký thay đổi theo ngày. Agent chỉ đọc vài dòng đầu và thêm một dòng cho mỗi thay đổi.</dd>
+<dt>FINDINGS</dt><dd>Chỗ thiếu của base mà app gặp phải, ví dụ thiếu part hay màu mà wrap không đổi được. Mỗi mục là một T item.</dd>
+<dt>SKILL FINDINGS</dt><dd>Bài học về cách agent làm việc, ví dụ một lần bạn sửa hay một lỗi lặp lại. Mỗi mục là một SF item. Chỉ bạn duyệt.</dd></dl></div>
+<div class="tgroup"><h3>Làm việc cùng nhau</h3><dl>
+<dt>Lock</dt><dd>Một dòng trong block LOCKS của base cho biết phiên nào đang sửa part base nào. Biển "đừng đụng, tôi đang làm" cho base.</dd>
+<dt>Claim</dt><dd>Biển tương tự trong file app: một dòng trong mục Claims của block RULES. Ghi phiên, phần nó giữ (trang, flow, part) và ngày. Xóa khi phiên kết thúc.</dd>
+<dt>Stamp ("Built on")</dt><dd>Dòng trên block RULES của app ghi phiên bản rule base và phiên bản skill mà app được kiểm tra gần nhất. Agent so sánh nó đầu mỗi phiên.</dd>
+<dt>OK của bạn</dt><dd>Sự đồng ý rõ ràng của bạn trong chat. "Trông ổn" không tính. Cần cho mọi thay đổi rule, token, component, và cuối mỗi giai đoạn app mới.</dd>
+<dt>OK sửa rules</dt><dd>Một OK riêng để sửa chính các trang rules, ví dụ thêm block. OK dựng màn hình không tính là OK này.</dd></dl></div>
+<div class="tgroup"><h3>Part</h3><dl>
+<dt>Token / variable</dt><dd>Giá trị có tên (màu, khoảng cách, bo góc, kích thước) lưu trong Figma variables. Màn hình dùng token, không dùng số thô.</dd>
+<dt>Wrap</dt><dd>Part của app chứa một part base bên trong và đổi style bằng màu, text style của app. Đặt tên kiểu the trial app/Button. Cách mặc định để tạo part cho app.</dd>
+<dt>Fork</dt><dd>Bản sao part base trong app với cấu trúc đã đổi. Chỉ dùng khi wrap không làm được, có ghi lý do.</dd>
+<dt>Local part</dt><dd>Part của app không có part base tương ứng. Ghi lại làm ứng viên thêm vào base sau.</dd>
+<dt>Full set</dt><dd>Wrap có đủ mọi variant của part base (size, state, style), không chỉ những cái màn hình đang dùng.</dd>
+<dt>Starter wrap</dt><dd>15 wrap có sẵn trong Tier 2 Template, như Button, Header, ListItem. App mới đổi tên và đổi style chúng.</dd></dl></div>
+<div class="tgroup"><h3>Kiểm tra</h3><dl>
+<dt>Batch</dt><dd>Một đơn vị việc: một flow, một nhóm part hoặc một rule áp lại. Done check chạy sau mỗi batch.</dd>
+<dt>Done check script</dt><dd>Script lưu trong base, đếm lỗi rule trên cả file: màu chưa bind, khoảng cách thô, thiếu text style, part bị detach và hơn nữa.</dd>
+<dt>Quét áp lại</dt><dd>Sau một rule hay pattern mới, agent tìm khắp file những chỗ làm cùng việc và áp rule ở mọi nơi, không chỉ màn hình mới.</dd>
+<dt>Màu fallback</dt><dd>Màu thô Figma lưu phía sau một color variable. Màu sai vẫn trông đúng trong ảnh chụp, nên số đếm luôn đi trước ảnh chụp.</dd></dl></div>
+</div></section>
+<footer>Tạo từ SKILL.md và các file reference. Cập nhật trang này mỗi khi skill lên phiên bản (README, Update bước 2). Khi trang này và skill khác nhau, skill đúng, và file Figma đúng hơn cả hai.</footer>
 </main>
 <div class="ov" id="ov" aria-hidden="true"><div class="card" role="dialog" aria-modal="true" aria-labelledby="mt" id="card"></div></div>
 <script>
 {
 const steps = [
- {id:'file', lane:'session', t:'Is it a system file?', s:'Base, template or rules page',
-  what:'The agent checks that the Figma file belongs to the system before it applies any rule.',
-  reads:['references/figma-files.md: every system file with its key and link, so the agent doesn’t ask you for it','The file key: base MRoPpfFSMqPoSPd7LO8kOS or Tier 2 Template snpHcKTKy0rzuFnC9h4570','Whether the file has a page AGENT RULES or AGENT RULES (PROJECT)'],
-  does:['Matches the file by key or by its rules page','If a tier 2 file has no rules yet, it switches to "Starting a tier 2 file with no rules" (template, scan your file, pending lines, your OK, stamp)','Treats the old source app as read only and never applies rules from the trial app to another file'],
-  writes:['A row in references/figma-files.md when you send a system file that isn’t listed yet'],
-  stop:'Asks you when the file has neither the key nor a rules page and you did not say it is built on the base.',
+ {id:'file', lane:'session', t:'File có thuộc hệ thống?', s:'Base, template hoặc trang rules',
+  what:'Agent kiểm tra file Figma có thuộc hệ thống không trước khi áp bất kỳ rule nào.',
+  reads:['references/figma-files.md: mọi file của hệ thống kèm key và link, để agent không phải hỏi bạn','Key của file: base MRoPpfFSMqPoSPd7LO8kOS hoặc Tier 2 Template snpHcKTKy0rzuFnC9h4570','File có trang AGENT RULES hoặc AGENT RULES (PROJECT) không'],
+  does:['Nhận ra file qua key hoặc trang rules','Nếu file tier 2 chưa có rules, chuyển sang "Starting a tier 2 file with no rules" (template, quét file của bạn, dòng pending, bạn OK, stamp)','Coi the old source app là chỉ đọc, và không bao giờ áp rule của the trial app sang file khác'],
+  writes:['Một dòng trong references/figma-files.md khi bạn gửi file hệ thống chưa có trong danh sách'],
+  stop:'Hỏi bạn khi file không có key lẫn trang rules và bạn chưa nói nó dựng trên base.',
   src:'SKILL.md: Is this file part of the system?, Files · references/figma-files.md · references/new-app.md'},
- {id:'read', lane:'session', t:'Read the rules', s:'HANDOFF, RULES, LOCKS',
-  what:'The rules live inside the Figma file, so the agent reads them there every session instead of trusting notes.',
-  reads:['Base PROGRESS block: only the HANDOFF section','Base RULES block in full, including its "What to read, and when" table','Base LOCKS block: only the rows for parts it will edit','In an app file: its own RULES block in full, then FLOWS, MAPPING, FINDINGS, BRIEF or SITEMAP only when the table says the task needs them'],
-  does:['Finds each block by page and name, never by an old node id','Reads long blocks in parts to keep each read small','Reads RULES and HANDOFF again if the conversation was summarized, because a summary is not the rules','Notes the size of each RULES block. Over 10,000 characters, it tells you and proposes which sections to move into blocks read only when needed'],
-  writes:['Nothing'],
-  stop:'If it cannot open a reference file, it says so and asks. It never guesses the steps. Moving rules out of an oversized RULES block needs your rules maintenance OK.',
+ {id:'read', lane:'session', t:'Đọc rules', s:'HANDOFF, RULES, LOCKS',
+  what:'Rules nằm trong file Figma, nên mỗi phiên agent đọc ở đó thay vì tin vào ghi chú.',
+  reads:['Block PROGRESS của base: chỉ phần HANDOFF','Block RULES của base, đọc hết, kể cả bảng "What to read, and when"','Block LOCKS của base: chỉ các dòng của part sẽ sửa','Trong file app: đọc hết block RULES của app, rồi FLOWS, MAPPING, FINDINGS, BRIEF hoặc SITEMAP khi bảng nói task cần'],
+  does:['Tìm block theo trang và tên, không theo node id cũ','Đọc block dài từng phần để mỗi lần đọc gọn','Đọc lại RULES và HANDOFF nếu cuộc trò chuyện bị tóm tắt, vì bản tóm tắt không phải là rules','Ghi nhận độ dài block RULES. Quá 10.000 ký tự thì báo bạn và đề xuất mục nào chuyển sang block chỉ đọc khi cần'],
+  writes:['Không ghi gì'],
+  stop:'Không mở được file reference thì nói rõ và hỏi, không bao giờ đoán các bước. Chuyển rule ra khỏi block RULES quá dài cần OK sửa rules của bạn.',
   src:'SKILL.md: Read order, Rules page format · Reference files'},
- {id:'version', lane:'session', t:'Check versions', s:'App stamp vs base and skill',
-  what:'Each app file carries a "Built on" stamp. The agent compares it with the base rules version and the skill version.',
-  reads:['The "Built on: base rules vX · skill Y · checked date" line on the app RULES block','The base rules version at the top of the base RULES block','The skill version at the top of SKILL.md'],
-  does:['Base rules newer: reads the base CHANGELOG from the stamped version up and lists the app parts it affects','Skill newer: applies the page format changes listed in README.md for the versions in between','Stamp missing: adds it with today’s versions','Stamp older in any case: lists checklist items added since then that the app does not meet yet, and asks you about each'],
-  writes:['The updated stamp, once the changes are done'],
-  stop:'Updating affected parts needs your OK. A format change that creates a block or edits RULES needs your rules maintenance OK. Without it, the stamp stays and the agent lists what is pending.',
+ {id:'version', lane:'session', t:'Kiểm tra phiên bản', s:'Stamp của app so với base và skill',
+  what:'Mỗi file app có stamp "Built on". Agent so nó với phiên bản rule base và phiên bản skill.',
+  reads:['Dòng "Built on: base rules vX · skill Y · checked date" trên block RULES của app','Phiên bản rule base ở đầu block RULES của base','Phiên bản skill ở đầu SKILL.md'],
+  does:['Rule base mới hơn: đọc CHANGELOG của base từ phiên bản trong stamp trở lên và liệt kê các part app bị ảnh hưởng','Skill mới hơn: áp các thay đổi định dạng trang ghi trong README.md cho các phiên bản ở giữa','Thiếu stamp: thêm với phiên bản hôm nay','Stamp cũ hơn trong mọi trường hợp: liệt kê các mục checklist thêm từ đó mà app chưa đáp ứng, và hỏi bạn từng mục'],
+  writes:['Stamp mới, sau khi đã làm xong các thay đổi'],
+  stop:'Cập nhật part bị ảnh hưởng cần bạn OK. Thay đổi định dạng tạo block hoặc sửa RULES cần OK sửa rules. Chưa có OK thì stamp giữ nguyên và agent liệt kê việc còn chờ.',
   src:'SKILL.md: Versioning · README.md: Versions'},
- {id:'claim', lane:'session', t:'Claim your area', s:'LOCKS row or Claims line',
-  what:'Another agent may be working in the same file, so the agent marks what it owns before it writes.',
-  reads:['Existing claims, so it never edits what another session holds'],
-  does:['Base: adds a row to the LOCKS block. App file: adds a line to Claims on its RULES block','Rules pages, PROGRESS, ROADMAP and shared parts get one writer at a time','For two agents on one file, follows the relay or parallel setup'],
-  writes:['A claim with the session, what it owns and the date. It is removed at the end.'],
-  stop:'If two sessions need the same shared parts or rules, it tells you and stops.',
+ {id:'claim', lane:'session', t:'Nhận phần việc', s:'Dòng LOCKS hoặc dòng Claims',
+  what:'Có thể agent khác đang làm cùng file, nên agent đánh dấu phần mình giữ trước khi ghi.',
+  reads:['Các claim đang có, để không sửa phần phiên khác đang giữ'],
+  does:['Base: thêm một dòng vào block LOCKS. File app: thêm một dòng vào Claims trên block RULES','Trang rules, PROGRESS, ROADMAP và part dùng chung mỗi lúc chỉ một người ghi','Hai agent trên một file thì làm theo cách relay hoặc song song'],
+  writes:['Một claim ghi phiên, phần giữ và ngày. Xóa khi kết thúc.'],
+  stop:'Nếu hai phiên cần cùng part dùng chung hoặc cùng rules, agent báo bạn và dừng.',
   src:'SKILL.md: Working alongside other sessions · references/parallel-agents.md'},
- {id:'return', lane:'ret', t:'Returning to an app', s:'Catch up, then Every batch',
-  what:'For an app that already exists, the five new app stages are skipped. The agent catches the file up to the current base and skill, then works in batches.',
-  reads:['The app RULES block in full, including Claims and "Changed since" lines from other sessions','SKILL FINDINGS Handoff: lessons still open from earlier sessions','SITEMAP when the work adds, removes or links screens; BRIEF when choosing a feature or asked why a screen exists'],
-  does:['Base rules newer than the stamp: lists the app parts the change affects','Skill newer: applies the page format changes from README for the versions in between','Lists the checklist items added since the stamp that the app does not meet yet (for example the standard app flows or the language flow) and asks about each one','Updates the sitemap first when the work adds screens','Then goes straight to Every batch'],
-  writes:['Only after your OK: updated parts, new blocks, sitemap changes, and the moved stamp'],
-  stop:'For each missing checklist item, you choose: add it, or mark it ruled out in the BRIEF. The stamp never moves past an item silently.',
+ {id:'return', lane:'ret', t:'Quay lại một app', s:'Cập nhật, rồi vào Mỗi batch',
+  what:'Với app đã có, bỏ qua năm giai đoạn app mới. Agent cập nhật file theo base và skill hiện tại, rồi làm theo batch.',
+  reads:['Đọc hết block RULES của app, kể cả Claims và các dòng "Changed since" từ phiên khác','Handoff trong SKILL FINDINGS: bài học còn mở từ các phiên trước','SITEMAP khi việc thêm, bớt hoặc nối màn hình; BRIEF khi chọn tính năng hoặc được hỏi vì sao có một màn hình'],
+  does:['Rule base mới hơn stamp: liệt kê part app bị ảnh hưởng','Skill mới hơn: áp các thay đổi định dạng trang trong README cho các phiên bản ở giữa','Liệt kê các mục checklist thêm từ sau stamp mà app chưa đáp ứng (ví dụ flow chuẩn hoặc flow ngôn ngữ) và hỏi bạn từng mục','Cập nhật sitemap trước khi việc thêm màn hình','Rồi vào thẳng Mỗi batch'],
+  writes:['Chỉ sau khi bạn OK: part đã cập nhật, block mới, thay đổi sitemap, và stamp mới'],
+  stop:'Với mỗi mục checklist còn thiếu, bạn chọn: thêm vào, hoặc ghi là bỏ qua trong BRIEF. Stamp không bao giờ lặng lẽ vượt qua một mục.',
   src:'SKILL.md: Versioning, Read order · references/new-app.md'},
- {id:'context', lane:'app', gate:true, t:'1. Context', s:'Fill AGENT BRIEF',
-  what:'The agent turns what you and the PO give it into a written brief that later stages work from.',
-  reads:['Documents, links, Figma files and Drive files you and the PO share','Before this: you duplicate the Tier 2 Template, enable the base library and send the link. The agent cannot do these steps.'],
-  does:['Writes goal, audience, platforms and languages, features, monetization, references, constraints and open questions','Marks every unknown "to confirm" and never invents the PO’s knowledge'],
-  writes:['The BRIEF block on page AGENT BRIEF (PROJECT)'],
-  stop:'Gate: you confirm the brief.',
+ {id:'context', lane:'app', gate:true, t:'1. Bối cảnh', s:'Điền AGENT BRIEF',
+  what:'Agent biến những gì bạn và PO đưa thành một brief viết sẵn, các giai đoạn sau dựa vào đó.',
+  reads:['Tài liệu, link, file Figma và Drive mà bạn và PO chia sẻ','Trước bước này: bạn duplicate Tier 2 Template, bật library base và gửi link. Agent không làm được các bước này.'],
+  does:['Viết mục tiêu, người dùng, nền tảng và ngôn ngữ, tính năng, cách kiếm tiền, tham khảo, ràng buộc và câu hỏi còn mở','Đánh dấu mọi điều chưa biết là "to confirm", không tự bịa thông tin thay PO'],
+  writes:['Block BRIEF trên trang AGENT BRIEF (PROJECT), bằng tiếng Anh'],
+  stop:'Cổng duyệt: bạn xác nhận brief.',
   src:'references/new-app.md: New app process, stage 1'},
- {id:'sitemap', lane:'app', gate:true, t:'2. Sitemap', s:'Screens, states, standard flows',
-  what:'A numbered tree of every screen and state, so FLOWS and screen names match it later.',
-  reads:['The confirmed brief'],
-  does:['Writes feature, then screen, then state, numbered the way FLOWS will be','Adds the standard flows unless the brief rules them out: language, Settings support group, rate app, feedback, invite friends, app update, no internet','Marks anything the brief does not decide "to confirm"'],
-  writes:['The SITEMAP block on page AGENT SITEMAP (PROJECT). A visual tree is optional.'],
-  stop:'Gate: you approve the sitemap.',
+ {id:'sitemap', lane:'app', gate:true, t:'2. Sitemap', s:'Màn hình, trạng thái, flow chuẩn',
+  what:'Cây đánh số mọi màn hình và trạng thái, để FLOWS và tên màn hình sau này khớp với nó.',
+  reads:['Brief đã xác nhận'],
+  does:['Viết tính năng, rồi màn hình, rồi trạng thái, đánh số giống FLOWS','Thêm các flow chuẩn trừ khi brief loại ra: ngôn ngữ, nhóm hỗ trợ trong Settings, đánh giá app, góp ý, mời bạn bè, cập nhật app, mất mạng','Đánh dấu "to confirm" những gì brief chưa quyết'],
+  writes:['Block SITEMAP trên trang AGENT SITEMAP (PROJECT). Cây trực quan là tùy chọn.'],
+  stop:'Cổng duyệt: bạn duyệt sitemap.',
   src:'references/new-app.md: stage 2 · references/app-flows.md'},
- {id:'style', lane:'app', gate:true, t:'3. Visual style', s:'Style tile on page Design',
-  what:'The app’s look is drafted and shown before any screen is drawn.',
-  reads:['App RULES 2.1, 2.2 and 2.4 (typeface, look, style)'],
-  does:['Drafts typeface, colors and shape','Fills the local App Color and Typography values','Draws one style tile: a sample screen next to the tokens','Makes any art only with the OpenAI image connector, prompts in English'],
-  writes:['Token values and the style tile. Style rules are written only after your OK.'],
-  stop:'Gate: you approve the style. If the image connector cannot be used, the agent asks before using another way.',
+ {id:'style', lane:'app', gate:true, t:'3. Phong cách', s:'Style tile trên trang Design',
+  what:'Giao diện app được phác và cho xem trước khi vẽ màn hình nào.',
+  reads:['RULES của app 2.1, 2.2 và 2.4 (font, giao diện, phong cách)'],
+  does:['Phác font, màu và hình khối','Điền giá trị App Color và Typography local','Vẽ một style tile: một màn hình mẫu cạnh các token','Chỉ tạo ảnh bằng connector ảnh OpenAI, prompt bằng tiếng Anh'],
+  writes:['Giá trị token và style tile. Rule phong cách chỉ ghi sau khi bạn OK.'],
+  stop:'Cổng duyệt: bạn duyệt phong cách. Nếu không dùng được connector ảnh, agent hỏi trước khi dùng cách khác.',
   src:'references/new-app.md: stage 3 · SKILL.md: Images and art'},
- {id:'wire', lane:'app', gate:true, t:'4. Wireframe', s:'Grayscale, parts list',
-  what:'Screens are drawn in grayscale from plain base parts, which work as the wireframe kit.',
-  reads:['The approved sitemap','The base parts and their descriptions'],
-  does:['Draws each sitemap screen from base parts only','Uses the Illustration text box for art and Ad Slot for ads','Sorts every part: base part used, missing (a FINDINGS T item) or custom (wrap, fork, local)'],
-  writes:['Wireframe screens and the parts needed list in MAPPING'],
-  stop:'Gate: you approve the parts list.',
+ {id:'wire', lane:'app', gate:true, t:'4. Wireframe', s:'Màu xám, danh sách part',
+  what:'Màn hình được vẽ màu xám từ part base trơn, dùng như bộ wireframe.',
+  reads:['Sitemap đã duyệt','Các part base và mô tả của chúng'],
+  does:['Vẽ mỗi màn hình trong sitemap chỉ từ part base','Dùng ô text Illustration cho hình và Ad Slot cho quảng cáo','Phân loại mọi part: dùng part base, thiếu (một T item trong FINDINGS) hoặc tùy biến (wrap, fork, local)'],
+  writes:['Màn hình wireframe và danh sách part cần có trong MAPPING'],
+  stop:'Cổng duyệt: bạn duyệt danh sách part.',
   src:'references/new-app.md: stage 4'},
- {id:'build', lane:'app', gate:true, t:'5. Build', s:'Starter wraps, then screens',
-  what:'The real screens, in the app’s look, built only from wraps and base parts.',
-  reads:['MAPPING, the mix model (app rule 1.1) and references/wraps.md','references/flows.md before drawing or linking screens on a flows page'],
-  does:['Starts from the 15 starter wraps and renames App to the app name','Wrap first, fork only when the structure must change, local only when the base has no match','Each wrap mirrors the full variant set of its base part','Picks parts by job, not by look, and leaves no dead ends: every button ends in an arrow or jump tag','Uses neutral placeholders, never real names, emails or websites'],
-  writes:['Screens, App/ parts with descriptions, MAPPING rows'],
-  stop:'Gate: you approve each screen and each custom part.',
-  src:'references/new-app.md: stage 5 · SKILL.md: Core principle, Building rules · references/choosing-parts.md'},
- {id:'batch', lane:'batch', t:'Build batch', s:'Tokens and styles only',
-  what:'One section of work, kept small so a mistake does not spread.',
-  reads:['Screens and layers already doing the same job, so the agent reuses their pattern'],
-  does:['Binds every padding, gap, radius, stroke and color to a variable','Takes text only from local text styles','Never detaches a component or uses sub-components','After a new pattern, scans the whole file and reapplies it'],
-  writes:['The screens and parts in the claimed area'],
-  stop:'Any new rule, token or component change goes through the approval loop first.',
+ {id:'build', lane:'app', gate:true, t:'5. Dựng', s:'Starter wrap, rồi màn hình',
+  what:'Màn hình thật theo giao diện của app, chỉ dựng từ wrap và part base.',
+  reads:['MAPPING, mô hình mix (rule app 1.1) và references/wraps.md','references/flows.md trước khi vẽ hoặc nối màn hình trên trang flows'],
+  does:['Bắt đầu từ 15 starter wrap và đổi App thành tên app','Ưu tiên wrap, chỉ fork khi phải đổi cấu trúc, chỉ local khi base không có','Mỗi wrap có đủ bộ variant của part base','Chọn part theo công việc, không theo vẻ ngoài, và không để ngõ cụt: mọi nút đều có mũi tên hoặc thẻ nhảy','Dùng nội dung giả trung tính, không dùng tên, email hay website thật','Ghi chú trên canvas bằng tiếng Việt; tên layer, component và mô tả bằng tiếng Anh'],
+  writes:['Màn hình, part App/ có mô tả, dòng MAPPING'],
+  stop:'Cổng duyệt: bạn duyệt từng màn hình và từng part tùy biến.',
+  src:'references/new-app.md: stage 5 · SKILL.md: Core principle, Building rules, Languages · references/choosing-parts.md'},
+ {id:'batch', lane:'batch', t:'Dựng batch', s:'Chỉ dùng token và style',
+  what:'Một phần việc, giữ nhỏ để lỗi không lan rộng.',
+  reads:['Màn hình và layer đang làm cùng việc, để agent dùng lại pattern của chúng'],
+  does:['Bind mọi padding, gap, bo góc, viền và màu vào variable','Text chỉ lấy từ text style local','Không bao giờ detach component hay dùng sub-component','Sau pattern mới, quét cả file và áp lại'],
+  writes:['Màn hình và part trong phần đã claim'],
+  stop:'Mọi rule, token hay thay đổi component mới đều đi qua vòng duyệt trước.',
   src:'SKILL.md: Building rules'},
- {id:'check', lane:'batch', t:'Done check', s:'Run the script',
-  what:'A script in the base file counts rule breaks across the whole file. The agent reports numbers, not impressions.',
-  reads:['The text node DONE CHECK SCRIPT on the base page AGENT RULES'],
-  does:['Runs it exactly as written in the file being checked','Reports only counts that are not zero, with up to 10 node ids each','Checks the remaining items by hand: full variant sets, real names, language flow, standard flows','If counts are not zero: fixes, reapplies and runs again','When a flow section is finished, offers the separate read-only review design-hagent-review (contrast, tap size, navigation, states, paywall, permissions)'],
-  writes:['Fixes only'],
-  stop:'Never says "clean" without counts. Names any item it skipped.',
+ {id:'check', lane:'batch', t:'Done check', s:'Chạy script',
+  what:'Script trong base đếm lỗi rule trên cả file. Agent báo con số, không báo cảm nhận.',
+  reads:['Text node DONE CHECK SCRIPT trên trang AGENT RULES của base'],
+  does:['Chạy đúng như viết trong file đang kiểm tra','Chỉ báo các số khác 0, mỗi loại tối đa 10 node id','Kiểm tra tay các mục còn lại: đủ bộ variant, tên thật, flow ngôn ngữ, flow chuẩn','Số khác 0: sửa, áp lại và chạy lại','Khi xong một flow, đề xuất review riêng chỉ đọc design-hagent-review (tương phản, vùng chạm, điều hướng, trạng thái, paywall, quyền), báo cáo bằng tiếng Việt'],
+  writes:['Chỉ các bản sửa'],
+  stop:'Không bao giờ nói "sạch" mà không có số. Nêu rõ mục nào đã bỏ qua.',
   src:'SKILL.md: Done check'},
- {id:'shot', lane:'batch', t:'Screenshot', s:'Touched screens only',
-  what:'A small screenshot to look at the result, taken after the counts.',
-  reads:['The screens touched in this batch'],
-  does:['Takes a small screenshot and looks at it'],
-  writes:['Nothing'],
-  stop:'A screenshot cannot show a wrong binding or fallback color, so the counts always come first.',
+ {id:'shot', lane:'batch', t:'Chụp màn hình', s:'Chỉ màn đã sửa',
+  what:'Ảnh chụp nhỏ để xem kết quả, chụp sau khi có số đếm.',
+  reads:['Các màn hình đã sửa trong batch này'],
+  does:['Chụp ảnh nhỏ và xem'],
+  writes:['Không ghi gì'],
+  stop:'Ảnh chụp không cho thấy bind sai hay màu fallback sai, nên số đếm luôn đi trước.',
   src:'SKILL.md: Done check'},
- {id:'log', lane:'batch', t:'Log and handoff', s:'Release the claim',
-  what:'The agent leaves the file so the next session can start cold.',
-  reads:['The top 15 lines of CHANGELOG'],
-  does:['Adds a CHANGELOG line under today’s date; in an app file, a "Changed since" line for rule changes','Marks app parts with 0 uses "unused, delete?" in MAPPING','Records skill findings (designer corrections, repeated mistakes, tool pitfalls) for your review','Base: rewrites HANDOFF. App file: lists open skill finding ids'],
-  writes:['CHANGELOG, HANDOFF or SKILL FINDINGS, then removes its claim'],
-  stop:'Findings are evidence only. Only you move a finding to Reviewed, Approved or Rejected.',
-  src:'SKILL.md: Skill findings, Talking to the designer · references/skill-findings.md'},
- {id:'approval', lane:'loop', t:'Approval loop', s:'Any rule, token or component change',
-  what:'The one loop every change to the system goes through. Your corrections go through it too, so you never have to say the same thing twice.',
-  reads:['Source node links, Material 3 and Apple HIG where relevant'],
-  does:['1. Proposes with evidence','2. Draws a preview on page Design (base) or a test screen (app)','3. Waits for your explicit OK','4. Builds, writes the rule with a one-sentence "Why", and logs it','5. Reapplies it to every screen and part, and proposes a DONE CHECK SCRIPT check for it'],
-  writes:['Only after your OK: rule lines, tokens, variables, modes, text styles, component structure or variants'],
-  stop:'Never without your OK: changing a rule, adding or renaming a token or style, changing a component’s structure, publishing or deleting a component.',
+ {id:'log', lane:'batch', t:'Log và handoff', s:'Bỏ claim',
+  what:'Agent rời file sao cho phiên sau bắt đầu được từ đầu.',
+  reads:['15 dòng đầu của CHANGELOG'],
+  does:['Thêm một dòng CHANGELOG dưới ngày hôm nay; trong file app, thêm dòng "Changed since" cho thay đổi rule','Đánh dấu part app có 0 lượt dùng là "unused, delete?" trong MAPPING','Ghi skill finding (lần bạn sửa, lỗi lặp lại, bẫy của công cụ) để bạn xem','Base: viết lại HANDOFF. File app: liệt kê các id skill finding còn mở','Các block này viết bằng tiếng Anh vì agent đọc chúng'],
+  writes:['CHANGELOG, HANDOFF hoặc SKILL FINDINGS, rồi xóa claim'],
+  stop:'Finding chỉ là bằng chứng. Chỉ bạn chuyển finding sang Reviewed, Approved hoặc Rejected.',
+  src:'SKILL.md: Skill findings, Languages, Talking to the designer · references/skill-findings.md'},
+ {id:'approval', lane:'loop', t:'Vòng duyệt', s:'Mọi thay đổi rule, token, component',
+  what:'Vòng duy nhất mà mọi thay đổi hệ thống phải đi qua. Những lần bạn sửa cũng đi qua đây, để bạn không phải nói cùng một điều hai lần.',
+  reads:['Link node nguồn, Material 3 và Apple HIG khi liên quan'],
+  does:['1. Đề xuất kèm bằng chứng','2. Vẽ preview trên trang Design (base) hoặc một màn hình thử (app)','3. Chờ bạn OK rõ ràng','4. Dựng, viết rule kèm một câu "Why", và ghi log','5. Áp lại cho mọi màn hình và part, và đề xuất thêm một kiểm tra vào DONE CHECK SCRIPT'],
+  writes:['Chỉ sau khi bạn OK: dòng rule, token, variable, mode, text style, cấu trúc hoặc variant của component'],
+  stop:'Không bao giờ làm khi chưa có OK: sửa rule, thêm hoặc đổi tên token hay style, đổi cấu trúc component, publish hoặc xóa component.',
   src:'SKILL.md: Approval loop'}
 ];
-const laneInfo = {session:['Start of every session','gray'], app:['New app: five stages','purple'], batch:['Every batch','teal'], loop:['Applies at every step','box'], ret:['Existing app','coral']};
+
+const laneInfo = {session:['Đầu mỗi phiên','gray'], app:['App mới: năm giai đoạn','purple'], batch:['Mỗi batch','teal'], loop:['Áp dụng ở mọi bước','box'], ret:['App có sẵn','coral']};
 const esc = v => String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const list = a => `<ul>${a.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`;
 const ov = document.getElementById('ov'), card = document.getElementById('card');
@@ -186,9 +221,9 @@ let last = null;
 function open(id){
   const k = steps.findIndex(s => s.id === id); if (k < 0) return close();
   const st = steps[k], [ln, cls] = laneInfo[st.lane];
-  card.innerHTML = `<header><span class="tag ${cls}">${esc(ln)}${st.gate ? ' · needs your OK' : ''}</span><h2 id="mt">${esc(st.t)}</h2><p class="what">${esc(st.what)}</p><button class="x" id="x" aria-label="Close">\u00d7</button></header>
-  <div class="spec"><section><h3>What it reads</h3>${list(st.reads)}</section><section><h3>What it does</h3>${list(st.does)}</section><section><h3>What it writes</h3>${list(st.writes)}</section><section><h3>Where it stops for you</h3><div class="stop">${esc(st.stop)}</div></section><section><h3>Source in the skill</h3><div class="src">${esc(st.src)}</div></section></div>
-  <div class="nav"><button id="pv">\u2190 Previous</button><button id="nx">Next \u2192</button></div>`;
+  card.innerHTML = `<header><span class="tag ${cls}">${esc(ln)}${st.gate ? ' · cần bạn OK' : ''}</span><h2 id="mt">${esc(st.t)}</h2><p class="what">${esc(st.what)}</p><button class="x" id="x" aria-label="Đóng">\u00d7</button></header>
+  <div class="spec"><section><h3>Đọc gì</h3>${list(st.reads)}</section><section><h3>Làm gì</h3>${list(st.does)}</section><section><h3>Ghi gì</h3>${list(st.writes)}</section><section><h3>Dừng lại chờ bạn ở đâu</h3><div class="stop">${esc(st.stop)}</div></section><section><h3>Nguồn trong skill</h3><div class="src">${esc(st.src)}</div></section></div>
+  <div class="nav"><button id="pv">\u2190 Trước</button><button id="nx">Tiếp \u2192</button></div>`;
   document.getElementById('x').onclick = close;
   document.getElementById('pv').onclick = () => go(steps[(k - 1 + steps.length) % steps.length].id);
   document.getElementById('nx').onclick = () => go(steps[(k + 1) % steps.length].id);
