@@ -5,7 +5,7 @@ description: "Process skill for Hagen's mobile design system in Figma. Load it f
 
 # Hagen Design System Base: how to work
 
-**Skill version 2.11 (2026-11-24).** Changes per version: README.md.
+**Skill version 2.12-test (2026-11-24, branch varmeta-adapt-test).** Changes per version: README.md.
 
 The goal is an agent-ready mobile design system for IAA/IAP (ad and in-app-purchase monetized) apps. An agent given a prompt should be able to build a full working app from components, tokens and rules only, without inventing layout.
 
@@ -185,6 +185,8 @@ Run the base text node "DONE CHECK SCRIPT" (page AGENT RULES, base rule 10.1) ex
 - no real names, emails, phone numbers, addresses or websites of people, developers, studios or companies in any text layer (search text for known names and replace them with placeholders)
 - language flow: first-run language step and the Settings Language row and list are both in the sitemap and on page Design (or the brief says single-language), the Settings list has no Save button, exactly one option is Selected, and every name is in its own language
 - standard app flows: each flow in references/app-flows.md is in the sitemap and on page Design, or the brief rules it out
+
+The done check asks whether it is built right. Whether it works for people (contrast, tap size, navigation, states, paywall, permissions) is the separate skill hagen-design-review: offer it when a flow section is finished, and run it when the designer asks. It is read only.
 
 Report the check compactly: only counts that aren't zero, with up to 10 node ids each, never full node dumps. Then take a screenshot of the screens you touched, at a small size, and look at it. A screenshot shows resolved variables, so it can't show wrong bindings or fallback colors: the counts come first, the screenshot second. Rewrite the HANDOFF block if it's older than the newest changelog line.
 
