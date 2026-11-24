@@ -5,7 +5,7 @@ description: "Process skill for Hagen's mobile design system in Figma. Load it f
 
 # Hagen Design System Base: how to work
 
-**Skill version 2.10 (2026-11-23).** Changes per version: README.md.
+**Skill version 2.11 (2026-11-24).** Changes per version: README.md.
 
 The goal is an agent-ready mobile design system for IAA/IAP (ad and in-app-purchase monetized) apps. An agent given a prompt should be able to build a full working app from components, tokens and rules only, without inventing layout.
 
@@ -45,7 +45,7 @@ In a tier 2 file, also read its RULES block in full and check its "Built on" sta
 All agent pages are spec blocks. Find one by page and name with `page.findOne(n=>n.type==='SPEC_BLOCK'&&n.name==='RULES')`, read it with `figma.spec.getContent({specNodeId, offset, maxLines})`, and edit with `figma.spec.editContent` (exact, unique matches). Never `setContent` a block that has content unless the designer asked for a rewrite. Inside tables, write `_`, `*` and `[` plainly: escapes show up as visible backslashes there.
 
 Rules page format (keeps every session's reading small):
-- One always-read block (RULES): read guide, Claims, Changed since, settings, pattern rules, pending. Aim for 10,000 characters or less.
+- One always-read block (RULES): read guide, Claims, Changed since, settings, pattern rules, pending. Aim for 10,000 characters or less. When you read a RULES block, note its character count. Over 10,000: tell the designer the count and propose which sections to move into task blocks, read only when needed. Moving them is rules maintenance and needs the designer's OK.
 - Task blocks, read only when needed: FLOWS (flow layout, versions), MAPPING (part table), FINDINGS (base gaps), SKILL FINDINGS (lessons about how agents work), CHANGELOG (history).
 - Use `##` sections and one `###` heading per rule, so a part of a block can be found and read alone.
 - A rule is a few lines, then "Why:" with the reason in one sentence, then its source (designer, date). The reason is what an agent works from when it hits a case the rule doesn't cover, so never drop it. If the designer gave no reason, ask. Point to variables instead of copying values.
@@ -62,6 +62,9 @@ These sit next to this file. They hold steps you need for some tasks only, so a 
 | references/flows.md | drawing, moving or linking screens on a flows page |
 | references/parallel-agents.md | the designer wants two agents on one file |
 | references/skill-findings.md | writing, merging or reviewing a skill finding |
+| references/choosing-parts.md | picking a part for a screen or a button group |
+| references/app-flows.md | writing or checking a sitemap, starting or catching up an app, the standard flow done check items |
+| references/figma-gotchas.md | before the first use_figma call in a session |
 
 If you can't open a reference file, say so and ask. Never guess its steps.
 
@@ -111,13 +114,14 @@ Each tier 2 file has a block SKILL FINDINGS on AGENT RULES (PROJECT): evidence a
 
 Three versions, each written where an agent sees it on first read:
 - **Base rules version**: top of the base RULES block. Read it there, never from notes or this skill. Never bump it. The designer decides when. After an approved change, add a dated line under "Rules versions" in the base CHANGELOG, newest first.
-- **Skill version**: top of this file, with changes per version in README.md. Bump it when this skill changes: minor (1.1 to 1.2) for wording and process, major (1.x to 2.0) when the page format in the files changes. Also update "Page format: skill x" on the base RULES block.
+- **Skill version**: top of this file, with changes per version in README.md. Bump it when this skill changes: minor (1.1 to 1.2) for wording and process, major (1.x to 2.0) when the page format in the files changes. Also update "Page format: skill x" on the base RULES block. Also update the flow page docs/skill-flow.html and republish its artifact (README, Update step 2), so the designer's overview matches the skill.
 - **Tier 2 stamp**: a "Built on: base rules vX · skill Y · checked date" line under the title of each app's RULES block.
 
 At session start in a tier 2 file, compare its stamp with the base RULES version and this skill's version:
 - Base rules newer: read the base CHANGELOG "Rules versions" from the stamped version up, list the app parts it affects, tell the designer, and update the affected parts with approval. Then update the stamp.
 - Skill newer: apply the format changes listed in README.md for the versions in between (for example the block split in 1.1), then update the stamp. A format change that creates a block or edits RULES needs the designer's rules maintenance OK first. Without it, leave the stamp and say which changes are pending.
 - Stamp missing: add it with today's versions after reading both, and say so.
+- Stamp older, in any case: list the checklist items added to this skill since the stamped version (done check items, standard app flows, the language flow) that the app doesn't meet yet. Ask the designer about each one: add it (sitemap, then screens) or mark it ruled out in the BRIEF. Never move the stamp past an item silently, even when the version had no format change.
 - No RULES block at all: follow "Starting a tier 2 file with no rules" in references/new-app.md first.
 
 ## Core principle: plain base, tier 2 flavor
@@ -135,34 +139,13 @@ At session start in a tier 2 file, compare its stamp with the base RULES version
 - Before forking, write "base X can't do Y because Z" in the description and log a base candidate. If the reason is only a missing slot or property, propose that to the base first.
 - At session end, mark app parts with 0 uses as "unused, delete?" in the mapping table. Don't keep them silently.
 
-## Choosing a part (job first, look second)
+## Choosing a part
 
-Pick a part by the job it does, never by which one looks closest. If the job isn't below or in the file's rules, ask. If the base RULES block has a table for choosing a part, it wins over this list. Otherwise use this:
-- Navigate into a screen, a settings item, a saved record, a long single-choice list in a form: list row.
-- Do something: button. Secondary action: ghost or secondary button, never a list row.
-- Toggle: switch or checkbox. Never a row with nothing on the right.
-- Status: a checklist item, not tappable.
-- Two big choices: picture cards. Short picks and survey answers: option cards. Suggestions: chips.
-- Share on a result: an icon button in the header.
-- Choose a language: base Language Option cards (flag, native name, check when selected), five or more stacked with group-gap. On first run: a Continue button in the bottom bar. In Settings: the choice applies right away, no Save button. The Settings row is a list row with the current language as trailing text. Never write a language name in another language.
+Pick a part by the job it does, never by which one looks closest. A table for choosing a part in the base RULES block wins. Otherwise read references/choosing-parts.md (job list, button groups, language options).
 
-Button groups (a button rule in the base or app RULES block wins over this list):
-- One action on an empty or error screen: Primary, hugging its label.
-- Two or more actions: stacked, the main action first. Full width on most screens. On empty states, follow the base empty state rule (6.5) for their width.
-- Destructive is the main action: Destructive + Secondary.
-- Primary plus a destructive choice plus cancel: Primary, Destructive Secondary, Ghost. One red button per group.
-- A row that opens a delete confirm stays a row. The red appears on the confirm button.
+## Standard app flows
 
-## Standard app flows (checklist)
-
-Every app sitemap includes these flows unless the brief rules one out. Mark each "to confirm" when the brief doesn't say. Reference builds: the old source app (Settings section) and the trial app (sections 1, 12, 13).
-- Language: a first-run step after Splash and before Onboarding (Language Option list, device language preselected, Continue in the bottom bar, no Back), and a Settings Language row (current language as trailing text) that opens a list where the choice applies right away, with no Save.
-- Settings Support group, in this order: Feedback, Rate App, Invite Friends, Privacy Policy, About the Developer, then the app version.
-- Rate App: "Enjoying [app]?" (Love it / Not really), then a star dialog (Rate disabled until a star is picked). 1 to 3 stars or Not really go to Feedback. 4 to 5 stars open the system store review prompt (iOS App Store, Google Play in-app review), which is system UI and drawn only as a labeled mock. An automatic ask only at a happy moment, never on app open, and within store limits.
-- Feedback: a sheet with a multi-line field (Send disabled while empty), typed state, Thank you dialog, and a send-failed case with no internet (Try again, Cancel, message kept).
-- Invite Friends: the system share sheet, no custom screen.
-- App update: Update available (soft, Later and Update, at most once per version) and Update required (blocking, Update now only, no Back or Close).
-- No internet: a full-screen state with Try again and a retrying state, plus inline offline cases for actions that need the network.
+Every app sitemap includes the standard flows (language, Settings support group, rate app, feedback, invite friends, app update, no internet) unless the brief rules one out. The details are in references/app-flows.md.
 
 ## Describing a part
 
@@ -190,7 +173,7 @@ Run the base text node "DONE CHECK SCRIPT" (page AGENT RULES, base rule 10.1) ex
 - text nodes without a local text style, with font, size or tracking set directly, with a style from another library, or with a style not in the 7.11 table
 - padding, gap, radius or stroke values that are not bound to a variable
 - fills or strokes that are not bound to a color variable (system Status Bar and Nav Bar are exempt)
-- bound fills or strokes whose stored fallback color differs from the variable's resolved value (see Figma gotchas)
+- bound fills or strokes whose stored fallback color differs from the variable's resolved value (see references/figma-gotchas.md)
 - icon vectors whose stroke weight doesn't follow the icon size rule in RULES (if RULES has none, log a Q finding)
 - buttons whose height, radius or padding don't match their size variant
 - detached instances, and generic layer names (Frame, Group, Vector)
@@ -201,7 +184,7 @@ Run the base text node "DONE CHECK SCRIPT" (page AGENT RULES, base rule 10.1) ex
 - every wrap you touched covers its base part's full variant set, except what its description lists under "Left out on purpose" (compare the base set's variant properties with the wrap's)
 - no real names, emails, phone numbers, addresses or websites of people, developers, studios or companies in any text layer (search text for known names and replace them with placeholders)
 - language flow: first-run language step and the Settings Language row and list are both in the sitemap and on page Design (or the brief says single-language), the Settings list has no Save button, exactly one option is Selected, and every name is in its own language
-- standard app flows: each flow in "Standard app flows" is in the sitemap and on page Design, or the brief rules it out
+- standard app flows: each flow in references/app-flows.md is in the sitemap and on page Design, or the brief rules it out
 
 Report the check compactly: only counts that aren't zero, with up to 10 node ids each, never full node dumps. Then take a screenshot of the screens you touched, at a small size, and look at it. A screenshot shows resolved variables, so it can't show wrong bindings or fallback colors: the counts come first, the screenshot second. Rewrite the HANDOFF block if it's older than the newest changelog line.
 
@@ -210,7 +193,7 @@ Report the check compactly: only counts that aren't zero, with up to 10 node ids
 **Build a screen.** Prompt: "Add a Result screen with a share action and two follow-up actions."
 - Read order, then claim the flow section you own.
 - Search the file for a screen doing the same job and reuse its pattern (reapply rule).
-- Build only from the app's wraps and base parts, bound to tokens. Share is a header icon button. The two follow-ups are stacked full width, Primary first, then Ghost (Choosing a part, Button groups).
+- Build only from the app's wraps and base parts, bound to tokens. Share is a header icon button. The two follow-ups are stacked full width, Primary first, then Ghost (references/choosing-parts.md).
 - Every action ends in an arrow or jump tag. Notes are in Vietnamese.
 - Run the done check, paste its counts, take a screenshot, log a CHANGELOG line, release the claim.
 
@@ -229,18 +212,7 @@ For IAA/IAP apps, think about where ads and upsells fire: native ad between cont
 ## Figma gotchas
 
 - This skill sits on top of the Figma plugin skills and does not repeat their API rules. Load `figma-use` once per session, before the first `use_figma` call. Load `figma-generate-design` once when you first draw or change a screen, and `figma-generate-library` only when you build a part, a variable collection or a style. Don't load them again in the same session.
-- Gotchas for building and extending parts are in references/wraps.md, and adding a spec block is in references/new-app.md.
-- `figma.getNodeByIdAsync(id)` reaches nodes on other pages without switching the current page, so one call can read or set many parts.
-- `figma.spec.setContent` on a block that has a table can fail with "ambiguous table column correspondence". Write the block with a placeholder line, then put the table in with `editContent`.
-- Set `figma.skipInvisibleInstanceChildren = false` before touching hidden instance children.
-- The base screen size collection is "Device" (renamed from "_Device" on 2026-11-17) and is published, so tier 2 screens can bind screen-width and screen-height to it. Older notes that say "_Device" mean the same collection.
-- The DONE CHECK SCRIPT is still a text node in Inter Regular: load the font before editing it, edit by exact string replace, and re-read afterward.
-- When swapping an instance to another variant or part, call `resetOverrides()` first, then set only what you need. Old fills and hidden icons survive a swap otherwise.
-- A paint bound to a color variable still stores a raw color, the fallback. Never write black or a placeholder there. Set it to the variable's value for that node: `const { r, g, b } = variable.resolveForConsumer(node).value`, then bind. A wrong fallback looks right in screenshots and only shows when the file is opened or the binding breaks.
-- Never make a tint with paint or layer opacity on a variable-bound paint: it doesn't reach instances. Bind a real token or ask for one.
-- A screen with FILL content inside a hugging root collapses. Give the screen root the device minHeight and let Content hug.
-- Not available in this context: `figma.loadAllPagesAsync`, `figma.createConnector`, connector bend points. `findAll` doesn't exist on text nodes: check `'findAll' in node` first.
-- Keep reads of big files small (compact JSON, small screenshots). Large responses break.
+- Read references/figma-gotchas.md before your first use_figma call in a session (spec blocks, swaps, bound paint fallbacks, tints, unsupported API, small reads).
 
 ## Talking to the designer
 

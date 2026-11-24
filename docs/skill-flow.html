@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skill design flow</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* VOICE: the same quiet flowchart from the chat, nothing added
+   IDEA: a printed process map; tap a box to open its spec card
+   PICTURE: the original SVG flowchart, centered and scaled up
+   COLOUR and TYPE: gray, purple, teal ramps on a plain ground; Inter 400 and 500
+   LAYOUT: short title, chart, modal on click */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#1a1a19);--ink:light-dark(#1f1e1d,#ecebe6);--mute:light-dark(#6b6a65,#a8a79f);--line:light-dark(#d9d7cf,#3a3936);--soft:light-dark(#f6f5f1,#242422);
+--g-f:light-dark(#F1EFE8,#444441);--g-s:light-dark(#5F5E5A,#B4B2A9);--g-t:light-dark(#444441,#F1EFE8);--g-u:light-dark(#5F5E5A,#D3D1C7);
+--p-f:light-dark(#EEEDFE,#3C3489);--p-s:light-dark(#534AB7,#AFA9EC);--p-t:light-dark(#3C3489,#EEEDFE);--p-u:light-dark(#534AB7,#CECBF6);
+--c-f:light-dark(#FAECE7,#712B13);--c-s:light-dark(#993C1D,#F0997B);--c-t:light-dark(#712B13,#FAECE7);--c-u:light-dark(#993C1D,#F5C4B3);
+--t-f:light-dark(#E1F5EE,#085041);--t-s:light-dark(#0F6E56,#5DCAA5);--t-t:light-dark(#085041,#E1F5EE);--t-u:light-dark(#0F6E56,#9FE1CB)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
+main{max-width:920px;margin:0 auto;padding:28px 16px 32px}
+h1{font-size:clamp(24px,3vw,32px);font-weight:500;margin:0;line-height:1.15}
+.meta{margin:6px 0 18px;color:var(--mute);font-size:14px}
+svg{display:block;width:100%;height:auto;font-family:Inter,system-ui,sans-serif}
+.th{font-size:14px;font-weight:500}.ts{font-size:12px}.t{font-size:14px;fill:var(--ink)}.lab{font-size:12px;fill:var(--mute)}
+.arr{stroke:var(--g-s);stroke-width:1.5;fill:none;marker-end:url(#arrow)}
+.node{cursor:pointer;outline:none}.node rect{stroke-width:.5}.node:hover rect,.node:focus-visible rect{stroke-width:2}
+.gray rect{fill:var(--g-f);stroke:var(--g-s)}.gray .th{fill:var(--g-t)}.gray .ts{fill:var(--g-u)}
+.purple rect{fill:var(--p-f);stroke:var(--p-s)}.purple .th{fill:var(--p-t)}.purple .ts{fill:var(--p-u)}
+.teal rect{fill:var(--t-f);stroke:var(--t-s)}.teal .th{fill:var(--t-t)}.teal .ts{fill:var(--t-u)}
+.coral rect{fill:var(--c-f);stroke:var(--c-s)}.coral .th{fill:var(--c-t)}.coral .ts{fill:var(--c-u)}
+.box rect{fill:var(--soft);stroke:var(--g-s)}
+.terms{margin-top:36px;border-top:1px solid var(--line);padding-top:24px}
+.terms h2{font-size:22px;font-weight:500;margin:0 0 12px}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:8px 32px}
+.tgroup h3{font-size:13px;font-weight:500;color:var(--mute);margin:14px 0 4px}
+.terms dl{margin:0}.terms dt{font-weight:500;margin-top:10px;font-size:15px}.terms dd{margin:2px 0 0;font-size:15px;color:var(--ink)}
+.meta a{color:inherit}
+footer{color:var(--mute);font-size:13px;margin-top:16px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:16px;z-index:9}
+.ov.on{display:flex}
+.card{background:var(--bg);color:var(--ink);border-radius:14px;width:min(560px,100%);max-height:calc(100vh - 32px);overflow:auto;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+.card header{position:relative;padding:20px 56px 14px 22px;border-bottom:1px solid var(--line)}
+.tag{display:inline-block;font-size:12px;font-weight:500;border-radius:6px;padding:2px 8px}
+.tag.gray{background:var(--g-f);color:var(--g-t)}.tag.purple{background:var(--p-f);color:var(--p-t)}.tag.teal{background:var(--t-f);color:var(--t-t)}.tag.coral{background:var(--c-f);color:var(--c-t)}.tag.box{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.card h2{font-size:22px;font-weight:500;margin:8px 0 4px;line-height:1.2}
+.card .what{margin:0;color:var(--mute);font-size:15px}
+.x{position:absolute;top:12px;right:12px;width:44px;height:44px;border:0;background:none;color:var(--ink);font-size:22px;border-radius:8px;cursor:pointer}
+.x:focus-visible,.nav button:focus-visible{outline:2px solid var(--p-s)}
+.spec{padding:4px 22px 8px}
+.spec section{padding:12px 0;border-bottom:1px solid var(--line)}.spec section:last-child{border:0}
+.spec h3{margin:0 0 4px;font-size:13px;font-weight:500;color:var(--mute)}
+.spec ul{margin:0;padding-left:18px}.spec li{margin:3px 0;font-size:15px}
+.stop{background:var(--soft);border-radius:8px;padding:10px 12px;font-size:15px}
+.src{font-size:13px;color:var(--mute)}
+.nav{display:flex;gap:8px;padding:0 22px 20px}
+.nav button{flex:1;min-height:44px;font:inherit;font-size:14px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;cursor:pointer}
+@media(prefers-reduced-motion:no-preference){.ov.on .card{animation:in .18s ease-out}@keyframes in{from{opacity:0;transform:translateY(8px)}}}
+</style></head><body>
+<main>
+<h1>How the skill builds a design</h1>
+<p class="meta">Hagen Design System Base · skill 2.11 · updated 24 Nov 2026 · click a step to see how it works under the hood · <a href="#terms">Terms</a></p>
+<svg viewBox="0 0 680 660" role="img" aria-labelledby="st"><title id="st">Skill flow: session checks, five new app stages, every batch, approval loop</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<text class="lab" x="40" y="30">Start of every session</text><text class="lab" x="360" y="30">New app: 5 stages, your OK after each</text>
+<line x1="180" y1="106" x2="180" y2="128" class="arr"/><line x1="180" y1="186" x2="180" y2="208" class="arr"/><line x1="180" y1="266" x2="180" y2="288" class="arr"/><line x1="500" y1="106" x2="500" y2="128" class="arr"/><line x1="500" y1="186" x2="500" y2="208" class="arr"/><line x1="500" y1="266" x2="500" y2="288" class="arr"/><line x1="500" y1="346" x2="500" y2="368" class="arr"/><path d="M320 318 L340 318 L340 78 L358 78" class="arr"/><path d="M500 426 L500 450 L105 450 L105 474" class="arr"/><line x1="170" y1="504" x2="193" y2="504" class="arr"/><line x1="325" y1="504" x2="348" y2="504" class="arr"/><line x1="480" y1="504" x2="503" y2="504" class="arr"/><g class="node gray" data-id="file" tabindex="0" role="button" aria-label="Is it a system file?"><rect x="40" y="50" width="280" height="56" rx="8"/><text class="th" x="180.0" y="70" text-anchor="middle" dominant-baseline="central">Is it a system file?</text><text class="ts" x="180.0" y="90" text-anchor="middle" dominant-baseline="central">Base, template or AGENT RULES</text></g><g class="node gray" data-id="read" tabindex="0" role="button" aria-label="Read the rules"><rect x="40" y="130" width="280" height="56" rx="8"/><text class="th" x="180.0" y="150" text-anchor="middle" dominant-baseline="central">Read the rules</text><text class="ts" x="180.0" y="170" text-anchor="middle" dominant-baseline="central">HANDOFF, RULES in full, LOCKS</text></g><g class="node gray" data-id="version" tabindex="0" role="button" aria-label="Check versions"><rect x="40" y="210" width="280" height="56" rx="8"/><text class="th" x="180.0" y="230" text-anchor="middle" dominant-baseline="central">Check versions</text><text class="ts" x="180.0" y="250" text-anchor="middle" dominant-baseline="central">App stamp vs base and skill</text></g><g class="node gray" data-id="claim" tabindex="0" role="button" aria-label="Claim your area"><rect x="40" y="290" width="280" height="56" rx="8"/><text class="th" x="180.0" y="310" text-anchor="middle" dominant-baseline="central">Claim your area</text><text class="ts" x="180.0" y="330" text-anchor="middle" dominant-baseline="central">LOCKS row or Claims line</text></g><g class="node purple" data-id="context" tabindex="0" role="button" aria-label="1. Context"><rect x="360" y="50" width="280" height="56" rx="8"/><text class="th" x="500.0" y="70" text-anchor="middle" dominant-baseline="central">1. Context</text><text class="ts" x="500.0" y="90" text-anchor="middle" dominant-baseline="central">Fill AGENT BRIEF</text></g><g class="node purple" data-id="sitemap" tabindex="0" role="button" aria-label="2. Sitemap"><rect x="360" y="130" width="280" height="56" rx="8"/><text class="th" x="500.0" y="150" text-anchor="middle" dominant-baseline="central">2. Sitemap</text><text class="ts" x="500.0" y="170" text-anchor="middle" dominant-baseline="central">Screens, states, standard flows</text></g><g class="node purple" data-id="style" tabindex="0" role="button" aria-label="3. Visual style"><rect x="360" y="210" width="280" height="56" rx="8"/><text class="th" x="500.0" y="230" text-anchor="middle" dominant-baseline="central">3. Visual style</text><text class="ts" x="500.0" y="250" text-anchor="middle" dominant-baseline="central">Style tile on page Design</text></g><g class="node purple" data-id="wire" tabindex="0" role="button" aria-label="4. Wireframe"><rect x="360" y="290" width="280" height="56" rx="8"/><text class="th" x="500.0" y="310" text-anchor="middle" dominant-baseline="central">4. Wireframe</text><text class="ts" x="500.0" y="330" text-anchor="middle" dominant-baseline="central">Grayscale base parts, parts list</text></g><g class="node purple" data-id="build" tabindex="0" role="button" aria-label="5. Build"><rect x="360" y="370" width="280" height="56" rx="8"/><text class="th" x="500.0" y="390" text-anchor="middle" dominant-baseline="central">5. Build</text><text class="ts" x="500.0" y="410" text-anchor="middle" dominant-baseline="central">Starter wraps, then screens</text></g><g class="node teal" data-id="batch" tabindex="0" role="button" aria-label="Build batch"><rect x="40" y="476" width="130" height="56" rx="8"/><text class="th" x="105.0" y="496" text-anchor="middle" dominant-baseline="central">Build batch</text><text class="ts" x="105.0" y="516" text-anchor="middle" dominant-baseline="central">Tokens only</text></g><g class="node teal" data-id="check" tabindex="0" role="button" aria-label="Done check"><rect x="195" y="476" width="130" height="56" rx="8"/><text class="th" x="260.0" y="496" text-anchor="middle" dominant-baseline="central">Done check</text><text class="ts" x="260.0" y="516" text-anchor="middle" dominant-baseline="central">Run the script</text></g><g class="node teal" data-id="shot" tabindex="0" role="button" aria-label="Screenshot"><rect x="350" y="476" width="130" height="56" rx="8"/><text class="th" x="415.0" y="496" text-anchor="middle" dominant-baseline="central">Screenshot</text><text class="ts" x="415.0" y="516" text-anchor="middle" dominant-baseline="central">Touched screens</text></g><g class="node teal" data-id="log" tabindex="0" role="button" aria-label="Log, handoff"><rect x="505" y="476" width="130" height="56" rx="8"/><text class="th" x="570.0" y="496" text-anchor="middle" dominant-baseline="central">Log, handoff</text><text class="ts" x="570.0" y="516" text-anchor="middle" dominant-baseline="central">Release claim</text></g>
+<line x1="180" y1="346" x2="180" y2="368" class="arr"/><line x1="180" y1="426" x2="180" y2="450" style="stroke:var(--g-s);stroke-width:1.5"/><g class="node coral" data-id="return" tabindex="0" role="button" aria-label="Returning to an app"><rect x="40" y="370" width="280" height="56" rx="8"/><text class="th" x="180" y="390" text-anchor="middle" dominant-baseline="central">Returning to an app</text><text class="ts" x="180" y="410" text-anchor="middle" dominant-baseline="central">Catch up, then Every batch</text></g><text class="lab" x="182" y="554" text-anchor="middle">↻ counts not zero: fix, reapply, rerun</text>
+<g class="node box" data-id="approval" tabindex="0" role="button" aria-label="Approval loop"><rect x="40" y="572" width="595" height="44" rx="8"/><text class="t" x="337" y="594" text-anchor="middle" dominant-baseline="central">Any rule, token or component change: propose, preview, your OK, build, log</text></g>
+<text class="lab" x="40" y="644">Gray: every session · Purple: new app · Coral: existing app · Teal: every batch · Click any step</text></svg>
+<section class="terms" id="terms"><h2>Terms</h2><div class="tgrid"><div class="tgroup"><h3>Files</h3><dl><dt>Base (tier 1)</dt><dd>The shared file "Design System Base". Plain parts, tokens and rules every app uses. Its Inter typeface and colors are placeholders.</dd><dt>App file (tier 2)</dt><dd>One Figma file per app, such as the trial app or the first app. It uses the base as a library and holds the app’s own look and rules.</dd><dt>Tier 2 Template</dt><dd>A clean app file you duplicate to start a new app. It already has the agent pages, blocks, text styles and 15 starter wraps.</dd><dt>Agent pages</dt><dd>Pages in a file written for agents to read: AGENT RULES, AGENT PROGRESS, AGENT ROADMAP in the base; AGENT RULES (PROJECT), AGENT BRIEF and AGENT SITEMAP in an app file.</dd><dt>Spec block</dt><dd>A text block on an agent page that an agent can find by name and read in parts. RULES, FLOWS, MAPPING and CHANGELOG are spec blocks.</dd></dl></div><div class="tgroup"><h3>Blocks the agent reads</h3><dl><dt>RULES</dt><dd>The approved rules of a file. Read in full every session. It also has a "What to read, and when" table that says which other blocks a task needs.</dd><dt>HANDOFF</dt><dd>A short note in the base PROGRESS block: what the last session did and what the next one should do. It lets a new session start without context.</dd><dt>BRIEF and SITEMAP</dt><dd>The app’s goal, audience and features (BRIEF), and the numbered tree of every screen and state (SITEMAP).</dd><dt>MAPPING</dt><dd>The table of an app’s parts: which base part each one uses, and whether it is a wrap, fork or local part.</dd><dt>CHANGELOG</dt><dd>The dated log of changes. Agents read only its top lines and add one line per change.</dd><dt>FINDINGS</dt><dd>Gaps in the base that an app ran into, such as a missing part or a color a wrap can’t change. Each one is a T item.</dd><dt>SKILL FINDINGS</dt><dd>Lessons about how agents work, such as a correction you made or a repeated mistake. Each one is an SF item. Only you approve them.</dd></dl></div><div class="tgroup"><h3>Working together</h3><dl><dt>Lock</dt><dd>A row in the LOCKS block of the base file saying which session is editing which base part right now. A "do not touch, I’m working here" sign for the base.</dd><dt>Claim</dt><dd>The same sign in an app file: a line in the Claims section of its RULES block. It names the session, what it owns (pages, flow sections, parts) and the date. It is removed when the session ends.</dd><dt>Stamp ("Built on")</dt><dd>A line on an app’s RULES block saying which base rules version and skill version the app was last checked against. Agents compare it at the start of a session.</dd><dt>Your OK</dt><dd>Your explicit approval in chat. "Looks fine" does not count. Needed for every rule, token or component change, and at the end of each new app stage.</dd><dt>Rules maintenance OK</dt><dd>A separate OK to change the rules pages themselves, such as adding a block. An OK to build a screen is not one.</dd></dl></div><div class="tgroup"><h3>Parts</h3><dl><dt>Token / variable</dt><dd>A named value (color, spacing, radius, size) stored in Figma variables. Screens use tokens, never raw numbers.</dd><dt>Wrap</dt><dd>An app part that holds a base part inside and restyles it with the app’s colors and text styles. Named like the trial app/Button. The default way to make an app part.</dd><dt>Fork</dt><dd>An app copy of a base part with a changed structure. Only when a wrap can’t do the job, with the reason written down.</dd><dt>Local part</dt><dd>An app part with no base match. Logged as a candidate to add to the base later.</dd><dt>Full set</dt><dd>A wrap includes every variant of its base part (sizes, states, styles), not only the ones screens use today.</dd><dt>Starter wraps</dt><dd>The 15 wraps already in the Tier 2 Template, such as Button, Header and ListItem. A new app renames and restyles them.</dd></dl></div><div class="tgroup"><h3>Checking</h3><dl><dt>Batch</dt><dd>One unit of work: one flow section, one set of parts or one rule reapplied. The done check runs after each batch.</dd><dt>Done check script</dt><dd>A script stored in the base file that counts rule breaks across a whole file: unbound colors, raw spacing, missing text styles, detached parts and more.</dd><dt>Reapply scan</dt><dd>After a new rule or pattern, the agent searches the whole file for the same job and applies the rule everywhere, not only on the new screen.</dd><dt>Fallback color</dt><dd>The raw color Figma stores behind a color variable. A wrong one looks fine in screenshots, which is why counts come before the screenshot.</dd></dl></div></div></section>
+<footer>Made from SKILL.md and its reference files. Update this page whenever the skill version changes (README, Update step 2). Where this page and the skill disagree, the skill wins, and the Figma file wins over both.</footer>
+</main>
+<div class="ov" id="ov" aria-hidden="true"><div class="card" role="dialog" aria-modal="true" aria-labelledby="mt" id="card"></div></div>
+<script>
+{
+const steps = [
+ {id:'file', lane:'session', t:'Is it a system file?', s:'Base, template or rules page',
+  what:'The agent checks that the Figma file belongs to the system before it applies any rule.',
+  reads:['The file key: base MRoPpfFSMqPoSPd7LO8kOS or Tier 2 Template snpHcKTKy0rzuFnC9h4570','Whether the file has a page AGENT RULES or AGENT RULES (PROJECT)'],
+  does:['Matches the file by key or by its rules page','If a tier 2 file has no rules yet, it switches to "Starting a tier 2 file with no rules" (template, scan your file, pending lines, your OK, stamp)','Treats the old source app as read only and never applies rules from the trial app to another file'],
+  writes:['Nothing'],
+  stop:'Asks you when the file has neither the key nor a rules page and you did not say it is built on the base.',
+  src:'SKILL.md: Is this file part of the system? · references/new-app.md'},
+ {id:'read', lane:'session', t:'Read the rules', s:'HANDOFF, RULES, LOCKS',
+  what:'The rules live inside the Figma file, so the agent reads them there every session instead of trusting notes.',
+  reads:['Base PROGRESS block: only the HANDOFF section','Base RULES block in full, including its "What to read, and when" table','Base LOCKS block: only the rows for parts it will edit','In an app file: its own RULES block in full, then FLOWS, MAPPING, FINDINGS, BRIEF or SITEMAP only when the table says the task needs them'],
+  does:['Finds each block by page and name, never by an old node id','Reads long blocks in parts to keep each read small','Reads RULES and HANDOFF again if the conversation was summarized, because a summary is not the rules','Notes the size of each RULES block. Over 10,000 characters, it tells you and proposes which sections to move into blocks read only when needed'],
+  writes:['Nothing'],
+  stop:'If it cannot open a reference file, it says so and asks. It never guesses the steps. Moving rules out of an oversized RULES block needs your rules maintenance OK.',
+  src:'SKILL.md: Read order, Rules page format · Reference files'},
+ {id:'version', lane:'session', t:'Check versions', s:'App stamp vs base and skill',
+  what:'Each app file carries a "Built on" stamp. The agent compares it with the base rules version and the skill version.',
+  reads:['The "Built on: base rules vX · skill Y · checked date" line on the app RULES block','The base rules version at the top of the base RULES block','The skill version at the top of SKILL.md'],
+  does:['Base rules newer: reads the base CHANGELOG from the stamped version up and lists the app parts it affects','Skill newer: applies the page format changes listed in README.md for the versions in between','Stamp missing: adds it with today’s versions','Stamp older in any case: lists checklist items added since then that the app does not meet yet, and asks you about each'],
+  writes:['The updated stamp, once the changes are done'],
+  stop:'Updating affected parts needs your OK. A format change that creates a block or edits RULES needs your rules maintenance OK. Without it, the stamp stays and the agent lists what is pending.',
+  src:'SKILL.md: Versioning · README.md: Versions'},
+ {id:'claim', lane:'session', t:'Claim your area', s:'LOCKS row or Claims line',
+  what:'Another agent may be working in the same file, so the agent marks what it owns before it writes.',
+  reads:['Existing claims, so it never edits what another session holds'],
+  does:['Base: adds a row to the LOCKS block. App file: adds a line to Claims on its RULES block','Rules pages, PROGRESS, ROADMAP and shared parts get one writer at a time','For two agents on one file, follows the relay or parallel setup'],
+  writes:['A claim with the session, what it owns and the date. It is removed at the end.'],
+  stop:'If two sessions need the same shared parts or rules, it tells you and stops.',
+  src:'SKILL.md: Working alongside other sessions · references/parallel-agents.md'},
+ {id:'return', lane:'ret', t:'Returning to an app', s:'Catch up, then Every batch',
+  what:'For an app that already exists, the five new app stages are skipped. The agent catches the file up to the current base and skill, then works in batches.',
+  reads:['The app RULES block in full, including Claims and "Changed since" lines from other sessions','SKILL FINDINGS Handoff: lessons still open from earlier sessions','SITEMAP when the work adds, removes or links screens; BRIEF when choosing a feature or asked why a screen exists'],
+  does:['Base rules newer than the stamp: lists the app parts the change affects','Skill newer: applies the page format changes from README for the versions in between','Lists the checklist items added since the stamp that the app does not meet yet (for example the standard app flows or the language flow) and asks about each one','Updates the sitemap first when the work adds screens','Then goes straight to Every batch'],
+  writes:['Only after your OK: updated parts, new blocks, sitemap changes, and the moved stamp'],
+  stop:'For each missing checklist item, you choose: add it, or mark it ruled out in the BRIEF. The stamp never moves past an item silently.',
+  src:'SKILL.md: Versioning, Read order · references/new-app.md'},
+ {id:'context', lane:'app', gate:true, t:'1. Context', s:'Fill AGENT BRIEF',
+  what:'The agent turns what you and the PO give it into a written brief that later stages work from.',
+  reads:['Documents, links, Figma files and Drive files you and the PO share','Before this: you duplicate the Tier 2 Template, enable the base library and send the link. The agent cannot do these steps.'],
+  does:['Writes goal, audience, platforms and languages, features, monetization, references, constraints and open questions','Marks every unknown "to confirm" and never invents the PO’s knowledge'],
+  writes:['The BRIEF block on page AGENT BRIEF (PROJECT)'],
+  stop:'Gate: you confirm the brief.',
+  src:'references/new-app.md: New app process, stage 1'},
+ {id:'sitemap', lane:'app', gate:true, t:'2. Sitemap', s:'Screens, states, standard flows',
+  what:'A numbered tree of every screen and state, so FLOWS and screen names match it later.',
+  reads:['The confirmed brief'],
+  does:['Writes feature, then screen, then state, numbered the way FLOWS will be','Adds the standard flows unless the brief rules them out: language, Settings support group, rate app, feedback, invite friends, app update, no internet','Marks anything the brief does not decide "to confirm"'],
+  writes:['The SITEMAP block on page AGENT SITEMAP (PROJECT). A visual tree is optional.'],
+  stop:'Gate: you approve the sitemap.',
+  src:'references/new-app.md: stage 2 · references/app-flows.md'},
+ {id:'style', lane:'app', gate:true, t:'3. Visual style', s:'Style tile on page Design',
+  what:'The app’s look is drafted and shown before any screen is drawn.',
+  reads:['App RULES 2.1, 2.2 and 2.4 (typeface, look, style)'],
+  does:['Drafts typeface, colors and shape','Fills the local App Color and Typography values','Draws one style tile: a sample screen next to the tokens','Makes any art only with the OpenAI image connector, prompts in English'],
+  writes:['Token values and the style tile. Style rules are written only after your OK.'],
+  stop:'Gate: you approve the style. If the image connector cannot be used, the agent asks before using another way.',
+  src:'references/new-app.md: stage 3 · SKILL.md: Images and art'},
+ {id:'wire', lane:'app', gate:true, t:'4. Wireframe', s:'Grayscale, parts list',
+  what:'Screens are drawn in grayscale from plain base parts, which work as the wireframe kit.',
+  reads:['The approved sitemap','The base parts and their descriptions'],
+  does:['Draws each sitemap screen from base parts only','Uses the Illustration text box for art and Ad Slot for ads','Sorts every part: base part used, missing (a FINDINGS T item) or custom (wrap, fork, local)'],
+  writes:['Wireframe screens and the parts needed list in MAPPING'],
+  stop:'Gate: you approve the parts list.',
+  src:'references/new-app.md: stage 4'},
+ {id:'build', lane:'app', gate:true, t:'5. Build', s:'Starter wraps, then screens',
+  what:'The real screens, in the app’s look, built only from wraps and base parts.',
+  reads:['MAPPING, the mix model (app rule 1.1) and references/wraps.md','references/flows.md before drawing or linking screens on a flows page'],
+  does:['Starts from the 15 starter wraps and renames App to the app name','Wrap first, fork only when the structure must change, local only when the base has no match','Each wrap mirrors the full variant set of its base part','Picks parts by job, not by look, and leaves no dead ends: every button ends in an arrow or jump tag','Uses neutral placeholders, never real names, emails or websites'],
+  writes:['Screens, App/ parts with descriptions, MAPPING rows'],
+  stop:'Gate: you approve each screen and each custom part.',
+  src:'references/new-app.md: stage 5 · SKILL.md: Core principle, Building rules · references/choosing-parts.md'},
+ {id:'batch', lane:'batch', t:'Build batch', s:'Tokens and styles only',
+  what:'One section of work, kept small so a mistake does not spread.',
+  reads:['Screens and layers already doing the same job, so the agent reuses their pattern'],
+  does:['Binds every padding, gap, radius, stroke and color to a variable','Takes text only from local text styles','Never detaches a component or uses sub-components','After a new pattern, scans the whole file and reapplies it'],
+  writes:['The screens and parts in the claimed area'],
+  stop:'Any new rule, token or component change goes through the approval loop first.',
+  src:'SKILL.md: Building rules'},
+ {id:'check', lane:'batch', t:'Done check', s:'Run the script',
+  what:'A script in the base file counts rule breaks across the whole file. The agent reports numbers, not impressions.',
+  reads:['The text node DONE CHECK SCRIPT on the base page AGENT RULES'],
+  does:['Runs it exactly as written in the file being checked','Reports only counts that are not zero, with up to 10 node ids each','Checks the remaining items by hand: full variant sets, real names, language flow, standard flows','If counts are not zero: fixes, reapplies and runs again'],
+  writes:['Fixes only'],
+  stop:'Never says "clean" without counts. Names any item it skipped.',
+  src:'SKILL.md: Done check'},
+ {id:'shot', lane:'batch', t:'Screenshot', s:'Touched screens only',
+  what:'A small screenshot to look at the result, taken after the counts.',
+  reads:['The screens touched in this batch'],
+  does:['Takes a small screenshot and looks at it'],
+  writes:['Nothing'],
+  stop:'A screenshot cannot show a wrong binding or fallback color, so the counts always come first.',
+  src:'SKILL.md: Done check'},
+ {id:'log', lane:'batch', t:'Log and handoff', s:'Release the claim',
+  what:'The agent leaves the file so the next session can start cold.',
+  reads:['The top 15 lines of CHANGELOG'],
+  does:['Adds a CHANGELOG line under today’s date; in an app file, a "Changed since" line for rule changes','Marks app parts with 0 uses "unused, delete?" in MAPPING','Records skill findings (designer corrections, repeated mistakes, tool pitfalls) for your review','Base: rewrites HANDOFF. App file: lists open skill finding ids'],
+  writes:['CHANGELOG, HANDOFF or SKILL FINDINGS, then removes its claim'],
+  stop:'Findings are evidence only. Only you move a finding to Reviewed, Approved or Rejected.',
+  src:'SKILL.md: Skill findings, Talking to the designer · references/skill-findings.md'},
+ {id:'approval', lane:'loop', t:'Approval loop', s:'Any rule, token or component change',
+  what:'The one loop every change to the system goes through. Your corrections go through it too, so you never have to say the same thing twice.',
+  reads:['Source node links, Material 3 and Apple HIG where relevant'],
+  does:['1. Proposes with evidence','2. Draws a preview on page Design (base) or a test screen (app)','3. Waits for your explicit OK','4. Builds, writes the rule with a one-sentence "Why", and logs it','5. Reapplies it to every screen and part, and proposes a DONE CHECK SCRIPT check for it'],
+  writes:['Only after your OK: rule lines, tokens, variables, modes, text styles, component structure or variants'],
+  stop:'Never without your OK: changing a rule, adding or renaming a token or style, changing a component’s structure, publishing or deleting a component.',
+  src:'SKILL.md: Approval loop'}
+];
+const laneInfo = {session:['Start of every session','gray'], app:['New app: five stages','purple'], batch:['Every batch','teal'], loop:['Applies at every step','box'], ret:['Existing app','coral']};
+const esc = v => String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const list = a => `<ul>${a.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`;
+const ov = document.getElementById('ov'), card = document.getElementById('card');
+let last = null;
+function open(id){
+  const k = steps.findIndex(s => s.id === id); if (k < 0) return close();
+  const st = steps[k], [ln, cls] = laneInfo[st.lane];
+  card.innerHTML = `<header><span class="tag ${cls}">${esc(ln)}${st.gate ? ' · needs your OK' : ''}</span><h2 id="mt">${esc(st.t)}</h2><p class="what">${esc(st.what)}</p><button class="x" id="x" aria-label="Close">\u00d7</button></header>
+  <div class="spec"><section><h3>What it reads</h3>${list(st.reads)}</section><section><h3>What it does</h3>${list(st.does)}</section><section><h3>What it writes</h3>${list(st.writes)}</section><section><h3>Where it stops for you</h3><div class="stop">${esc(st.stop)}</div></section><section><h3>Source in the skill</h3><div class="src">${esc(st.src)}</div></section></div>
+  <div class="nav"><button id="pv">\u2190 Previous</button><button id="nx">Next \u2192</button></div>`;
+  document.getElementById('x').onclick = close;
+  document.getElementById('pv').onclick = () => go(steps[(k - 1 + steps.length) % steps.length].id);
+  document.getElementById('nx').onclick = () => go(steps[(k + 1) % steps.length].id);
+  ov.classList.add('on'); ov.setAttribute('aria-hidden','false'); card.scrollTop = 0;
+  document.getElementById('x').focus();
+}
+function close(){
+  ov.classList.remove('on'); ov.setAttribute('aria-hidden','true');
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  if (last) last.focus();
+}
+function go(id){ history.replaceState(null, '', '#' + id); open(id); }
+document.querySelectorAll('.node').forEach(n => {
+  n.addEventListener('click', () => { last = n; go(n.dataset.id); });
+  n.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); last = n; go(n.dataset.id); } });
+});
+ov.addEventListener('click', e => { if (e.target === ov) close(); });
+addEventListener('keydown', e => { if (e.key === 'Escape' && ov.classList.contains('on')) close(); });
+const isStep = h => steps.some(x => x.id === h);
+addEventListener('hashchange', () => { const h = location.hash.slice(1); if (isStep(h)) open(h); });
+if (isStep(location.hash.slice(1))) open(location.hash.slice(1));
+}
+</script></body></html>
