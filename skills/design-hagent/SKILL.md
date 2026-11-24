@@ -5,7 +5,7 @@ description: "Process skill for Hagen's mobile design system in Figma. Load it f
 
 # Design Hagent: how to work
 
-**Skill version 2.15 (2026-11-24).** Changes per version: README.md.
+**Skill version 2.16 (2026-11-24).** Changes per version: README.md.
 
 The goal is an agent-ready mobile design system for IAA/IAP (ad and in-app-purchase monetized) apps. An agent given a prompt should be able to build a full working app from components, tokens and rules only, without inventing layout.
 
@@ -162,6 +162,7 @@ You read the RULES block in full, so its numbers are not copied here (layout lad
 - Naming: private parts start with "_". Property names are plain words with no "?". Use Material 3 / HIG terms.
 - The annotation layer follows the same rules: jump tags, case labels, notes and preview boards. Build each one once as a part with styles and tokens, and instance it. Never build tags or labels from raw text in a script.
 - After a new pattern or part, scan the whole file for the same job (text, layer names, part usage) and reapply it in the same pass. Log what you replaced and what you left on purpose, with the reason.
+- Show, don't tell (base 7.13): explain a screen with pictures, icons, layout, state and gestures first. Read the app's Text level in its RULES Settings (Minimal when none is set) and keep every screen within it. Before adding a text, name the visual that could do its job and use that instead. No eyebrows, repeated subtitles, "Tap to" captions or on-screen tips, and optional part text stays off.
 - No dead ends: every button, icon and link on a flows page ends in an arrow or a jump tag to the screen it opens.
 - No confidential or personal info. Never put a real person's, developer's, studio's, company's or employer's name, email, phone, address, website or links into screens, copy, art, notes or annotations, even if known from memory, other files or earlier chats. Use neutral placeholders ("Studio name", "support@example.com", "Website") and mark them "to confirm" in the UX COPY block.
 
@@ -186,6 +187,7 @@ Run the base text node "DONE CHECK SCRIPT" (page AGENT RULES, base rule 10.1) ex
 - instances whose fills, strokes or effects differ from their main component (leftover overrides)
 - screen sizes against the current rule (re-read it, another session may have changed it)
 - every wrap you touched covers its base part's full variant set, except what its description lists under "Left out on purpose" (compare the base set's variant properties with the wrap's)
+- text level (base 7.13): no eyebrow or overline text, no "Tap to", "Swipe to" or "Tip:" text, no subtitle repeating its title, no optional part text left on with filler ("Subtitle", "Description"), and supporting lines within the app's Text level; screens raised to Guided are noted in the app's RULES
 - no real names, emails, phone numbers, addresses or websites of people, developers, studios or companies in any text layer (search text for known names and replace them with placeholders)
 - language flow: first-run language step and the Settings Language row and list are both in the sitemap and on page Design (or the brief says single-language), the Settings list has no Save button, exactly one option is Selected, and every name is in its own language
 - standard app flows: each flow in references/app-flows.md is in the sitemap and on page Design, or the brief rules it out
