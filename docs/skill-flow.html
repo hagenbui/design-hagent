@@ -57,7 +57,7 @@ footer{color:var(--mute);font-size:13px;margin-top:16px}
 </style></head><body>
 <main>
 <h1>How the skill builds a design</h1>
-<p class="meta">Hagen Design System Base · skill 2.12 · updated 24 Nov 2026 · click a step to see how it works under the hood · <a href="#terms">Terms</a></p>
+<p class="meta">Hagen Design System Base · skill 2.13 · updated 24 Nov 2026 · click a step to see how it works under the hood · <a href="#terms">Terms</a></p>
 <svg viewBox="0 0 680 660" role="img" aria-labelledby="st"><title id="st">Skill flow: session checks, five new app stages, every batch, approval loop</title>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
 <text class="lab" x="40" y="30">Start of every session</text><text class="lab" x="360" y="30">New app: 5 stages, your OK after each</text>
@@ -74,11 +74,11 @@ footer{color:var(--mute);font-size:13px;margin-top:16px}
 const steps = [
  {id:'file', lane:'session', t:'Is it a system file?', s:'Base, template or rules page',
   what:'The agent checks that the Figma file belongs to the system before it applies any rule.',
-  reads:['The file key: base MRoPpfFSMqPoSPd7LO8kOS or Tier 2 Template snpHcKTKy0rzuFnC9h4570','Whether the file has a page AGENT RULES or AGENT RULES (PROJECT)'],
+  reads:['references/figma-files.md: every system file with its key and link, so the agent doesn’t ask you for it','The file key: base MRoPpfFSMqPoSPd7LO8kOS or Tier 2 Template snpHcKTKy0rzuFnC9h4570','Whether the file has a page AGENT RULES or AGENT RULES (PROJECT)'],
   does:['Matches the file by key or by its rules page','If a tier 2 file has no rules yet, it switches to "Starting a tier 2 file with no rules" (template, scan your file, pending lines, your OK, stamp)','Treats the old source app as read only and never applies rules from the trial app to another file'],
-  writes:['Nothing'],
+  writes:['A row in references/figma-files.md when you send a system file that isn’t listed yet'],
   stop:'Asks you when the file has neither the key nor a rules page and you did not say it is built on the base.',
-  src:'SKILL.md: Is this file part of the system? · references/new-app.md'},
+  src:'SKILL.md: Is this file part of the system?, Files · references/figma-files.md · references/new-app.md'},
  {id:'read', lane:'session', t:'Read the rules', s:'HANDOFF, RULES, LOCKS',
   what:'The rules live inside the Figma file, so the agent reads them there every session instead of trusting notes.',
   reads:['Base PROGRESS block: only the HANDOFF section','Base RULES block in full, including its "What to read, and when" table','Base LOCKS block: only the rows for parts it will edit','In an app file: its own RULES block in full, then FLOWS, MAPPING, FINDINGS, BRIEF or SITEMAP only when the table says the task needs them'],

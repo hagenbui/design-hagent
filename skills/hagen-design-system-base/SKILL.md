@@ -5,7 +5,7 @@ description: "Process skill for Hagen's mobile design system in Figma. Load it f
 
 # Hagen Design System Base: how to work
 
-**Skill version 2.12 (2026-11-24).** Changes per version: README.md.
+**Skill version 2.13 (2026-11-24).** Changes per version: README.md.
 
 The goal is an agent-ready mobile design system for IAA/IAP (ad and in-app-purchase monetized) apps. An agent given a prompt should be able to build a full working app from components, tokens and rules only, without inventing layout.
 
@@ -17,6 +17,8 @@ The file belongs to this system if it is the base or the Tier 2 Template (keys u
 
 ## Files
 
+Every file link (base, template, each app, reference files) is in references/figma-files.md. Look there before asking the designer for a link, and add a row when the designer sends a system file that isn't listed.
+
 - Base (tier 1): "Design System Base", key MRoPpfFSMqPoSPd7LO8kOS.
   - Page AGENT RULES: spec block RULES (approved rules, read guide, rules version) and text node "DONE CHECK SCRIPT" (run it, don't read it).
   - Page AGENT PROGRESS: spec blocks PROGRESS (HANDOFF, workflow), AUDIT (the old source app findings P/D/Q) and CHANGELOG (work log, rules versions, roadmap log).
@@ -26,6 +28,7 @@ The file belongs to this system if it is the base or the Tier 2 Template (keys u
 - Tier 2 (one per app): a file that uses the base as a library. It has its own page AGENT RULES (PROJECT) with spec blocks RULES, FLOWS, MAPPING, FINDINGS, SKILL FINDINGS, CHANGELOG and UX COPY, a page AGENT BRIEF (PROJECT) with the block BRIEF, a page AGENT SITEMAP (PROJECT) with the block SITEMAP, local Typography variables, 31 local text styles with base names, a local color collection, and a page App Components.
   - New apps start from "Tier 2 Template", key snpHcKTKy0rzuFnC9h4570: a clean file with those pages, blocks and styles and neutral placeholder values. The designer duplicates it (file name menu > Duplicate) and sends the link of the copy. A file can't be duplicated from the API, and enabling the base library in a new file is also the designer's step.
   - The template's page App Components has 15 starter wraps: App/Button, Header, ListItem, ListCard, InputField, BottomNavigation, BottomNavTab, DialogOverlay, BottomSheetOverlay, Badge, Switch, CheckBox, Radio, EmptyState and PageIndicator. Each holds a base part bound to the local App Color and text styles, so an app restyles them by changing variables. Rename App to the app's short name. They are listed in MAPPING. Limits: Switch, Check Box and Radio keep their inner base colors (finding T2), and the dim of the overlays keeps the base scrim color. Starter wraps follow the full-set rule (Core principle): when an app starts, check each one against its base part and add the missing variants.
+  - App file: "the first app", key [confidential].
   - Trial file: "the trial app", key [confidential]. Its rules are the trial app's own and stay there. Never copy rules from it into another file.
 - the old source app [confidential]: old source file, read only. Never edit, sync or map it.
 
@@ -57,6 +60,7 @@ These sit next to this file. They hold steps you need for some tasks only, so a 
 
 | File | Read when |
 |---|---|
+| references/figma-files.md | you need a file link or key, or the designer sent a link to a system file that isn't listed |
 | references/new-app.md | starting a new app, a tier 2 file with no rules, or any stage of the new app process |
 | references/wraps.md | building, extending, forking or describing a part, or changing a font variable |
 | references/flows.md | drawing, moving or linking screens on a flows page |
