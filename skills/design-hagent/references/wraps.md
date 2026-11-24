@@ -10,6 +10,7 @@ Every public base part and every app part has a description in this form (base r
 - Pairs with: the parts it sits with or inside, and where (bottom bar, header, List Card).
 - Properties: only those that exist, with defaults. No hypothetical variants.
 - States: the ones the part has.
+- Motion: only when the part moves or changes state visibly. Trigger, response, duration token, easing token, and what Reduce Motion shows instead (references/motion.md). Example: Bottom Sheet | open | slides up, scrim fades | duration-md, easing-enter | Reduce Motion: fade.
 - Invalid combinations: what must not be set together, written as the problem plus the fix.
 - Rule refs and the date last reviewed.
 

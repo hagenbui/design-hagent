@@ -57,7 +57,7 @@ footer{color:var(--mute);font-size:13px;margin-top:16px}
 </style></head><body>
 <main>
 <h1>Skill dựng thiết kế như thế nào</h1>
-<p class="meta">Design Hagent · skill 2.16 · cập nhật 24/11/2026 · bấm vào một bước để xem agent làm gì bên trong · <a href="#terms">Thuật ngữ</a></p>
+<p class="meta">Design Hagent · skill 2.17 · cập nhật 24/11/2026 · bấm vào một bước để xem agent làm gì bên trong · <a href="#terms">Thuật ngữ</a></p>
 <svg viewBox="0 0 680 660" role="img" aria-labelledby="st"><title id="st">Quy trình skill: kiểm tra đầu phiên, năm giai đoạn app mới, mỗi batch, vòng duyệt</title>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
 <text class="lab" x="40" y="30">Đầu mỗi phiên</text><text class="lab" x="360" y="30">App mới: 5 giai đoạn, bạn OK sau mỗi bước</text>
@@ -171,11 +171,11 @@ const steps = [
   src:'references/new-app.md: stage 4'},
  {id:'build', lane:'app', gate:true, t:'5. Dựng', s:'Starter wrap, rồi màn hình',
   what:'Màn hình thật theo giao diện của app, chỉ dựng từ wrap và part base.',
-  reads:['MAPPING, mô hình mix (rule app 1.1) và references/wraps.md','references/flows.md trước khi vẽ hoặc nối màn hình trên trang flows'],
-  does:['Bắt đầu từ 15 starter wrap và đổi App thành tên app','Ưu tiên wrap, chỉ fork khi phải đổi cấu trúc, chỉ local khi base không có','Mỗi wrap có đủ bộ variant của part base','Chọn part theo công việc, không theo vẻ ngoài, và không để ngõ cụt: mọi nút đều có mũi tên hoặc thẻ nhảy','Cho thấy thay vì giải thích (base 7.13): thanh tiến độ thay cho "3 trên 5 đã xong", nút play thay cho "Chạm để bắt đầu", giữ trong Text level của app','Dùng nội dung giả trung tính, không dùng tên, email hay website thật','Ghi chú trên canvas bằng tiếng Việt; tên layer, component và mô tả bằng tiếng Anh'],
+  reads:['MAPPING, mô hình mix (rule app 1.1) và references/wraps.md','references/flows.md trước khi vẽ hoặc nối màn hình trên trang flows','references/motion.md khi việc có animation, chuyển cảnh, duration hoặc easing'],
+  does:['Bắt đầu từ 15 starter wrap và đổi App thành tên app','Ưu tiên wrap, chỉ fork khi phải đổi cấu trúc, chỉ local khi base không có','Mỗi wrap có đủ bộ variant của part base','Chọn part theo công việc, không theo vẻ ngoài, và không để ngõ cụt: mọi nút đều có mũi tên hoặc thẻ nhảy','Mỗi mũi tên ghi trigger và loại chuyển cảnh, ví dụ "Start · Push" (Push, Dialog, Sheet, Replace, Tab, None)','Cho thấy thay vì giải thích (base 7.13): thanh tiến độ thay cho "3 trên 5 đã xong", nút play thay cho "Chạm để bắt đầu", giữ trong Text level của app','Dùng nội dung giả trung tính, không dùng tên, email hay website thật','Ghi chú trên canvas bằng tiếng Việt; tên layer, component và mô tả bằng tiếng Anh'],
   writes:['Màn hình, part App/ có mô tả, dòng MAPPING'],
   stop:'Cổng duyệt: bạn duyệt từng màn hình và từng part tùy biến.',
-  src:'references/new-app.md: stage 5 · SKILL.md: Core principle, Building rules, Languages · references/choosing-parts.md'},
+  src:'references/new-app.md: stage 5 · SKILL.md: Core principle, Building rules, Languages · references/choosing-parts.md · references/motion.md'},
  {id:'batch', lane:'batch', t:'Dựng batch', s:'Chỉ dùng token và style',
   what:'Một phần việc, giữ nhỏ để lỗi không lan rộng.',
   reads:['Màn hình và layer đang làm cùng việc, để agent dùng lại pattern của chúng'],
@@ -186,7 +186,7 @@ const steps = [
  {id:'check', lane:'batch', t:'Done check', s:'Chạy script',
   what:'Script trong base đếm lỗi rule trên cả file. Agent báo con số, không báo cảm nhận.',
   reads:['Text node DONE CHECK SCRIPT trên trang AGENT RULES của base'],
-  does:['Chạy đúng như viết trong file đang kiểm tra','Chỉ báo các số khác 0, mỗi loại tối đa 10 node id','Kiểm tra tay các mục còn lại: đủ bộ variant, text level (không eyebrow, không caption "Chạm để", không tip), tên thật, flow ngôn ngữ, flow chuẩn','Số khác 0: sửa, áp lại và chạy lại','Khi xong một flow, đề xuất review riêng chỉ đọc design-hagent-review (tương phản, vùng chạm, điều hướng, trạng thái, paywall, quyền), báo cáo bằng tiếng Việt'],
+  does:['Chạy đúng như viết trong file đang kiểm tra','Chỉ báo các số khác 0, mỗi loại tối đa 10 node id','Kiểm tra tay các mục còn lại: đủ bộ variant, text level (không eyebrow, không caption "Chạm để", không tip), mũi tên flow có loại chuyển cảnh, tên thật, flow ngôn ngữ, flow chuẩn','Số khác 0: sửa, áp lại và chạy lại','Khi xong một flow, đề xuất review riêng chỉ đọc design-hagent-review (tương phản, vùng chạm, điều hướng, trạng thái, paywall, quyền), báo cáo bằng tiếng Việt'],
   writes:['Chỉ các bản sửa'],
   stop:'Không bao giờ nói "sạch" mà không có số. Nêu rõ mục nào đã bỏ qua.',
   src:'SKILL.md: Done check'},

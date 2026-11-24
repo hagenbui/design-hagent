@@ -5,7 +5,7 @@ description: "Process skill for Hagen's mobile design system in Figma. Load it f
 
 # Design Hagent: how to work
 
-**Skill version 2.16 (2026-11-24).** Changes per version: README.md.
+**Skill version 2.17 (2026-11-24).** Changes per version: README.md.
 
 The goal is an agent-ready mobile design system for IAA/IAP (ad and in-app-purchase monetized) apps. An agent given a prompt should be able to build a full working app from components, tokens and rules only, without inventing layout.
 
@@ -69,6 +69,7 @@ These sit next to this file. They hold steps you need for some tasks only, so a 
 | references/choosing-parts.md | picking a part for a screen or a button group |
 | references/app-flows.md | writing or checking a sitemap, starting or catching up an app, the standard flow done check items |
 | references/figma-gotchas.md | before the first use_figma call in a session |
+| references/motion.md | a task names an animation, transition, duration or easing, you label flow arrows, or you write the Motion line of a part description |
 
 If you can't open a reference file, say so and ask. Never guess its steps.
 
@@ -153,7 +154,7 @@ Every app sitemap includes the standard flows (language, Settings support group,
 
 ## Describing a part
 
-Every public base part and every app part has a description in a fixed form (Use for, Do not use for, Pairs with, Properties, States, Invalid combinations, rule refs). Before you write or change one, read references/wraps.md.
+Every public base part and every app part has a description in a fixed form (Use for, Do not use for, Pairs with, Properties, States, Motion when the part moves, Invalid combinations, rule refs). Before you write or change one, read references/wraps.md.
 
 ## Building rules (the RULES page is the source)
 
@@ -190,6 +191,7 @@ Run the base text node "DONE CHECK SCRIPT" (page AGENT RULES, base rule 10.1) ex
 - text level (base 7.13): no eyebrow or overline text, no "Tap to", "Swipe to" or "Tip:" text, no subtitle repeating its title, no optional part text left on with filler ("Subtitle", "Description"), and supporting lines within the app's Text level; screens raised to Guided are noted in the app's RULES
 - no real names, emails, phone numbers, addresses or websites of people, developers, studios or companies in any text layer (search text for known names and replace them with placeholders)
 - language flow: first-run language step and the Settings Language row and list are both in the sitemap and on page Design (or the brief says single-language), the Settings list has no Save button, exactly one option is Selected, and every name is in its own language
+- transitions: every arrow label and jump tag on a flows page names its transition type, "Trigger · Type" (references/motion.md)
 - standard app flows: each flow in references/app-flows.md is in the sitemap and on page Design, or the brief rules it out
 
 The done check asks whether it is built right. Whether it works for people (contrast, tap size, navigation, states, paywall, permissions) is the separate skill design-hagent-review: offer it when a flow section is finished, and run it when the designer asks. It is read only.
