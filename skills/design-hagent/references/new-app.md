@@ -1,6 +1,6 @@
 # New app: setup and process
 
-Part of the hagen-design-system-base skill. Read when you start a new app, set up a tier 2 file that has no rules, or work through a stage of the new app process. SKILL.md still applies.
+Part of the design-hagent skill. Read when you start a new app, set up a tier 2 file that has no rules, or work through a stage of the new app process. SKILL.md still applies.
 
 ## Starting a tier 2 file with no rules
 

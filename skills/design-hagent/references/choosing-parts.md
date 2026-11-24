@@ -1,6 +1,6 @@
 # Choosing a part
 
-Part of the hagen-design-system-base skill. Read when you pick a part for a screen or decide a button group. SKILL.md still applies.
+Part of the design-hagent skill. Read when you pick a part for a screen or decide a button group. SKILL.md still applies.
 
 Pick a part by the job it does, never by which one looks closest. If the job isn't below or in the file's rules, ask. If the base RULES block has a table for choosing a part, it wins over this list. Otherwise use this:
 - Navigate into a screen, a settings item, a saved record, a long single-choice list in a form: list row.

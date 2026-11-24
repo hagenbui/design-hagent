@@ -1,6 +1,6 @@
 # Skill findings: format and review
 
-Part of the hagen-design-system-base skill. Read when you write, merge or review a skill finding. The boundaries in SKILL.md ("Skill findings") always apply: write only during authorized write work, never change the skill from a finding, and only the designer reviews or approves.
+Part of the design-hagent skill. Read when you write, merge or review a skill finding. The boundaries in SKILL.md ("Skill findings") always apply: write only during authorized write work, never change the skill from a finding, and only the designer reviews or approves.
 
 ## The block
 

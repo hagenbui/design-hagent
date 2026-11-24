@@ -1,6 +1,6 @@
 ---
-name: "hagen-design-review"
-description: "Read-only UX and accessibility review of mobile app screens in Hagen's design system (the base 'Design System Base' MRoPpfFSMqPoSPd7LO8kOS, the Tier 2 Template snpHcKTKy0rzuFnC9h4570, or any app file built on it, such as the first app or the trial app), or of any mobile design given as a Figma link, PDF or image. Use when the designer asks to review, audit, critique or check screens or flows for usability, accessibility, contrast, touch targets, paywall, onboarding, permissions, search or consistency, also in Vietnamese (review, đánh giá, kiểm tra UX). Gives a Vietnamese report with sourced rules, evidence and fixes. Not for token, style or binding checks: that is the done check in hagen-design-system-base."
+name: "design-hagent-review"
+description: "Read-only UX and accessibility review of mobile app screens in Hagen's design system (the base 'Design System Base' MRoPpfFSMqPoSPd7LO8kOS, the Tier 2 Template snpHcKTKy0rzuFnC9h4570, or any app file built on it, such as the first app or the trial app), or of any mobile design given as a Figma link, PDF or image. Use when the designer asks to review, audit, critique or check screens or flows for usability, accessibility, contrast, touch targets, paywall, onboarding, permissions, search or consistency, also in Vietnamese (review, đánh giá, kiểm tra UX). Gives a Vietnamese report with sourced rules, evidence and fixes. Not for token, style or binding checks: that is the done check in design-hagent."
 ---
 
 # Hagen design review
@@ -9,11 +9,11 @@ description: "Read-only UX and accessibility review of mobile app screens in Hag
 
 This skill judges whether screens work for people: legibility, tap areas, navigation, states, errors, paywall honesty, permissions. It never changes the design.
 
-## How it fits with hagen-design-system-base
+## How it fits with design-hagent
 
-- The done check (hagen-design-system-base) asks "is it built right": tokens, text styles, bindings, wraps, structure. Run it first.
+- The done check (design-hagent) asks "is it built right": tokens, text styles, bindings, wraps, structure. Run it first.
 - This review asks "does it work for the user". Run it after a flow section is done, or when the designer asks.
-- In a file of this system, load hagen-design-system-base first and follow its read order (RULES block in full). A file rule wins over a review rule. If they clash, report it as a question, not a failure.
+- In a file of this system, load design-hagent first and follow its read order (RULES block in full). A file rule wins over a review rule. If they clash, report it as a question, not a failure.
 
 ## Boundaries
 

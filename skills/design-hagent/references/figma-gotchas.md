@@ -1,6 +1,6 @@
 # Figma gotchas
 
-Part of the hagen-design-system-base skill. Read before your first use_figma call in a session. SKILL.md still applies.
+Part of the design-hagent skill. Read before your first use_figma call in a session. SKILL.md still applies.
 
 - Gotchas for building and extending parts are in references/wraps.md, and adding a spec block is in references/new-app.md.
 - `figma.getNodeByIdAsync(id)` reaches nodes on other pages without switching the current page, so one call can read or set many parts.

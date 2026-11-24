@@ -1,6 +1,6 @@
 # Review rules
 
-Part of the hagen-design-review skill. Read the groups a screen needs, not the whole file at once. SKILL.md still applies.
+Part of the design-hagent-review skill. Read the groups a screen needs, not the whole file at once. SKILL.md still applies.
 
 Each rule: id, title, kind (measure = a number decides; judge = a reasoned call), scope (screen or flow), what to check, when it applies, the exception, source. Ids follow the legacy rulebook (MDR-0xx became DR-0xx), so old Varmeta reports map one to one. The legacy book had no rules 004 to 024, 033, 047, 051 to 053, 061, 062, 064, 093, 094.
 
@@ -89,7 +89,7 @@ A rule in the file's RULES block wins over these. Check platform rules (iOS only
 - **DR-072 Help in context** (judge, screen). Tips appear at the feature, when needed. Source: apple-onboarding.
 - **DR-073 Learn by doing** (judge, screen). New gestures are taught with a safe try. Source: apple-onboarding.
 - **DR-074 Setup later** (judge, flow). Setup that isn't needed for first use doesn't delay it. Source: apple-onboarding.
-- **DR-075 Value before asking** (judge, flow). Rating asks and paywalls come after people have seen the value. Except: apps that are paid by nature. Source: apple-onboarding. Matches the rate app rule in hagen-design-system-base references/app-flows.md.
+- **DR-075 Value before asking** (judge, flow). Rating asks and paywalls come after people have seen the value. Except: apps that are paid by nature. Source: apple-onboarding. Matches the rate app rule in design-hagent references/app-flows.md.
 
 ## Privacy
 

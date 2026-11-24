@@ -1,6 +1,6 @@
 # Flows page layout
 
-Part of the hagen-design-system-base skill. Read when you draw, move or link screens on a flows page. SKILL.md still applies.
+Part of the design-hagent skill. Read when you draw, move or link screens on a flows page. SKILL.md still applies.
 
 Reference file: the flow reference file, key [confidential], page "Update 29/10/2025" (node 11892-137229). Read it when a layout case isn't covered below. If the file's FLOWS block says otherwise, the block wins.
 

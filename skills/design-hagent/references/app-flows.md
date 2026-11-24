@@ -1,6 +1,6 @@
 # Standard app flows
 
-Part of the hagen-design-system-base skill. Read when you write or check a sitemap, start or catch up an app, or run the done check items for these flows. SKILL.md still applies.
+Part of the design-hagent skill. Read when you write or check a sitemap, start or catch up an app, or run the done check items for these flows. SKILL.md still applies.
 
 Every app sitemap includes these flows unless the brief rules one out. Mark each "to confirm" when the brief doesn't say. Reference builds: the old source app (Settings section) and the trial app (sections 1, 12, 13).
 - Language: a first-run step after Splash and before Onboarding (Language Option list, device language preselected, Continue in the bottom bar, no Back), and a Settings Language row (current language as trailing text) that opens a list where the choice applies right away, with no Save.

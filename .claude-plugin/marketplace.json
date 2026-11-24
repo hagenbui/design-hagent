@@ -1,9 +1,9 @@
 {
-  "name": "hagen-design-system",
+  "name": "design-hagent",
   "owner": { "name": "Hagen Bui" },
   "plugins": [
     {
-      "name": "hagen-design-system-base",
+      "name": "design-hagent",
       "source": "./",
       "description": "Process skill for Hagen's mobile design system in Figma: the base file, the Tier 2 Template and the app files built on it, plus a read-only UX and accessibility review skill."
     }

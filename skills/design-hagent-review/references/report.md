@@ -1,6 +1,6 @@
 # Report format
 
-Part of the hagen-design-review skill. Read when you write the review result. SKILL.md still applies.
+Part of the design-hagent-review skill. Read when you write the review result. SKILL.md still applies.
 
 ## Each issue
 
@@ -30,4 +30,4 @@ When the designer asks to log results in Figma:
 - A gap in a base part (for example Button md under 48 dp) goes to the base AUDIT or ROADMAP as D (defect) or a new roadmap item, with the rule id.
 - A pattern worth a rule goes in as P, a clash or open point as Q.
 - A gap in one app goes in that file's FINDINGS as a T item.
-- A lesson about how agents review goes in SKILL FINDINGS (see hagen-design-system-base references/skill-findings.md).
+- A lesson about how agents review goes in SKILL FINDINGS (see design-hagent references/skill-findings.md).

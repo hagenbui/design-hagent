@@ -1,6 +1,6 @@
-# Hagen Design System Base skill
+# Design Hagent skill
 
-Agent skill for working on the Hagen Design System Base Figma file and the tier 2 app files built on it. The instructions live in `skills/hagen-design-system-base/SKILL.md`, with reference files next to it. A second skill, `skills/hagen-design-review/`, reviews screens for UX and accessibility (read only).
+Agent skill for working on the Design System Base Figma file and the tier 2 app files built on it. The instructions live in `skills/design-hagent/SKILL.md`, with reference files next to it. A second skill, `skills/design-hagent-review/`, reviews screens for UX and accessibility (read only).
 
 This repo is also a plugin marketplace, so a push updates the skill for everyone who installed it as a plugin. The plugin has no version number on purpose: every pushed commit counts as a new version. The skill version line in SKILL.md stays the human-readable version.
 
@@ -8,13 +8,13 @@ This repo is also a plugin marketplace, so a push updates the skill for everyone
 
 This is a private repo, so every install needs read access to it on GitHub.
 
-- **Claude Code (once per person):** run `/plugin marketplace add hagenbui/hagen-design-system-base`, then `/plugin install hagen-design-system-base@hagen-design-system`. In `/plugin`, Marketplaces, turn on auto-update for hagen-design-system so new pushes arrive at startup.
+- **Claude Code (once per person):** run `/plugin marketplace add hagenbui/design-hagent`, then `/plugin install design-hagent@design-hagent`. In `/plugin`, Marketplaces, turn on auto-update for design-hagent so new pushes arrive at startup.
 - **Cowork and claude.ai (once per organization):** an owner adds this GitHub repo as a plugin marketplace in the organization's plugin settings and makes the plugin available or required for the team. It syncs from GitHub after each push.
-- **Other agents:** `npx skills add hagenbui/hagen-design-system-base -g`. This path does not auto-update: run it again after each push.
+- **Other agents:** `npx skills add hagenbui/design-hagent -g`. This path does not auto-update: run it again after each push.
 
 ## Update
 
-1. Edit `skills/hagen-design-system-base/SKILL.md`, bump its version line, add a line under Versions, and commit.
+1. Edit `skills/design-hagent/SKILL.md`, bump its version line, add a line under Versions, and commit.
 2. Update the flow page `docs/skill-flow.html` so it matches the new skill: the version and date in the title strip and `SKILL`, and any step whose reads, actions, writes, stops or source changed. Republish it to the artifact "Skill design flow" (slug 43dd9340-ed86-4cdb-90f5-f3e0ed85f263, https://claude.ai/artifact/9P4QvSaYwYxN1byqzsm8Hg) and commit the file with the skill change. If nothing in the flow changed, still update the version and date.
 3. Push. Plugin installs pick it up on their next sync or session start.
 
@@ -22,6 +22,7 @@ This is a private repo, so every install needs read access to it on GitHub.
 
 Minor (1.1 to 1.2): wording and process. Major (1.x to 2.0): the page format in the Figma files changes. Each app file's RULES block stamps the skill version it was last checked against.
 
+- **2.14 (2026-11-24)**: renamed to design-hagent. The repo is now hagenbui/design-hagent, the main skill is `skills/design-hagent/` (name design-hagent), the review skill is `skills/design-hagent-review/`, and the plugin and marketplace are both design-hagent. Existing installs keep the old names and stop updating: remove the old plugin and marketplace, then install again with the commands under Install (`npx skills add` users: remove the old skill folders and add again). Figma files: any RULES block or note that names the old skill name should name design-hagent the next time it is edited. No format change in the files. Source: designer.
 - **2.13 (2026-11-24)**: sessions kept asking for Figma links, and the first app's key was written nowhere. New reference references/figma-files.md lists every file in the system with its key and link (base, Tier 2 Template, the first app, the trial app, the flow reference file, the old source app). Files section points to it and names the first app. Agents look there before asking for a link and add a row when the designer sends a new system file. No format change in the files. Flow page: the first step reads the links file. Source: designer.
 - **2.12 (2026-11-24)**: new second skill `skills/hagen-design-review/`, a read-only UX and accessibility review rewritten from the legacy Varmeta skill mobile-design-review (rulebook 2.0.0): 69 sourced rules (DR-0xx, same numbers as the legacy MDR-0xx), evidence rules, a Vietnamese report format and a mapping to P/D/Q and T findings. No Python scripts: the agent reviews and reports. Seven candidate rules from Varmeta DESIGN.md (H-01 to H-07: nav shell, search, paywall focus, three type sizes, onboarding, splash, ads) are listed as to confirm. The done check now points to it. No format change in the files. Flow page: the done check step now offers the review. Source: designer, from the legacy design-agent repo.
 - **2.11 (2026-11-24)**: new flow page `docs/skill-flow.html`, published as the artifact "Skill design flow": the session start checks, the five new app stages, the per-batch done check and the approval loop, with each step clickable to show what the agent reads, does, writes, where it stops for the designer, and its source section. Versioning now says to update and republish the page with every skill version bump (README, Update step 2). New Versioning case "Stamp older, in any case": when an existing app's stamp is older, list the checklist items added since (done check items, standard app flows, language flow) that it doesn't meet yet, and ask the designer to add each or rule it out in the BRIEF, so a version with no format change can't move the stamp past them. The flow page shows this as "Returning to an app". RULES size check: an agent that reads a RULES block over 10,000 characters tells the designer and proposes which sections to move into task blocks (measured 2026-11-24: base 21,763, the trial app 15,544, Tier 2 Template 6,511). SKILL.md trimmed from 29.2 KB to 25.2 KB: "Choosing a part", "Standard app flows" and most of "Figma gotchas" moved to references/choosing-parts.md, app-flows.md and figma-gotchas.md. No format change in the files. Source: designer.

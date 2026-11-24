@@ -1,6 +1,6 @@
 # Wraps and part descriptions
 
-Part of the hagen-design-system-base skill. Read when you build, extend, fork or describe a part (a wrap, a base part or a local part), or change a font variable. The rules for when to wrap (Core principle) stay in SKILL.md.
+Part of the design-hagent skill. Read when you build, extend, fork or describe a part (a wrap, a base part or a local part), or change a font variable. The rules for when to wrap (Core principle) stay in SKILL.md.
 
 ## Describing a part
 
