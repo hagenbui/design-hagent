@@ -1,11 +1,11 @@
 ---
 name: "design-hagent"
-description: "Process skill for Hagen's mobile design system in Figma. Load it first, before figma-use, figma-generate-design or any other Figma skill, whenever a task touches a Figma file in this system: the base file 'Design System Base' (MRoPpfFSMqPoSPd7LO8kOS), the Tier 2 Template (snpHcKTKy0rzuFnC9h4570), or any app file built on it, such as the first app or the trial app. Use it for building or editing screens, flows, wraps and App Components, components and variants, tokens, variables, text styles, rules, audits, the done check, skill findings and starting a new app, also when the prompt only names an app or a screen, or is in Vietnamese. If the user pastes a figma.com link and you are unsure which file it is, load this skill and check whether the file has an AGENT RULES page."
+description: "Process skill for Hagen's mobile design system in Figma, including a read-only UX and accessibility review of screens. Load it first, before figma-use, figma-generate-design or any other Figma skill, whenever a task touches a Figma file in this system: the base file 'Design System Base' (MRoPpfFSMqPoSPd7LO8kOS), the Tier 2 Template (snpHcKTKy0rzuFnC9h4570), or any app file built on it, such as the first app or the trial app. Use it for building or editing screens, flows, wraps and App Components, components and variants, tokens, variables, text styles, rules, audits, the done check, skill findings and starting a new app, and for reviewing, auditing, critiquing or checking screens or flows for usability, accessibility, contrast, touch targets, paywall, onboarding or permissions (review, đánh giá, kiểm tra UX), including any mobile design given as a Figma link, PDF or image. Also when the prompt only names an app or a screen, or is in Vietnamese. If the user pastes a figma.com link and you are unsure which file it is, load this skill and check whether the file has an AGENT RULES page."
 ---
 
 # Design Hagent: how to work
 
-**Skill version 2.18 (2026-11-24).** Changes per version: README.md.
+**Skill version 2.19 (2026-11-25).** Changes per version: README.md.
 
 The goal is an agent-ready mobile design system for IAA/IAP (ad and in-app-purchase monetized) apps. An agent given a prompt should be able to build a full working app from components, tokens and rules only, without inventing layout.
 
@@ -71,6 +71,7 @@ These sit next to this file. They hold steps you need for some tasks only, so a 
 | references/choosing-parts.md | picking a part for a screen or a button group |
 | references/app-flows.md | writing or checking a sitemap, starting or catching up an app, the standard flow done check items |
 | references/figma-gotchas.md | before the first use_figma call in a session |
+| references/review.md | the designer asks to review, audit, critique or check screens or flows for UX or accessibility (read only; rules in references/review-rules.md, report format in references/review-report.md) |
 | references/motion.md | a task names an animation, transition, duration or easing, you label flow arrows, or you write the Motion line of a part description |
 
 If you can't open a reference file, say so and ask. Never guess its steps.
@@ -196,7 +197,7 @@ Read the base text node "DONE CHECK SCRIPT" (page AGENT RULES, base rule 10.1) f
 - transitions: every arrow label and jump tag on a flows page names its transition type, "Trigger · Type" (references/motion.md)
 - standard app flows: each flow in references/app-flows.md is in the sitemap and on page Design, or the brief rules it out
 
-The done check asks whether it is built right. Whether it works for people (contrast, tap size, navigation, states, paywall, permissions) is the separate skill design-hagent-review: offer it when a flow section is finished, and run it when the designer asks. It is read only.
+The done check asks whether it is built right. Whether it works for people (contrast, tap size, navigation, states, paywall, permissions) is the design review in references/review.md: offer it when a flow section is finished, and run it when the designer asks. It is read only.
 
 Report the check compactly: only counts that aren't zero, with up to 10 node ids each, never full node dumps. Then take a screenshot of the screens you touched, at a small size, and look at it. A screenshot shows resolved variables, so it can't show wrong bindings or fallback colors: the counts come first, the screenshot second. Rewrite the HANDOFF block if it's older than the newest changelog line.
 

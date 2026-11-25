@@ -1,11 +1,11 @@
 # Report format
 
-Part of the design-hagent-review skill. Read when you write the review result. SKILL.md still applies.
+Part of the design review (references/review.md). Read when you write the review result. SKILL.md and review.md still apply.
 
 ## Each issue
 
 - Màn hình: name and node link (one issue lists every screen it affects, group issues on a shared part)
-- Quy tắc: rule id and title, with its source link from references/rules.md
+- Quy tắc: rule id and title, with its source link from references/review-rules.md
 - Bằng chứng: what you saw or measured (values, units, screenshot area)
 - Ảnh hưởng: what goes wrong for the user
 - Mức độ: P1 blocks a task, hides cost or fails a measurable minimum; P2 slows or confuses; P3 polish
@@ -30,4 +30,4 @@ When the designer asks to log results in Figma:
 - A gap in a base part (for example Button md under 48 dp) goes to the base AUDIT or ROADMAP as D (defect) or a new roadmap item, with the rule id.
 - A pattern worth a rule goes in as P, a clash or open point as Q.
 - A gap in one app goes in that file's FINDINGS as a T item.
-- A lesson about how agents review goes in SKILL FINDINGS (see design-hagent references/skill-findings.md).
+- A lesson about how agents review goes in SKILL FINDINGS (see references/skill-findings.md).
