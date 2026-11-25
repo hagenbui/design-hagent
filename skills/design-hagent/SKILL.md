@@ -19,7 +19,7 @@ The file belongs to this system if it is the base or the Tier 2 Template (keys u
 
 ## Files
 
-Every file link (base, template, each app, reference files) is in references/figma-files.md. Look there before asking the designer for a link, and add a row when the designer sends a system file that isn't listed.
+The base and Tier 2 Template links are in references/figma-files.md. App files and reference files are confidential: get their links from the designer, and never write an app file's name or key into this skill.
 
 - Base (tier 1): "Design System Base", key MRoPpfFSMqPoSPd7LO8kOS.
   - Page AGENT RULES: spec block RULES (approved rules, read guide, rules version) and text node "DONE CHECK SCRIPT" (read it in full before you run it, see Done check).
@@ -30,9 +30,9 @@ Every file link (base, template, each app, reference files) is in references/fig
 - Tier 2 (one per app): a file that uses the base as a library. It has its own page AGENT RULES (PROJECT) with spec blocks RULES, FLOWS, MAPPING, FINDINGS, SKILL FINDINGS, CHANGELOG and UX COPY, a page AGENT BRIEF (PROJECT) with the block BRIEF, a page AGENT SITEMAP (PROJECT) with the block SITEMAP, local Typography variables, 31 local text styles with base names, a local color collection, and a page App Components.
   - New apps start from "Tier 2 Template", key snpHcKTKy0rzuFnC9h4570: a clean file with those pages, blocks and styles and neutral placeholder values. The designer duplicates it (file name menu > Duplicate) and sends the link of the copy. A file can't be duplicated from the API, and enabling the base library in a new file is also the designer's step.
   - The template's page App Components has 15 starter wraps: App/Button, Header, ListItem, ListCard, InputField, BottomNavigation, BottomNavTab, DialogOverlay, BottomSheetOverlay, Badge, Switch, CheckBox, Radio, EmptyState and PageIndicator. Each holds a base part bound to the local App Color and text styles, so an app restyles them by changing variables. Rename App to the app's short name. They are listed in MAPPING. Limits: Switch, Check Box and Radio keep their inner base colors (finding T2), and the dim of the overlays keeps the base scrim color. Starter wraps follow the full-set rule (Core principle): when an app starts, check each one against its base part and add the missing variants.
-  - App file: "the first app", key [confidential].
-  - Trial file: "the trial app", key [confidential]. Its rules are the trial app's own and stay there. Never copy rules from it into another file.
-- the old source app [confidential]: old source file, read only. Never edit, sync or map it.
+  - App files: confidential, so not listed. Get the link from the designer.
+  - A trial app's rules are its own and stay in it. Never copy rules from a trial app into another file.
+- The old source app file (link from the designer) is read only. Never edit, sync or map it.
 
 ## Read order (every session, before any change)
 

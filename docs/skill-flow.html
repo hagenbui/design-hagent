@@ -68,7 +68,7 @@ footer{color:var(--mute);font-size:13px;margin-top:16px}
 <section class="terms" id="terms"><h2>Thuật ngữ</h2><div class="tgrid">
 <div class="tgroup"><h3>File</h3><dl>
 <dt>Base (tier 1)</dt><dd>File dùng chung "Design System Base". Part, token và rule trơn mà mọi app dùng. Font Inter và màu trong đó chỉ là tạm.</dd>
-<dt>File app (tier 2)</dt><dd>Mỗi app một file Figma, ví dụ the trial app hay the first app. Dùng base làm library và giữ giao diện, rule riêng của app.</dd>
+<dt>File app (tier 2)</dt><dd>Mỗi app một file Figma, ví dụ một app thử hay một app đang làm. Dùng base làm library và giữ giao diện, rule riêng của app.</dd>
 <dt>Tier 2 Template</dt><dd>File app sạch, bạn duplicate để bắt đầu app mới. Có sẵn trang agent, block, text style và 15 starter wrap.</dd>
 <dt>Trang agent</dt><dd>Các trang viết cho agent đọc: AGENT RULES, AGENT PROGRESS, AGENT ROADMAP trong base; AGENT RULES (PROJECT), AGENT BRIEF và AGENT SITEMAP trong file app.</dd>
 <dt>Spec block</dt><dd>Khối text trên trang agent, agent tìm theo tên và đọc từng phần. RULES, FLOWS, MAPPING và CHANGELOG là spec block.</dd>
@@ -89,7 +89,7 @@ footer{color:var(--mute);font-size:13px;margin-top:16px}
 <dt>OK sửa rules</dt><dd>Một OK riêng để sửa chính các trang rules, ví dụ thêm block. OK dựng màn hình không tính là OK này.</dd></dl></div>
 <div class="tgroup"><h3>Part</h3><dl>
 <dt>Token / variable</dt><dd>Giá trị có tên (màu, khoảng cách, bo góc, kích thước) lưu trong Figma variables. Màn hình dùng token, không dùng số thô.</dd>
-<dt>Wrap</dt><dd>Part của app chứa một part base bên trong và đổi style bằng màu, text style của app. Đặt tên kiểu the trial app/Button. Cách mặc định để tạo part cho app.</dd>
+<dt>Wrap</dt><dd>Part của app chứa một part base bên trong và đổi style bằng màu, text style của app. Đặt tên kiểu App/Button. Cách mặc định để tạo part cho app.</dd>
 <dt>Fork</dt><dd>Bản sao part base trong app với cấu trúc đã đổi. Chỉ dùng khi wrap không làm được, có ghi lý do.</dd>
 <dt>Local part</dt><dd>Part của app không có part base tương ứng. Ghi lại làm ứng viên thêm vào base sau.</dd>
 <dt>Full set</dt><dd>Wrap có đủ mọi variant của part base (size, state, style), không chỉ những cái màn hình đang dùng.</dd>

@@ -2,7 +2,7 @@
 
 Part of the design-hagent skill. Read when you draw, move or link screens on a flows page. SKILL.md still applies.
 
-Reference file: the flow reference file, key [confidential], page "Update 29/10/2025" (node 11892-137229). Read it when a layout case isn't covered below. If the file's FLOWS block says otherwise, the block wins.
+Reference file: a flow layout file the designer shares (confidential, so its link is not kept here). Read it when a layout case isn't covered below. If the file's FLOWS block says otherwise, the block wins.
 
 - One section per feature, short name, stacked in one left-aligned column, all the same width. Sections are dark so screens stand out (the reference uses #444444; in our files use the annotation parts and tokens, and propose one if it's missing).
 - The happy path runs left to right in one row. A feature with several modes or entries has a vertical spine from the entry screen down the left side, with one row per mode.
