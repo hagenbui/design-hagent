@@ -6,7 +6,7 @@ This repo is also a plugin marketplace, so a push updates the skill for everyone
 
 ## Install
 
-This is a private repo, so every install needs read access to it on GitHub.
+This repo is public. The easiest install is the combined marketplace [hagenbui/hagent-skills](https://github.com/hagenbui/hagent-skills), which also lists storelisting-hagent: `/plugin marketplace add hagenbui/hagent-skills`, then `/plugin install design-hagent@hagent-skills`. The commands below install from this repo on its own.
 
 - **Claude Code (once per person):** run `/plugin marketplace add hagenbui/design-hagent`, then `/plugin install design-hagent@design-hagent`. In `/plugin`, Marketplaces, turn on auto-update for design-hagent so new pushes arrive at startup.
 - **Cowork and claude.ai (once per organization):** an owner adds this GitHub repo as a plugin marketplace in the organization's plugin settings and makes the plugin available or required for the team. It syncs from GitHub after each push.
