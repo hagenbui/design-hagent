@@ -14,3 +14,4 @@ Part of the design-hagent skill. Read before your first use_figma call in a sess
 - A screen with FILL content inside a hugging root collapses. Give the screen root the device minHeight and let Content hug.
 - Not available in this context: `figma.loadAllPagesAsync`, `figma.createConnector`, connector bend points. `findAll` doesn't exist on text nodes: check `'findAll' in node` first.
 - Keep reads of big files small (compact JSON, small screenshots). Large responses break.
+- One use_figma call returns at most five `node.screenshot()` images; a sixth is dropped without an error. Take screenshots five per call (review.md, Batches of five).

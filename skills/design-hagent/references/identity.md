@@ -7,6 +7,7 @@ An app built only from defaults looks machine-made: it could be any app with the
 ## Where it lives
 
 - The signature lives only in the tier 2 file: the style rules in its RULES block (the template's style rules 2.1, 2.2, 2.4, under a "Signature" heading), patterns, motifs and art as parts on page App Components, values in App Color and Typography. Never in the base (Core principle).
+- **What counts as the app's signature rules:** any approved rule that fixes the look, whatever its heading: the style rules (2.1, 2.2, 2.4), an art rule, or a separate block such as ART DIRECTION. An app needs no heading named "Signature". Rules still marked Pending or draft don't count yet.
 - Everything here is a suggestion until the designer approves it (Approval loop). Never invent a logo, mascot or brand color; ask for brand material first. Never copy another app's look, art or mascot.
 
 ## Generic tells (what makes it read as AI-made)

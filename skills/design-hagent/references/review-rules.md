@@ -143,7 +143,7 @@ Color audit rules, added in skill 2.20 (2026-11-26). The craft behind them is in
 
 ## Distinctive look and smart UX
 
-Added in skill 2.21 (2026-11-27). The craft behind them is in references/identity.md. Read the app's signature rules in its RULES block first. DR-111 to DR-114 fail only against an approved signature rule or a countable tell; with no signature rule, report them as "Góp ý UX" and suggest a kit. Count what you see (tells, signature elements per moment screen, text layers) and report the counts.
+Added in skill 2.21 (2026-11-27). The craft behind them is in references/identity.md. Read the app's signature rules first: approved style and art rules in RULES and any block it points to for art (such as ART DIRECTION), whatever their heading (references/identity.md, "What counts as the app's signature rules"). DR-111 to DR-114 fail only against such an approved rule or a countable tell; with none, report them as "Góp ý UX" and suggest a kit. Count what you see (tells, signature elements per moment screen, text layers) and report the counts.
 
 - **DR-111 Not generic** (judge, screen). Fail when three or more generic tells from references/identity.md show with no app rule choosing them, or the base placeholder typeface or colors still show. Except: wireframes (new app stage 4), base colors logged as known limits in FINDINGS (finding T2, as in DR-104), and a typeface or color an app rule chose. Source: apple-branding.
 - **DR-112 Signature on moment screens** (judge, flow). Splash, onboarding, empty, result, success and paywall use the app's signature elements (art, motif, display type); a flat, art-less moment screen fails. Except: system UI. Sources: apple-branding, lawsofux-peak-end.

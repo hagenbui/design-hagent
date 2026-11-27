@@ -201,7 +201,7 @@ Read the base text node "DONE CHECK SCRIPT" (page AGENT RULES, base rule 10.1) f
 - language flow: first-run language step and the Settings Language row and list are both in the sitemap and on page Design (or the brief says single-language), the Settings list has no Save button, exactly one option is Selected, and every name is in its own language
 - transitions: every arrow label and jump tag on a flows page names its transition type, "Trigger · Type" (references/motion.md)
 - standard app flows: each flow in references/app-flows.md is in the sitemap and on page Design, or the brief rules it out
-- signature (once the app has an approved signature rule): each moment screen you touched (splash, onboarding, empty, result, success, paywall) uses at least one signature element from RULES, and no screen still shows the base placeholder typeface or colors, except base colors logged as known limits in FINDINGS, wireframe screens and choices an app rule made (references/identity.md)
+- signature (once the app has approved style or art rules, any heading, references/identity.md): each moment screen you touched (splash, onboarding, empty, result, success, paywall) uses at least one signature element from RULES, and no screen still shows the base placeholder typeface or colors, except base colors logged as known limits in FINDINGS, wireframe screens and choices an app rule made (references/identity.md)
 
 The done check asks whether it is built right. Whether it works for people (contrast, palette, tap size, navigation, states, paywall, permissions) is the design review in references/review.md: offer it when a flow section is finished, and run it when the designer asks. It is read only.
 
