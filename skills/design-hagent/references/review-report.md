@@ -2,27 +2,29 @@
 
 Part of the design review (references/review.md). Read when you write the review result. SKILL.md and review.md still apply.
 
+Write the report in the language the designer picked (review.md, step 1), and use the labels of that language below, English or Vietnamese.
+
 ## Each issue
 
-- Màn hình: name and node link (one issue lists every screen it affects, group issues on a shared part)
-- Quy tắc: rule id and title, with its source link from references/review-rules.md
-- Bằng chứng: what you saw or measured (values, units, screenshot area)
-- Ảnh hưởng: what goes wrong for the user
-- Mức độ: P1 blocks a task, hides cost or fails a measurable minimum; P2 slows or confuses; P3 polish
-- Độ tin cậy: cao, trung bình, thấp
-- Cách sửa: one concrete fix, named in the system's terms (which part, token or text style). Never a raw number when a token exists.
+- Screen / Màn hình: name and node link (one issue lists every screen it affects, group issues on a shared part)
+- Rule / Quy tắc: rule id and title, with its source link from references/review-rules.md
+- Evidence / Bằng chứng: what you saw or measured (values, units, screenshot area)
+- Impact / Ảnh hưởng: what goes wrong for the user
+- Severity / Mức độ: P1 blocks a task, hides cost or fails a measurable minimum; P2 slows or confuses; P3 polish
+- Confidence / Độ tin cậy: high, medium, low / cao, trung bình, thấp
+- Fix / Cách sửa: one concrete fix, named in the system's terms (which part, token or text style). Never a raw number when a token exists.
 
 ## Statuses per rule
 
-đạt (pass), không đạt (fail), cần kiểm tra (needs verification, say what is missing), không áp dụng (not applicable, say why). Every rule in scope ends with one status. Never mark a rule you didn't look at.
+pass / đạt, fail / không đạt, needs verification / cần kiểm tra (say what is missing), not applicable / không áp dụng (say why). Every rule in scope ends with one status. Never mark a rule you didn't look at.
 
 ## Order of the report
 
-1. Tóm tắt: scope, platform, unit mapping, counts by P1 to P3, top three issues.
-2. Vấn đề, grouped by priority.
-3. Góp ý UX (taste, not failures).
-4. Chưa kiểm tra được: rules left as cần kiểm tra and what would settle them.
-5. Câu hỏi: clashes between a review rule and a file rule, for the designer.
+1. Summary / Tóm tắt: scope, platform, unit mapping, counts by P1 to P3, top three issues.
+2. Issues / Vấn đề, grouped by priority.
+3. UX suggestions / Góp ý UX (taste, not failures).
+4. Not checked / Chưa kiểm tra được: rules left as needs verification and what would settle them.
+5. Questions / Câu hỏi: clashes between a review rule and a file rule, for the designer.
 
 ## Mapping to the system's findings
 

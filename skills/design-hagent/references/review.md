@@ -13,14 +13,14 @@ This review judges whether screens work for people: legibility, tap areas, navig
 ## Boundaries
 
 - Read only. Never edit the file, never post Figma comments, never move findings into a Figma block unless the designer asks.
-- Report in Vietnamese unless the designer asks otherwise, since the team reads it. Rule names may stay in English. A lesson for SKILL FINDINGS is written in English (SKILL.md, Languages).
+- Report in English or Vietnamese, whichever the designer picks (step 1). Labels and statuses in this file are written in Vietnamese; in an English report use the English labels in references/review-report.md. Rule names may stay in English. A lesson for SKILL FINDINGS is written in English (SKILL.md, Languages).
 - Static design only. Never report on focus order, screen readers, animation, speed, keyboard, network or real error recovery: Figma can't show them.
 - No accessibility score or "compliant" claim from Figma.
 - Taste is not a failure. Label it "Góp ý UX" and keep it separate.
 
 ## Steps
 
-1. **Scope.** A node link means that node only. A file link means listing pages first and asking which flows. A PDF or image means visual review only: rules that need layer data become "cần kiểm tra".
+1. **Scope.** A node link means that node only. A file link means listing pages first and asking which flows. A PDF or image means visual review only: rules that need layer data become "cần kiểm tra". In the same message, ask whether the report should be in English or Vietnamese, unless the request already says. With no answer, use the language of the designer's message.
 2. **Inventory.** List the screens in scope by node id (names are labels only, duplicates stay separate). Mark each as screen, overlay (dialog, sheet), part, art or system UI. Write down every item left out and why. Say the inventory is complete only after the count matches the scope.
 3. **Context.** Read the file's text styles, color variables, the shared parts and the flow arrows or jump tags. Flows come from arrows, jump tags, prototype links or notes, never from where frames sit on the canvas.
 4. **Units.** Find out the target platform and how Figma units map to pt (iOS) or dp (Android). Until that is known, size rules are "cần kiểm tra", not fail.

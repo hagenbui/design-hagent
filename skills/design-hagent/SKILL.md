@@ -244,7 +244,8 @@ For IAA/IAP apps, think about where ads and upsells fire: native ad between cont
 
 Pick the language by who reads it. If agents read it, write it in English. If only the team (designers, PO, devs) reads it, write it in Vietnamese.
 - English: this skill and its reference files, every agent block in the Figma files (RULES, FLOWS, MAPPING, FINDINGS, SKILL FINDINGS, CHANGELOG, PROGRESS and HANDOFF, LOCKS, ROADMAP, AUDIT, BRIEF, SITEMAP), layer, component, variant, variable and style names, component descriptions, and image prompts.
-- Vietnamese: annotations, sticky notes and dev notes on the canvas, the design review report, and pages made for the team, such as the flow page docs/skill-flow.html.
+- Vietnamese: annotations, sticky notes and dev notes on the canvas, and pages made for the team, such as the flow page docs/skill-flow.html.
+- The design review report: English or Vietnamese, as the designer picks (references/review.md).
 - Screen copy and UX COPY stay in the app's language.
 - In chat, reply in the language the designer writes in.
 - Existing text in the other language stays as it is until that part is edited. Don't translate whole blocks unasked.
