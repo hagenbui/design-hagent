@@ -1,7 +1,8 @@
 """Build the design review HTML from a small JSON file, so the agent never writes or reads HTML.
 
 Usage: python3 -I review_html.py <folder>/review.json
-Screenshots are PNG files at <folder>/img/<node id with : as ->.png (or the screen's "image").
+Screenshots are PNG files at <folder>/img/<node id with : as ->.png (or the screen's "image"), or one PNG per
+section ("sheets") that each screen is cropped from by its "at" position, so a review needs one screenshot call.
 Writes <folder>/review-<date>.html with the images embedded, and compares it with the newest earlier
 review-*.html in the same folder: each issue is New or Still open, and earlier issues on screens in
 this scope that are gone are Solved. The data is embedded in the page for the next comparison.
@@ -28,7 +29,7 @@ header{padding:20px 24px;background:#fff;border-bottom:1px solid #e3e3df}h1{marg
 main{padding:16px 24px;display:grid;gap:16px}
 .screen{background:#fff;border:1px solid #e3e3df;border-radius:10px;padding:16px;display:grid;grid-template-columns:minmax(200px,320px) 1fr;gap:20px}
 .screen h2{grid-column:1/-1;margin:0;font-size:16px}.shot{position:relative;align-self:start}
-.shot img{width:100%;display:block;border-radius:6px;border:1px solid #e3e3df}
+.shot img,.crop{width:100%;display:block;border-radius:6px;border:1px solid #e3e3df;background-repeat:no-repeat}
 .box{position:absolute;border:2px solid var(--c);border-radius:3px;pointer-events:none}
 .dot{position:absolute;transform:translate(-50%,-50%);min-width:22px;height:22px;border-radius:11px;color:#fff;font:600 12px/22px system-ui;text-align:center;box-shadow:0 0 0 2px #fff;background:var(--c)}
 .P1{--c:#d92d20}.P2{--c:#e8730c}.P3{--c:#2e6fd8}.UX{--c:#6b6b66}.solved{--c:#1a8a4a}
@@ -68,6 +69,14 @@ def check(d):
         if not (isinstance(size, list) and len(size) == 2 and all(num(v) and v > 0 for v in size)):
             sys.exit('screen %s: size must be [width, height] in Figma units, got %r' % (s.get('id'), size))
         ids.add(s.get('id'))
+        if 'sheet' in s:
+            sheet = next((h for h in d.get('sheets', []) if h.get('id') == s['sheet']), None)
+            hs = sheet and sheet.get('size')
+            if not (isinstance(hs, list) and len(hs) == 2 and all(num(v) and v > 0 for v in hs)):
+                sys.exit('screen %s: sheet %r is not in sheets or has no size' % (s.get('id'), s['sheet']))
+            at = s.get('at')
+            if not (isinstance(at, list) and len(at) == 2 and all(num(v) for v in at)):
+                sys.exit('screen %s: at must be [x, y], its position in the sheet' % s.get('id'))
     for i in d.get('issues', []):
         if i.get('severity') not in SEV:
             sys.exit('issue %s: severity must be one of %s, got %r' % (i.get('rule'), ', '.join(SEV), i.get('severity')))
@@ -75,6 +84,17 @@ def check(d):
             sys.exit('issue %s: screen %r is not in screens' % (i.get('rule'), i.get('screen')))
         if 'box' in i and not (isinstance(i['box'], list) and len(i['box']) == 4 and all(num(v) for v in i['box'])):
             sys.exit('issue %s: box must be [x, y, w, h], got %r' % (i.get('rule'), i['box']))
+
+
+def margin(sheet):
+    """Uniform margin (Figma units) the screenshot adds around the node, solved from its pixel size."""
+    if not sheet.get('px'):
+        return 0
+    (W, H), (pw, ph) = sheet['size'], sheet['px']
+    if pw == ph:
+        return 0
+    m = (W * ph - H * pw) / (2 * (pw - ph))
+    return m if abs(m) >= 0.5 else 0
 
 
 def main(argv):
@@ -86,12 +106,18 @@ def main(argv):
     t = L.get(d.get('language', 'en'), L['en'])
     out = os.path.join(folder, 'review-%s.html' % d['date'])
     screens = {s['id']: s for s in d['screens']}
-    for s in d['screens']:
-        p = os.path.join(folder, s.get('image') or 'img/%s.png' % s['id'].replace(':', '-'))
+    def load(rel, what):
+        p = os.path.join(folder, rel)
         if not os.path.isfile(p):
-            sys.exit('missing screenshot for %s: %s' % (s['id'], p))
+            sys.exit('missing screenshot for %s: %s' % (what, p))
         with open(p, 'rb') as f:
-            s['_img'] = 'data:image/png;base64,' + base64.b64encode(f.read()).decode()
+            return 'data:image/png;base64,' + base64.b64encode(f.read()).decode()
+    used = {s['sheet'] for s in d['screens'] if 'sheet' in s}
+    d['_sheets'] = {h['id']: dict(h, _img=load(h.get('image') or 'img/sheet-%s.png' % h['id'], 'sheet ' + h['id']), _n=n)
+                    for n, h in enumerate(d.get('sheets', [])) if h['id'] in used}
+    for s in d['screens']:
+        if 'sheet' not in s:
+            s['_img'] = load(s.get('image') or 'img/%s.png' % s['id'].replace(':', '-'), s['id'])
     issues = sorted(d['issues'], key=lambda i: (SEV.index(i['severity']), i['screen']))
     prev_path = previous(folder, out)
     prev = read_embedded(prev_path) if prev_path else None
@@ -126,6 +152,8 @@ def render(d, data, screens, t):
             e(t['date']), e(d['date']), e(t['prev'] + ': ' + data['previous']) if data['previous'] else e(t['first']), e(sev))]
     h += ['<button class="chip%s" data-f="%s">%s %d</button>' % (' on' if f == 'all' else '', f, e(lab), c) for f, lab, c in chips]
     h.append('</div></header><main>')
+    if d['_sheets']:  # each sheet image appears once; screens show their slice of it
+        h.append('<style>%s</style>' % ''.join('.sh%d{background-image:url(%s)}' % (sh['_n'], sh['_img']) for sh in d['_sheets'].values()))
 
     def pos(i, s):
         x, y, w, hh = i['box']
@@ -135,7 +163,18 @@ def render(d, data, screens, t):
     for s in d['screens']:
         mine = [i for i in issues if i['screen'] == s['id']]
         fixed = [i for i in solved if i['screen'] == s['id']]
-        h.append('<section class="screen"><h2>%s</h2><div class="shot"><img src="%s" alt="%s">' % (e(s.get('name', s['id'])), s['_img'], e(s.get('name', ''))))
+        h.append('<section class="screen"><h2>%s</h2><div class="shot">' % e(s.get('name', s['id'])))
+        if 'sheet' in s:
+            sh = d['_sheets'][s['sheet']]
+            (SW, SH), (W, H), (ax, ay) = sh['size'], s['size'], s['at']
+            pad = margin(sh)  # a section screenshot comes with a margin around the node; widen the sheet by it
+            SW, SH, ax, ay = SW + 2 * pad, SH + 2 * pad, ax + pad, ay + pad
+            px = ax / (SW - W) * 100 if SW > W else 0
+            py = ay / (SH - H) * 100 if SH > H else 0
+            h.append('<div class="crop sh%d" role="img" aria-label="%s" style="aspect-ratio:%s/%s;background-size:%.3f%% %.3f%%;background-position:%.3f%% %.3f%%"></div>'
+                     % (sh['_n'], e(s.get('name', '')), W, H, SW / W * 100, SH / H * 100, px, py))
+        else:
+            h.append('<img src="%s" alt="%s">' % (s['_img'], e(s.get('name', ''))))
         for i in mine + fixed:
             if not i.get('box'):
                 continue  # no place on the screen: the issue shows in the list only

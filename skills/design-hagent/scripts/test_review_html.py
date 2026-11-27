@@ -102,6 +102,30 @@ class ReviewHtmlTest(unittest.TestCase):
         self.assertNotIn('</script><b>', html)
         self.assertEqual(review_html.read_embedded(out)['issues'][0]['evidence'], '</script><b>')
 
+    def test_screens_cropped_from_one_sheet_embed_it_once(self):
+        open(os.path.join(self.dir, 'img', 'sheet.png'), 'wb').write(PNG)
+        d = review('2026-11-01', [issue('DR-001', '1:5')])
+        d['sheets'] = [{'id': 's1', 'image': 'img/sheet.png', 'size': [800, 900]}]
+        for n, s in enumerate(d['screens']):
+            s.update(sheet='s1', at=[n * 425, 40])
+        os.remove(os.path.join(self.dir, 'img', '1-1.png'))  # per-screen files are not needed
+        out, html = self.run_review(d, 'a')
+        self.assertEqual(html.count('data:image/png;base64,'), 1)
+        self.assertIn('background-position', html)
+        self.assertEqual(review_html.read_embedded(out)['issues'][0]['status'], 'new')
+
+    def test_sheet_margin_solved_from_pixel_size(self):
+        # real case: a 10360 x 5860 section came back as 8800 x 5007 px, about 40 units of margin
+        self.assertAlmostEqual(review_html.margin({'size': [10360, 5860], 'px': [8800, 5007]}), 40, delta=1)
+        self.assertEqual(review_html.margin({'size': [375, 812], 'px': [375, 812]}), 0)
+        self.assertEqual(review_html.margin({'size': [375, 812]}), 0)
+
+    def test_bad_sheet_reference_stops(self):
+        d = review('2026-11-01', [])
+        d['screens'][0].update(sheet='nope', at=[0, 0])
+        with self.assertRaises(SystemExit):
+            self.run_review(d, 'a')
+
     def test_missing_image_fails_clearly(self):
         d = review('2026-11-01', [], screens=('9:9',))
         with self.assertRaises(SystemExit):

@@ -5,7 +5,7 @@ description: "Process skill for Hagen's mobile design system in Figma, including
 
 # Design Hagent: how to work
 
-**Skill version 2.23 (2026-11-28).** Changes per version: README.md.
+**Skill version 2.24 (2026-11-28).** Changes per version: README.md.
 
 The goal is an agent-ready mobile design system for IAA/IAP (ad and in-app-purchase monetized) apps. An agent given a prompt should be able to build a full working app from components, tokens and rules only, without inventing layout.
 
@@ -237,6 +237,7 @@ For IAA/IAP apps, think about where ads and upsells fire: native ad between cont
 
 ## Figma gotchas
 
+- Every tool call may need the designer's click (many orgs only allow once), so make few, full calls: one use_figma per page that reads everything the step needs, never one call per screen, part or check; one screenshot per section, not per screen.
 - This skill sits on top of the Figma plugin skills and does not repeat their API rules. Load `figma-use` once per session, before the first `use_figma` call. Load `figma-generate-design` once when you first draw or change a screen, and `figma-generate-library` only when you build a part, a variable collection or a style. Don't load them again in the same session.
 - Read references/figma-gotchas.md before your first use_figma call in a session (spec blocks, swaps, bound paint fallbacks, tints, unsupported API, small reads).
 
@@ -253,6 +254,6 @@ Pick the language by who reads it. If agents read it, write it in English. If on
 ## Talking to the designer
 
 - Plain language, no code talk, no em dashes. Short replies, and lead with the result or the ask.
-- Summarize a plan before long work.
+- Before long work, say the plan in one line, then start. Stop to ask only when a choice changes what gets built or the work writes to a file or a Figma node. A read-only review never waits for a go-ahead.
 - Say clearly what changed, what didn't, and what is waiting on them.
 - When you end a session in the base, rewrite the PROGRESS HANDOFF so the next agent can start cold. In a tier 2 file, report the open SF ids (see Skill findings).
