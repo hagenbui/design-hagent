@@ -26,6 +26,26 @@ pass / đạt, fail / không đạt, needs verification / cần kiểm tra (say 
 4. Not checked / Chưa kiểm tra được: rules left as needs verification and what would settle them.
 5. Questions / Câu hỏi: clashes between a review rule and a file rule, for the designer.
 
+## HTML report (the default output)
+
+Every review ends in one HTML page: each screen's screenshot with numbered dots on the issues, the issues listed beside it with the same numbers, and filters for New, Still open and Solved. A script builds it from a small JSON file, so never write or read the HTML yourself.
+
+1. **Folder.** `~/Design Reviews/<app short name>/`, one folder per app, never inside a repo (screens are confidential). Earlier reports in that folder are what New and Solved are measured against, so always reuse it.
+2. **Screenshots.** For each screen in scope: `get_screenshot` with `contentsOnly: true` and `maxDimension: 812`, then `curl -fsSL -o "<folder>/img/<node id with : as ->.png" "<image_url>"`. Never ask for base64.
+3. **Boxes.** For each issue, the node's bounds relative to its screen in Figma units: `[x, y, w, h]`, where x and y are the node's absolute position minus the screen's. Read them with the layer data in step 5 of review.md. Use the node on the screen itself (an instance, not an id nested inside one), so the same issue keeps its key next time. A flow issue gets the box on the screen where it shows.
+4. **JSON.** Write `<folder>/review.json`:
+
+```
+{"app": "Short name", "date": "YYYY-MM-DD", "language": "en or vi", "scope": "what was reviewed",
+ "screens": [{"id": "1:2", "name": "1.1 Splash", "size": [375, 812]}],
+ "issues": [{"rule": "DR-025", "title": "Touch target size", "severity": "P1", "screen": "1:2", "node": "1:5",
+   "box": [236, 160, 24, 28], "evidence": "...", "impact": "...", "fix": "...", "confidence": "high"}]}
+```
+
+   `severity` is exactly P1, P2, P3 or UX (UX for suggestions). `size` is the screen frame in Figma units; if content spills past the frame edge, the screenshot is larger and dots drift, so note it. A file rule is named like "App 2.7". Optional: `title`, screen `name`, screen `image` (a PNG path when it isn't img/<id>.png), and `box` (without it the issue shows in the list only). The date is YYYY-MM-DD. Bad input stops the script with a message: fix the JSON and run it again.
+5. **Build.** `python3 -I <this skill's folder>/scripts/review_html.py "<folder>/review.json"`. It prints the path of `review-<date>.html`, with the images inside. Each issue is marked New or Still open (same rule and node as last time); issues from the last report on screens in this scope that are gone are marked Solved; issues on screens outside this scope are carried forward as not rechecked, never as solved, and are compared again the next time those screens are in scope. A second run on the same day replaces that day's page and still compares with the earlier one.
+6. **Hand over.** Give the designer the path and the chat summary (counts, top three, what is new and solved).
+
 ## Mapping to the system's findings
 
 When the designer asks to log results in Figma:

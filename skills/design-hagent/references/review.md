@@ -28,7 +28,7 @@ This review judges whether screens work for people: legibility, tap areas, navig
    Color (DR-101 to DR-110): for DR-107 compare the luminance of the fills involved (from layer data, in each mode the app has), since a screenshot arrives as an image you usually can't turn gray; DR-110 on art or gradients usually ends as "cần kiểm tra"; and list the hues in use with where the primary appears. Judge against the app's palette rule and references/color.md.
    Look and smart UX (DR-111 to DR-120): count the generic tells from references/identity.md per screen, and list which signature elements each moment screen uses. Judge against the app's approved style and art rules (any heading, including an ART DIRECTION block); with none, report DR-111 to DR-114 as "Góp ý UX" and suggest a signature kit.
 6. **Flow rules.** Check the "flow" rules once per flow and point to that from each affected screen.
-7. **Report.** Follow references/review-report.md. Give the designer the summary in chat first; write a file or doc only if asked.
+7. **Report.** Follow references/review-report.md: build the HTML report (screenshots with numbered dots, New, Still open and Solved marked against the last review), then give the designer the path and the summary in chat. Write a Figma doc only if asked.
 
 ## Evidence
 
