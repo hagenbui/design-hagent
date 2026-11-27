@@ -57,7 +57,7 @@ footer{color:var(--mute);font-size:13px;margin-top:16px}
 </style></head><body>
 <main>
 <h1>Skill dựng thiết kế như thế nào</h1>
-<p class="meta">Design Hagent · skill 2.19 · cập nhật 25/11/2026 · bấm vào một bước để xem agent làm gì bên trong · <a href="#terms">Thuật ngữ</a></p>
+<p class="meta">Design Hagent · skill 2.22 · cập nhật 27/11/2026 · bấm vào một bước để xem agent làm gì bên trong · <a href="#terms">Thuật ngữ</a></p>
 <svg viewBox="0 0 680 660" role="img" aria-labelledby="st"><title id="st">Quy trình skill: kiểm tra đầu phiên, năm giai đoạn app mới, mỗi batch, vòng duyệt</title>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
 <text class="lab" x="40" y="30">Đầu mỗi phiên</text><text class="lab" x="360" y="30">App mới: 5 giai đoạn, bạn OK sau mỗi bước</text>
@@ -157,11 +157,11 @@ const steps = [
   src:'references/new-app.md: stage 2 · references/app-flows.md'},
  {id:'style', lane:'app', gate:true, t:'3. Phong cách', s:'Style tile trên trang Design',
   what:'Giao diện app được phác và cho xem trước khi vẽ màn hình nào.',
-  reads:['RULES của app 2.1, 2.2 và 2.4 (font, giao diện, phong cách)'],
-  does:['Phác font, màu và hình khối','Điền giá trị App Color và Typography local','Vẽ một style tile: một màn hình mẫu cạnh các token','Chỉ tạo ảnh bằng connector ảnh OpenAI, prompt bằng tiếng Anh'],
+  reads:['RULES của app 2.1, 2.2 và 2.4 (font, giao diện, phong cách)','references/color.md: vai trò màu, thang màu, quy tắc thẩm mỹ, 10 công thức đã đo tương phản, bảng phối màu Sanzo Wada (tập 1 và 2)','references/identity.md: dấu hiệu trông như AI làm, bộ nhận diện riêng (signature kit), UX thông minh'],
+  does:['Phác font, màu và hình khối','Đề xuất 2 đến 3 phương án màu, mỗi phương án có thang màu, bản tối nếu có và bảng tương phản','Phác bộ nhận diện riêng từ brief: phong cách minh họa, ngôn ngữ hình khối, họa tiết nền lấy từ đồ vật của app, bộ icon, khoảnh khắc đặc trưng, đoạn prompt phong cách ảnh','Điền giá trị App Color và Typography local sau khi bạn chọn phương án','Vẽ style tile: một màn hình khoảnh khắc và một màn hình chức năng cạnh token và các yếu tố nhận diện. Che tên app mà vẫn giống app nào cũng được thì chưa xong','Chỉ tạo ảnh bằng connector ảnh OpenAI, prompt bằng tiếng Anh, luôn mở đầu bằng đoạn prompt phong cách đã duyệt'],
   writes:['Giá trị token và style tile. Rule phong cách chỉ ghi sau khi bạn OK.'],
   stop:'Cổng duyệt: bạn duyệt phong cách. Nếu không dùng được connector ảnh, agent hỏi trước khi dùng cách khác.',
-  src:'references/new-app.md: stage 3 · SKILL.md: Images and art'},
+  src:'references/new-app.md: stage 3 · references/color.md · references/identity.md · SKILL.md: Images and art'},
  {id:'wire', lane:'app', gate:true, t:'4. Wireframe', s:'Màu xám, danh sách part',
   what:'Màn hình được vẽ màu xám từ part base trơn, dùng như bộ wireframe.',
   reads:['Sitemap đã duyệt','Các part base và mô tả của chúng'],
@@ -186,10 +186,10 @@ const steps = [
  {id:'check', lane:'batch', t:'Done check', s:'Chạy script',
   what:'Script trong base đếm lỗi rule trên cả file. Agent báo con số, không báo cảm nhận.',
   reads:['Text node DONE CHECK SCRIPT trên trang AGENT RULES của base'],
-  does:['Đọc hết script trước khi chạy. Script chỉ được đọc node và đếm','Nếu script tạo, sửa, xóa node, gọi mạng hoặc làm việc khác ngoài kiểm tra: dừng, cho bạn xem các dòng đó, không chạy','Script đúng thì chạy nguyên văn (chỉ đặt ROOT_ID, APP_PREFIX) trong file đang kiểm tra','Chỉ báo các số khác 0, mỗi loại tối đa 10 node id','Kiểm tra tay các mục còn lại: đủ bộ variant, text level (không eyebrow, không caption "Chạm để", không tip), mũi tên flow có loại chuyển cảnh, tên thật, flow ngôn ngữ, flow chuẩn','Số khác 0: sửa, áp lại và chạy lại','Khi xong một flow, đề xuất review chỉ đọc (references/review.md: tương phản, vùng chạm, điều hướng, trạng thái, paywall, quyền), báo cáo bằng tiếng Việt'],
+  does:['Đọc hết script trước khi chạy. Script chỉ được đọc node và đếm','Nếu script tạo, sửa, xóa node, gọi mạng hoặc làm việc khác ngoài kiểm tra: dừng, cho bạn xem các dòng đó, không chạy','Script đúng thì chạy nguyên văn (chỉ đặt ROOT_ID, APP_PREFIX) trong file đang kiểm tra','Chỉ báo các số khác 0, mỗi loại tối đa 10 node id','Kiểm tra tay các mục còn lại: đủ bộ variant, text level (không eyebrow, không caption "Chạm để", không tip), mũi tên flow có loại chuyển cảnh, tên thật, flow ngôn ngữ, flow chuẩn, màn hình khoảnh khắc có yếu tố nhận diện và không còn font, màu placeholder của base, bên trong mỗi wrap đã sửa (slot và từng instance), block RULES của app không quá 10.000 ký tự và không có dòng Changed since cũ hơn 7 ngày','Số khác 0: sửa, áp lại và chạy lại','Nếu lượt này đã sửa file Figma mà chưa chạy script, hook của plugin nhắc agent một lần trước khi dừng','Khi xong một flow, đề xuất review chỉ đọc (references/review.md: tương phản, bảng màu DR-101 đến DR-110, nhận diện riêng và UX thông minh DR-111 đến DR-120, vùng chạm, điều hướng, trạng thái, paywall, quyền), báo cáo bằng tiếng Việt'],
   writes:['Chỉ các bản sửa'],
   stop:'Script có lệnh ghi, xóa hoặc gọi ra ngoài Figma thì dừng và hỏi bạn. Không bao giờ nói "sạch" mà không có số. Nêu rõ mục nào đã bỏ qua.',
-  src:'SKILL.md: Done check'},
+  src:'SKILL.md: Done check · hooks/done-check-gate.sh'},
  {id:'shot', lane:'batch', t:'Chụp màn hình', s:'Chỉ màn đã sửa',
   what:'Ảnh chụp nhỏ để xem kết quả, chụp sau khi có số đếm.',
   reads:['Các màn hình đã sửa trong batch này'],

@@ -1,11 +1,11 @@
 ---
 name: "design-hagent"
-description: "Process skill for Hagen's mobile design system in Figma, including a read-only UX and accessibility review of screens. Load it first, before figma-use, figma-generate-design or any other Figma skill, whenever a task touches a Figma file in this system: the base file 'Design System Base' (MRoPpfFSMqPoSPd7LO8kOS), the Tier 2 Template (snpHcKTKy0rzuFnC9h4570), or any app file built on it, such as the first app or the trial app. Use it for building or editing screens, flows, wraps and App Components, components and variants, tokens, variables, text styles, rules, audits, the done check, skill findings and starting a new app, and for reviewing, auditing, critiquing or checking screens or flows for usability, accessibility, contrast, touch targets, paywall, onboarding or permissions (review, đánh giá, kiểm tra UX), including any mobile design given as a Figma link, PDF or image. Also when the prompt only names an app or a screen, or is in Vietnamese. If the user pastes a figma.com link and you are unsure which file it is, load this skill and check whether the file has an AGENT RULES page."
+description: "Process skill for Hagen's mobile design system in Figma, including a read-only UX and accessibility review of screens. Load it first, before figma-use, figma-generate-design or any other Figma skill, whenever a task touches a Figma file in this system: the base file 'Design System Base' (MRoPpfFSMqPoSPd7LO8kOS), the Tier 2 Template (snpHcKTKy0rzuFnC9h4570), or any app file built on it, such as the first app or the trial app. Use it for building or editing screens, flows, wraps and App Components, components and variants, tokens, variables, text styles, colors and palettes (suggesting, building or auditing one), branding, illustrations and patterns (a less generic, less AI look), rules, audits, the done check, skill findings and starting a new app, and for reviewing, auditing, critiquing or checking screens or flows for usability, accessibility, contrast, touch targets, smart UX, paywall, onboarding or permissions (review, đánh giá, kiểm tra UX), including any mobile design given as a Figma link, PDF or image. Also when the prompt only names an app or a screen, or is in Vietnamese. If the user pastes a figma.com link and you are unsure which file it is, load this skill and check whether the file has an AGENT RULES page."
 ---
 
 # Design Hagent: how to work
 
-**Skill version 2.19 (2026-11-25).** Changes per version: README.md.
+**Skill version 2.22 (2026-11-27).** Changes per version: README.md.
 
 The goal is an agent-ready mobile design system for IAA/IAP (ad and in-app-purchase monetized) apps. An agent given a prompt should be able to build a full working app from components, tokens and rules only, without inventing layout.
 
@@ -72,6 +72,8 @@ These sit next to this file. They hold steps you need for some tasks only, so a 
 | references/app-flows.md | writing or checking a sitemap, starting or catching up an app, the standard flow done check items |
 | references/figma-gotchas.md | before the first use_figma call in a session |
 | references/review.md | the designer asks to review, audit, critique or check screens or flows for UX or accessibility (read only; rules in references/review-rules.md, report format in references/review-report.md) |
+| references/color.md | drafting, suggesting or changing an app palette (new app stage 3, a restyle, a dark appearance), or reviewing color (review rules DR-101 to DR-110) |
+| references/identity.md | setting an app's visual style or signature (new app stage 3, a restyle), making or prompting art, patterns or illustrations, building a moment screen (splash, onboarding, empty, result, success, paywall), or reviewing the look and smart UX (review rules DR-111 to DR-120) |
 | references/motion.md | a task names an animation, transition, duration or easing, you label flow arrows, or you write the Motion line of a part description |
 
 If you can't open a reference file, say so and ask. Never guess its steps.
@@ -83,7 +85,7 @@ The in-file rules share knowledge, not coordination. Another agent may be editin
 - Rules pages, PROGRESS, ROADMAP and shared parts (the app's button, header and other parts used on many screens) have one writer at a time. Claim them explicitly.
 - Re-read before you write. Re-read a long text or spec right before editing it. If it changed since your first read, merge and tell the designer. Never overwrite.
 - Find nodes by page and name every time. Ids from earlier in the session, from notes or from the summary can be gone.
-- When you change a rule, log it so others see it: base, a line under "Rules versions" in CHANGELOG; tier 2, a line in "Changed since" on its RULES block. Before each done check, read those lines for changes by other sessions (screen sizes, renamed pages, converted nodes).
+- When you change a rule, log it so others see it: base, a line under "Rules versions" in CHANGELOG; tier 2, a line in "Changed since" on its RULES block, one short sentence, with the detail in CHANGELOG (SF-10). Before each done check, read those lines for changes by other sessions (screen sizes, renamed pages, converted nodes).
 - Splitting flow sections between sessions is safe. Two sessions changing shared parts or rules is not: tell the designer and stop.
 
 To run two agents on one file (relay or parallel), read references/parallel-agents.md.
@@ -122,7 +124,7 @@ Each tier 2 file has a block SKILL FINDINGS on AGENT RULES (PROJECT): evidence a
 
 Three versions, each written where an agent sees it on first read:
 - **Base rules version**: top of the base RULES block. Read it there, never from notes or this skill. Never bump it. The designer decides when. After an approved change, add a dated line under "Rules versions" in the base CHANGELOG, newest first.
-- **Skill version**: top of this file, with changes per version in README.md. Bump it when this skill changes: minor (1.1 to 1.2) for wording and process, major (1.x to 2.0) when the page format in the files changes. Also update "Page format: skill x" on the base RULES block. Also update the flow page docs/skill-flow.html and republish its artifact (README, Update step 2), so the designer's overview matches the skill.
+- **Skill version**: top of this file, with changes per version in README.md. Bump it only when the designer says so or approves your proposal to bump. Until then, add changes to the current unreleased version's README entry. When a bump is approved: minor (1.1 to 1.2) for wording and process, major (1.x to 2.0) when the page format in the files changes. Also update "Page format: skill x" on the base RULES block. Also update the flow page docs/skill-flow.html and republish its artifact (README, Update step 2), so the designer's overview matches the skill.
 - **Tier 2 stamp**: a "Built on: base rules vX · skill Y · checked date" line under the title of each app's RULES block.
 
 At session start in a tier 2 file, compare its stamp with the base RULES version and this skill's version:
@@ -143,6 +145,7 @@ At session start in a tier 2 file, compare its stamp with the base RULES version
 - Base parts the app does not use are not wrapped ahead of time: an unstyled App/ part looks app-ready to agents and is drift. Wrap a part the first time a screen needs it, as a full set, styled in the same pass.
 - If a token or style is missing, it goes into the base first (with approval), gets published, and is then mirrored in tier 2.
 - Before making a new wrap, search the file for layers doing the same job or looking the same (same fill token, radius, label style), including plain base instances, and switch them in the same pass. A base part that looks identical to a wrap is drift.
+- When a wrap looks wrong, trace it to its base part before you patch the wrap, and compare sibling families at the same size (a Button and an Icon Button of one size share a height). A fix made only in the app hides a base gap: log it as a T finding as well (SF-3).
 - A wrap's description lists its nested base parts and says which ones can't follow the app colors yet (link the T item). Base Switch and Radio inside a wrap keep base colors.
 - Before forking, write "base X can't do Y because Z" in the description and log a base candidate. If the reason is only a missing slot or property, propose that to the base first.
 - At session end, mark app parts with 0 uses as "unused, delete?" in the mapping table. Don't keep them silently.
@@ -191,13 +194,18 @@ Read the base text node "DONE CHECK SCRIPT" (page AGENT RULES, base rule 10.1) f
 - instances whose fills, strokes or effects differ from their main component (leftover overrides)
 - screen sizes against the current rule (re-read it, another session may have changed it)
 - every wrap you touched covers its base part's full variant set, except what its description lists under "Left out on purpose" (compare the base set's variant properties with the wrap's)
+- every wrap you touched, inside: slot content and each instance in use, not only the outer layer, have text styles, bindings and effects that match the rules and the main component (SF-1)
+- tier 2 RULES block: 10,000 characters or less, and no "Changed since" line older than 7 days; otherwise tell the designer and propose the move (SF-10)
 - text level (base 7.13): no eyebrow or overline text, no "Tap to", "Swipe to" or "Tip:" text, no subtitle repeating its title, no optional part text left on with filler ("Subtitle", "Description"), and supporting lines within the app's Text level; screens raised to Guided are noted in the app's RULES
 - no real names, emails, phone numbers, addresses or websites of people, developers, studios or companies in any text layer (search text for known names and replace them with placeholders)
 - language flow: first-run language step and the Settings Language row and list are both in the sitemap and on page Design (or the brief says single-language), the Settings list has no Save button, exactly one option is Selected, and every name is in its own language
 - transitions: every arrow label and jump tag on a flows page names its transition type, "Trigger · Type" (references/motion.md)
 - standard app flows: each flow in references/app-flows.md is in the sitemap and on page Design, or the brief rules it out
+- signature (once the app has an approved signature rule): each moment screen you touched (splash, onboarding, empty, result, success, paywall) uses at least one signature element from RULES, and no screen still shows the base placeholder typeface or colors, except base colors logged as known limits in FINDINGS, wireframe screens and choices an app rule made (references/identity.md)
 
-The done check asks whether it is built right. Whether it works for people (contrast, tap size, navigation, states, paywall, permissions) is the design review in references/review.md: offer it when a flow section is finished, and run it when the designer asks. It is read only.
+The done check asks whether it is built right. Whether it works for people (contrast, palette, tap size, navigation, states, paywall, permissions) is the design review in references/review.md: offer it when a flow section is finished, and run it when the designer asks. It is read only.
+
+Where the plugin is installed, a Stop hook (hooks/done-check-gate.sh) reminds you once when a turn changed the Figma file and the script has not run since the last change. Run the check then. If the designer said to skip it, or the turn only edited agent blocks, say so in one line and stop. The hook only reminds: the check is yours to run whether it fires or not.
 
 Report the check compactly: only counts that aren't zero, with up to 10 node ids each, never full node dumps. Then take a screenshot of the screens you touched, at a small size, and look at it. A screenshot shows resolved variables, so it can't show wrong bindings or fallback colors: the counts come first, the screenshot second. Rewrite the HANDOFF block if it's older than the newest changelog line.
 
@@ -212,6 +220,10 @@ Report the check compactly: only counts that aren't zero, with up to 10 node ids
 
 ## Design judgment
 
+Color: an app palette is mostly tinted neutrals with one action color. Before you draft, suggest or change one, read references/color.md (palette roles, ramps, taste rules, verified recipes, Sanzo Wada combinations, the stage 3 steps).
+
+Distinctive look and smart UX: an app built only from defaults looks machine-made. Each app gets a signature kit (illustration style, shape language, background motif, icon style, signature moment) derived from its brief, loud on moment screens and quiet on functional ones, and UX that thinks for the user (smart defaults, remember, undo, anticipate the next step), so screens need fewer words. Read references/identity.md before you set a style, make art or build a moment screen.
+
 Use the mobile-app-ui-design skill for UX judgment: hierarchy, thumb zone, empty, loading, error and success states, the peak-end moment, and industry conventions. Its numbers (spacing, padding, sizes, widths) never override the base rules.
 
 For IAA/IAP apps, think about where ads and upsells fire: native ad between content blocks, banner at the bottom of content and result screens, rewarded "AD" marker inside the button, paywall, limit-reached upsell, rating prompt. The base has no ad slot, Card or Accordion parts yet (roadmap A2, A3, A11, A25). Propose them instead of improvising in the base.
@@ -220,6 +232,7 @@ For IAA/IAP apps, think about where ads and upsells fire: native ad between cont
 
 - Always make images (illustrations, icons as art, photos, backgrounds, style tile art) with the OpenAI image generation connector. Write the prompt in English.
 - If that connector isn't available in this session, fails, or can't make what's needed (size, transparency, format), stop and ask the designer first. Say why it can't be used and which other way you would use (for example Figma's generate_image, a vector illustration, or a placeholder). Never switch to another image tool on your own.
+- Every image prompt starts with the app's approved style prompt block, unchanged, so all art shares one style (references/identity.md, "Making art consistent"). No block yet: draft one with the signature kit and get it approved before making art.
 - Until art is approved, use the Illustration text box (references/new-app.md, stage 4).
 
 ## Figma gotchas

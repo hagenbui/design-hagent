@@ -1,0 +1,16 @@
+{
+  "description": "design-hagent: reminds the agent once to run the DONE CHECK SCRIPT when a turn changed a Figma file without it",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/done-check-gate.sh\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

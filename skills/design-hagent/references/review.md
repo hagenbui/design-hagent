@@ -25,6 +25,8 @@ This review judges whether screens work for people: legibility, tap areas, navig
 3. **Context.** Read the file's text styles, color variables, the shared parts and the flow arrows or jump tags. Flows come from arrows, jump tags, prototype links or notes, never from where frames sit on the canvas.
 4. **Units.** Find out the target platform and how Figma units map to pt (iOS) or dp (Android). Until that is known, size rules are "cần kiểm tra", not fail.
 5. **Batches of five.** Per screen: a readable screenshot, then the layer data you need (sizes of tap wrappers, text size and weight, fills, hidden layers, clipping). Walk the rules in references/review-rules.md that apply. Keep a short note per screen so the work can resume.
+   Color (DR-101 to DR-110): for DR-107 compare the luminance of the fills involved (from layer data, in each mode the app has), since a screenshot arrives as an image you usually can't turn gray; DR-110 on art or gradients usually ends as "cần kiểm tra"; and list the hues in use with where the primary appears. Judge against the app's palette rule and references/color.md.
+   Look and smart UX (DR-111 to DR-120): count the generic tells from references/identity.md per screen, and list which signature elements each moment screen uses. Judge against the app's signature rules; with none in RULES, report DR-111 to DR-114 as "Góp ý UX" and suggest a signature kit.
 6. **Flow rules.** Check the "flow" rules once per flow and point to that from each affected screen.
 7. **Report.** Follow references/review-report.md. Give the designer the summary in chat first; write a file or doc only if asked.
 

@@ -2,7 +2,7 @@
 
 Part of the design review (references/review.md). Read the groups a screen needs, not the whole file at once. SKILL.md and review.md still apply.
 
-Each rule: id, title, kind (measure = a number decides; judge = a reasoned call), scope (screen or flow), what to check, when it applies, the exception, source. Ids follow the legacy rulebook (MDR-0xx became DR-0xx), so old Varmeta reports map one to one. The legacy book had no rules 004 to 024, 033, 047, 051 to 053, 061, 062, 064, 093, 094.
+Each rule: id, title, kind (measure = a number decides; judge = a reasoned call), scope (screen or flow), what to check, when it applies, the exception, source. Ids follow the legacy rulebook (MDR-0xx became DR-0xx), so old Varmeta reports map one to one. Ids from DR-101 up are new in this skill and have no legacy match. The legacy book had no rules 004 to 024, 033, 047, 051 to 053, 061, 062, 064, 093, 094.
 
 A rule in the file's RULES block wins over these. Check platform rules (iOS only, Android only) only once the platform is known.
 
@@ -126,6 +126,36 @@ A rule in the file's RULES block wins over these. Check platform rules (iOS only
 - **DR-099 Same part, same look** (judge, flow). Parts with the same job follow the design system. In this system the wraps and the reapply rule decide. Source: nng-heuristics.
 - **DR-100 Help in the same place** (judge, flow). Repeated help sits in the same relative spot. Source: wcag-consistent-help, wcag2ict.
 
+## Color palette
+
+Color audit rules, added in skill 2.20 (2026-11-26). The craft behind them is in references/color.md. Contrast itself stays DR-001 and DR-002. Read the app's palette rule in its RULES block first: an approved choice there wins. Count what you see (hues, where the primary appears, area share) and report the counts as evidence.
+
+- **DR-101 Color is scarce** (judge, screen). Neutrals carry most of the screen; strong color marks the main action, the selected state or one highlight. Fail when three or more large saturated areas compete, or nothing stands out. Except: art, photos, games, kids screens with a rule allowing more. Sources: apple-color, refactoring-ui-color.
+- **DR-102 One action color** (judge, flow). The primary color marks what can be tapped or what is selected, and is not used for plain headings, body text or decoration. Except: brand art. Source: apple-color.
+- **DR-103 Few hues** (judge, screen). Count UI hues outside art (a hue counts when it is clearly a different color, not a tint of one already counted): one primary, at most one accent, plus semantic colors where a state is shown. Each extra hue needs a job no role does. Except: category colors with a rule (tags, calendars). Source: refactoring-ui-color.
+- **DR-104 One neutral family** (judge, flow). Greys, surfaces and borders share one temperature and lean toward the brand hue. Cool and warm greys mixed on one screen, or a pure neutral grey beside a tinted one, is a fail. Except: base colors inside wraps that are logged as known limits in FINDINGS (Switch, Radio, CheckBox, overlay scrim, finding T2): point to the T item, don't fail again. Sources: refactoring-ui-color, radix-scale.
+- **DR-105 States from the ramp** (judge, screen). Pressed, selected, disabled and hover fills are steps of their role's ramp or the neutral ramp, not new hues or ad hoc opacities. Except: the same known limits as DR-104. Sources: radix-scale, material-color.
+- **DR-106 Chroma by area** (judge, screen). Large areas (backgrounds, headers, big cards) are low chroma; full chroma stays on small areas. In dark, primary and accent are lighter and less saturated, and surfaces are dark grey, not pure black. Except: hero art, full-screen media. Sources: material-dark-theme, material-color.
+- **DR-107 Works in grayscale** (judge, screen). In a grayscale screenshot, the main action, the selected state and errors still stand out by lightness, icon or text. Pairs with DR-003. Source: appstore-color-alone.
+- **DR-108 Semantic colors keep meaning** (judge, flow). Error, warning and success differ from the primary and from each other, and keep one meaning across screens (DR-031). Fail when the error red matches a red brand button, or success green is also used for decoration. Sources: apple-color, wcag-use-of-color.
+- **DR-109 Premium color is reserved** (judge, flow, IAA/IAP; candidate, report as "Góp ý UX" until the designer approves it). The premium or gold color appears only on paywall, Premium badges and locked markers. Except: an app whose brand is gold, which then marks premium with another cue (icon, label). Source: references/color.md rule 9.
+- **DR-110 Text on gradients and art** (measure, screen). Text over a gradient, image or tint passes DR-001 at its worst point; otherwise "cần kiểm tra" with a pixel check. Source: wcag-contrast-minimum.
+
+## Distinctive look and smart UX
+
+Added in skill 2.21 (2026-11-27). The craft behind them is in references/identity.md. Read the app's signature rules in its RULES block first. DR-111 to DR-114 fail only against an approved signature rule or a countable tell; with no signature rule, report them as "Góp ý UX" and suggest a kit. Count what you see (tells, signature elements per moment screen, text layers) and report the counts.
+
+- **DR-111 Not generic** (judge, screen). Fail when three or more generic tells from references/identity.md show with no app rule choosing them, or the base placeholder typeface or colors still show. Except: wireframes (new app stage 4), base colors logged as known limits in FINDINGS (finding T2, as in DR-104), and a typeface or color an app rule chose. Source: apple-branding.
+- **DR-112 Signature on moment screens** (judge, flow). Splash, onboarding, empty, result, success and paywall use the app's signature elements (art, motif, display type); a flat, art-less moment screen fails. Except: system UI. Sources: apple-branding, lawsofux-peak-end.
+- **DR-113 One art style** (judge, flow). Illustrations, motifs and icons share one medium, line weight, palette and perspective; icons come from one set. Except: photos and user content. Source: apple-branding.
+- **DR-114 Signature stays quiet where people work** (judge, screen). Patterns, motifs and display type don't sit behind body text, lists or forms, and never lower legibility (DR-001, DR-110). Source: apple-branding.
+- **DR-115 Within the text level** (judge, screen). Text stays within the app's Text level (base 7.13): no eyebrows, repeated subtitles, "Tap to" captions or tips; a line that art, an icon or a visible state could carry is a fail. Except: screens raised to Guided in the app's RULES, legal and price text. Source: apple-writing.
+- **DR-116 Smart defaults and memory** (judge, flow). The most common or safest option is preselected, the last choice, filter or tab is kept, and search shows recents before results. Evidence is static: a drawn preselected or recents state, or a note on the canvas; without it, "cần kiểm tra", not fail. Except: consent opt-ins and paid add-ons, which are never pre-checked (a preselected paywall plan is fine when DR-080 and DR-081 pass). Source: nng-heuristics.
+- **DR-117 Prevent, then undo** (judge, flow). Input is constrained (pickers, steppers, disabled impossible options) instead of explained; a reversible action offers Undo instead of a confirm dialog; confirm stays for what can't be undone. Evidence is static: a drawn Undo snackbar or constrained control, or a note; without it, "cần kiểm tra", not fail. Sources: nng-heuristics, apple-undo.
+- **DR-118 One next step** (judge, screen). One primary action per screen; result and success screens offer the natural next action, not only Close; rare options sit behind More. Sources: lawsofux-hick, nng-heuristics.
+- **DR-119 Native controls** (judge, screen). Switches, pickers, steppers, segmented controls, alerts, action sheets, sheets, navigation bars, tab bars and back keep the platform's shape and behavior; a control redrawn for flavor fails (references/identity.md, "Native first"). Except: game screens and controls with no platform equivalent. Sources: nng-heuristics, apple-layout.
+- **DR-120 One focal point** (judge, screen). Each screen has one element that leads (the main content or the one primary action) and the rest steps back; equal weight everywhere, or several primary-styled buttons, fails. Pairs with DR-028 and DR-118. Sources: apple-layout, apple-buttons.
+
 ## Candidate rules from Varmeta DESIGN.md (to confirm, not approved)
 
 Report these as "Góp ý UX" until the designer approves them into a RULES block.
@@ -146,6 +176,7 @@ Report these as "Góp ý UX" until the designer approves them into a RULES block
 | android-insets | https://developer.android.com/design/ui/mobile/guides/layout-and-content/edge-to-edge |
 | apple-accessibility | https://developer.apple.com/design/human-interface-guidelines/accessibility |
 | apple-alerts | https://developer.apple.com/design/human-interface-guidelines/alerts |
+| apple-branding | https://developer.apple.com/design/human-interface-guidelines/branding |
 | apple-buttons | https://developer.apple.com/design/human-interface-guidelines/buttons |
 | apple-color | https://developer.apple.com/design/human-interface-guidelines/color |
 | apple-dark-mode | https://developer.apple.com/design/human-interface-guidelines/dark-mode |
@@ -165,11 +196,19 @@ Report these as "Góp ý UX" until the designer approves them into a RULES block
 | apple-tab-bars | https://developer.apple.com/design/human-interface-guidelines/tab-bars |
 | apple-text-fields | https://developer.apple.com/design/human-interface-guidelines/text-fields |
 | apple-typography | https://developer.apple.com/design/human-interface-guidelines/typography |
+| apple-undo | https://developer.apple.com/design/human-interface-guidelines/undo-and-redo |
 | apple-writing | https://developer.apple.com/design/human-interface-guidelines/writing |
+| appstore-color-alone | https://developer.apple.com/help/app-store-connect/manage-app-accessibility/differentiate-without-color-alone-evaluation-criteria |
+| lawsofux-hick | https://lawsofux.com/hicks-law/ |
+| lawsofux-peak-end | https://lawsofux.com/peak-end-rule/ |
+| material-color | https://m3.material.io/styles/color/system/overview |
+| material-dark-theme | https://m2.material.io/design/color/dark-theme |
 | material-navigation | https://github.com/material-components/material-components-android/blob/master/docs/components/BottomNavigation.md |
 | material-switch | https://github.com/material-components/material-components-android/blob/master/docs/components/Switch.md |
 | nng-heuristics | https://www.nngroup.com/articles/ten-usability-heuristics/ |
 | nng-placeholders | https://www.nngroup.com/articles/form-design-placeholders/ |
+| radix-scale | https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale |
+| refactoring-ui-color | https://www.refactoringui.com/previews/building-your-color-palette |
 | wcag-consistent-help | https://www.w3.org/WAI/WCAG22/Understanding/consistent-help.html |
 | wcag-consistent-identification | https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html |
 | wcag-contrast-minimum | https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html |
