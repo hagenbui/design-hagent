@@ -5,7 +5,7 @@ description: "Process skill for Hagen's mobile design system in Figma, including
 
 # Design Hagent: how to work
 
-**Skill version 2.24 (2026-11-28).** Changes per version: README.md.
+**Skill version 2.25 (2026-11-28).** Changes per version: README.md.
 
 The goal is an agent-ready mobile design system for IAA/IAP (ad and in-app-purchase monetized) apps. An agent given a prompt should be able to build a full working app from components, tokens and rules only, without inventing layout.
 
@@ -207,7 +207,7 @@ The done check asks whether it is built right. Whether it works for people (cont
 
 Where the plugin is installed, a Stop hook (hooks/done-check-gate.sh) reminds you once when a turn changed the Figma file and the script has not run since the last change. Run the check then. If the designer said to skip it, or the turn only edited agent blocks, say so in one line and stop. The hook only reminds: the check is yours to run whether it fires or not.
 
-Report the check compactly: only counts that aren't zero, with up to 10 node ids each, never full node dumps. Then take a screenshot of the screens you touched, at a small size, and look at it. A screenshot shows resolved variables, so it can't show wrong bindings or fallback colors: the counts come first, the screenshot second. Rewrite the HANDOFF block if it's older than the newest changelog line.
+Report the check compactly: only counts that aren't zero, with up to 10 node ids each, never full node dumps. Then look at the screens you touched at a small size, with `node.screenshot()` in the same use_figma call as the check or the next one (up to five per call), not with get_screenshot. A screenshot shows resolved variables, so it can't show wrong bindings or fallback colors: the counts come first, the screenshot second. Rewrite the HANDOFF block if it's older than the newest changelog line.
 
 ## Example
 
@@ -237,7 +237,7 @@ For IAA/IAP apps, think about where ads and upsells fire: native ad between cont
 
 ## Figma gotchas
 
-- Every tool call may need the designer's click (many orgs only allow once), so make few, full calls: one use_figma per page that reads everything the step needs, never one call per screen, part or check; one screenshot per section, not per screen.
+- Every tool call may need the designer's click (many orgs only allow once), so make few, full calls: one use_figma per page that reads everything the step needs, never one call per screen, part or check; one screenshot per section, not per screen. To look at screens, call `node.screenshot()` inside use_figma (up to five per call, in the same call that reads them); never call get_screenshot screen by screen. get_screenshot is only for the one section image of the HTML review report.
 - This skill sits on top of the Figma plugin skills and does not repeat their API rules. Load `figma-use` once per session, before the first `use_figma` call. Load `figma-generate-design` once when you first draw or change a screen, and `figma-generate-library` only when you build a part, a variable collection or a style. Don't load them again in the same session.
 - Read references/figma-gotchas.md before your first use_figma call in a session (spec blocks, swaps, bound paint fallbacks, tints, unsupported API, small reads).
 
