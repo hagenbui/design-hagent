@@ -143,7 +143,7 @@ Color audit rules, added in skill 2.20 (2026-11-26). The craft behind them is in
 
 ## Distinctive look and smart UX
 
-Added in skill 2.21 (2026-11-27). The craft behind them is in references/identity.md. Read the app's signature rules first: approved style and art rules in RULES and any block it points to for art (such as ART DIRECTION), whatever their heading (references/identity.md, "What counts as the app's signature rules"). DR-111 to DR-114 fail only against such an approved rule or a countable tell; with none, report them as "Góp ý UX" and suggest a kit. Count what you see (tells, signature elements per moment screen, text layers) and report the counts.
+Added in skill 2.21 (2026-11-27). The craft behind them is in references/identity.md. Read the app's signature rules first: approved style and art rules in RULES and any block it points to for art (such as ART DIRECTION), whatever their heading (references/identity.md, "What counts as the app's signature rules"). DR-121 and DR-122 check the finish (references/identity.md, "Premium finish"). DR-111 to DR-114 fail only against such an approved rule or a countable tell; with none, report them as "Góp ý UX" and suggest a kit. Count what you see (tells, signature elements per moment screen, text layers) and report the counts.
 
 - **DR-111 Not generic** (judge, screen). Fail when three or more generic tells from references/identity.md show with no app rule choosing them, or the base placeholder typeface or colors still show. Except: wireframes (new app stage 4), base colors logged as known limits in FINDINGS (finding T2, as in DR-104), and a typeface or color an app rule chose. Source: apple-branding.
 - **DR-112 Signature on moment screens** (judge, flow). Splash, onboarding, empty, result, success and paywall use the app's signature elements (art, motif, display type); a flat, art-less moment screen fails. Except: system UI. Sources: apple-branding, lawsofux-peak-end.
@@ -155,6 +155,8 @@ Added in skill 2.21 (2026-11-27). The craft behind them is in references/identit
 - **DR-118 One next step** (judge, screen). One primary action per screen; result and success screens offer the natural next action, not only Close; rare options sit behind More. Sources: lawsofux-hick, nng-heuristics.
 - **DR-119 Native controls** (judge, screen). Switches, pickers, steppers, segmented controls, alerts, action sheets, sheets, navigation bars, tab bars and back keep the platform's shape and behavior; a control redrawn for flavor fails (references/identity.md, "Native first"). Except: game screens and controls with no platform equivalent. Sources: nng-heuristics, apple-layout.
 - **DR-120 One focal point** (judge, screen). Each screen has one element that leads (the main content or the one primary action) and the rest steps back; equal weight everywhere, or several primary-styled buttons, fails. Pairs with DR-028 and DR-118. Sources: apple-layout, apple-buttons.
+- **DR-121 Finish details** (measure, screen). Added in skill 2.25. iOS wraps use continuous corners (corner smoothing about 60%, read from the node); an inner corner equals the outer corner minus the padding between them (zero as the floor); one depth method per app (background step, one soft shadow or a hairline border, not a border plus a shadow); times, prices, timers and counters use one format and tabular digits; gaps and colors a step apart from a token (12, 13 and 14 px) fail as off-token. Report the node and the measured values. Except: Android screens for corner smoothing, user content, and what an app rule chose. Where the file can't show it (tabular digits not readable), "cần kiểm tra", not fail. Sources: apple-layout, apple-typography.
+- **DR-122 Haptics and gestures noted** (judge, flow). Added in skill 2.25. Task success, pickers, destructive steps and snap points name their haptic on the flow arrow or the part's Motion line, using the system patterns and paired with a visible change; swipe actions say whether they trigger mid-swipe (reversible only) or on release (destructive); sheets and popovers open from the element that opened them. A haptic on every tap, a destructive action firing mid-swipe, or a haptic as the only signal fails. With no notes at all, "cần kiểm tra", not fail. Sources: apple-haptics, apple-feedback.
 
 ## Candidate rules from Varmeta DESIGN.md (to confirm, not approved)
 
@@ -181,6 +183,7 @@ Report these as "Góp ý UX" until the designer approves them into a RULES block
 | apple-color | https://developer.apple.com/design/human-interface-guidelines/color |
 | apple-dark-mode | https://developer.apple.com/design/human-interface-guidelines/dark-mode |
 | apple-feedback | https://developer.apple.com/design/human-interface-guidelines/feedback |
+| apple-haptics | https://developer.apple.com/design/human-interface-guidelines/playing-haptics |
 | apple-layout | https://developer.apple.com/design/human-interface-guidelines/layout |
 | apple-loading | https://developer.apple.com/design/human-interface-guidelines/loading |
 | apple-managing-accounts | https://developer.apple.com/design/human-interface-guidelines/managing-accounts |

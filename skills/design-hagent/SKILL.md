@@ -73,7 +73,7 @@ These sit next to this file. They hold steps you need for some tasks only, so a 
 | references/figma-gotchas.md | before the first use_figma call in a session |
 | references/review.md | the designer asks to review, audit, critique or check screens or flows for UX or accessibility (read only; rules in references/review-rules.md, report format in references/review-report.md) |
 | references/color.md | drafting, suggesting or changing an app palette (new app stage 3, a restyle, a dark appearance), or reviewing color (review rules DR-101 to DR-110) |
-| references/identity.md | setting an app's visual style or signature (new app stage 3, a restyle), making or prompting art, patterns or illustrations, building a moment screen (splash, onboarding, empty, result, success, paywall), or reviewing the look and smart UX (review rules DR-111 to DR-120) |
+| references/identity.md | setting an app's visual style or signature (new app stage 3, a restyle), making or prompting art, patterns or illustrations, building a moment screen (splash, onboarding, empty, result, success, paywall), or reviewing the look and smart UX (review rules DR-111 to DR-122) |
 | references/motion.md | a task names an animation, transition, duration or easing, you label flow arrows, or you write the Motion line of a part description |
 
 If you can't open a reference file, say so and ask. Never guess its steps.
@@ -220,7 +220,7 @@ Report the check compactly: only counts that aren't zero, with up to 10 node ids
 
 ## Design judgment
 
-Color: an app palette is mostly tinted neutrals with one action color. Before you draft, suggest or change one, read references/color.md (palette roles, ramps, taste rules, verified recipes, Sanzo Wada combinations, the stage 3 steps).
+Color: an app palette is mostly tinted neutrals with one action color. Before you draft, suggest or change one, read references/color.md (palette roles, ramps, taste rules, verified recipes, Sanzo Wada combinations and eight verified Wada starter palettes, the stage 3 steps). A review that finds the palette failing suggests one of them (references/review.md, step 5).
 
 Distinctive look and smart UX: an app built only from defaults looks machine-made. Each app gets a signature kit (illustration style, shape language, background motif, icon style, signature moment) derived from its brief, loud on moment screens and quiet on functional ones, and UX that thinks for the user (smart defaults, remember, undo, anticipate the next step), so screens need fewer words. Read references/identity.md before you set a style, make art or build a moment screen.
 

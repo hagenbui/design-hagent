@@ -77,10 +77,29 @@ Wada's combinations are print and textile harmonies, not UI systems. Four equal 
 
 Wada's combinations often pair a soft, low-chroma color with a deeper one and a small strong note. That is the same structure as a good UI palette (neutral, primary, accent), which is why they translate well. This is an observation, not a rule the books state.
 
+### Wada starter palettes (Vol. 1, verified)
+
+Eight Vol. 1 combinations already turned into roles by the steps above, so a designer can pick one without the conversion work. Source hex is from the mattdesl dataset (print CMYK converted, close to the book). Built on 2026-11-28 in OKLCH: neutrals keep the hue of the source's neutral color at chroma 0.003 to 0.03; the primary and accent keep their source hue; lightness moved only where a pair failed, and chroma only where noted below. Every row passes the same checks as the recipes above (text on background at least 7:1, secondary text at least 4.5:1, labels at least 4.5:1, primary at least 3:1, the same in dark). The name is ours, for talking about it; the number is Wada's.
+
+| Combination | Fits | Source colors | Bg / Surface | Text / Text 2 | Border | Primary / On | Accent / On | Dark bg / surface | Dark text / text 2 | Dark primary / on |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 140 Harbor slate | finance, utility, productivity | Slate Color #34454C, Antwarp Blue #007190, Golden Yellow #F3A257 | #F5F7F8 / #FDFEFE | #171B1D / #606466 | #D9DDDF | #007190 / #FFFFFF | #F3A257 / #171B1D | #0D1011 / #171A1B | #E9EBEC / #ABAFB0 | #82BBD2 / #0D1011 |
+| 135 Garden morning | wellness, habits, plants | Sulpher Yellow #F5ECC2, Cossack Green #437742, Salvia Blue #97ACC8 | #F8F7F2 / #FEFDFC | #1D1B12 / #65635B | #DEDCD5 | #437742 / #FFFFFF | #97ACC8 / #1D1B12 | #110F0B / #1B1A14 | #ECEBE7 / #AFAEA7 | #97BD95 / #110F0B |
+| 155 Festival ember | fitness, sport, events | Deep Indigo #051230, Jasper Red #EB5324, Benzol Green #00978D | #F4F7FC / #FDFDFE | #161B24 / #5F636C | #D8DCE4 | #C54E2C / #FFFFFF | #00978D / #161B24 | #0D0F14 / #171A1F | #E9EBEF / #AAAEB5 | #EF977E / #0D0F14 |
+| 226 Night lantern | astrology, tarot, sleep | Vistoris Lake #6D4145, Violet #4F4086, Cream Yellow #FDBF68 | #FCF5F5 / #FEFDFD | #221718 / #6B6061 | #E4DADA | #4F4086 / #FFFFFF | #FDBF68 / #221718 | #140D0E / #1E1718 | #EFEAEA / #B5ABAC | #B0A9E0 / #140D0E |
+| 190 Ink and vermilion | recipes, editorial, reading | Ivory Buff #EBD3A2, English Red #D96629, Black #111314 | #F9F6F1 / #FEFDFB | #1F1A0F / #686359 | #E0DCD3 | #C2520B / #FFFFFF | #233036 / #FFFFFF | #120F09 / #1C1913 | #EDEBE7 / #B1ADA5 | #EC9A74 / #120F09 |
+| 227 Spring tide | kids health, care, family | Hermosa Pink #F9C1CE, Cerulian Blue #0093A5 | #FCF5F6 / #FEFDFD | #23171A / #6C6062 | #E4D9DB | #038191 / #FFFFFF | #F9C1CE / #23171A | #140D0F / #1E1719 | #EFE9EB / #B5ABAD | #7EBDC8 / #140D0F |
+| 343 Indigo workshop | notes, journaling, craft, learning | Ivory Buff #EBD3A2, Vandar Poel's Blue #064F6E, Burnt Sienna #AE5224 | #F9F6F1 / #FEFDFB | #1F1A0F / #686359 | #E0DCD3 | #064F6E / #FFFFFF | #C96A3E / #1F1A0F | #120F09 / #1C1913 | #EDEBE7 / #B1ADA5 | #8EB8D0 / #120F09 |
+| 141 Citrus harbor | language, quiz, kids learning | Dark Tyrian Blue #12354E, Orange #F37420 | #F3F7FB / #FDFDFE | #131C22 / #5C646B | #D6DDE3 | #0369A2 / #FFFFFF | #F37420 / #131C22 | #0B1014 / #151A1E | #E8ECEE / #A8AFB4 | #82B8E3 / #0B1014 |
+
+What moved from the book (OKLCH lightness, chroma where it changed): Festival ember primary 0.64 to 0.58 (chroma 0.20 to 0.16), Ink and vermilion primary 0.64 to 0.58 and its ink accent 0.18 to 0.30 (chroma 0.004 to 0.02, a slate tint), Spring tide primary 0.61 to 0.55 (chroma 0.105 to 0.095), Indigo workshop accent 0.55 to 0.63, Citrus harbor primary 0.32 to 0.50 (chroma 0.06 to 0.12: Wada's navy became a usable blue; the navy stays as the text tint). Everything else keeps the book's value. Show the original swatches beside these on the style tile (step 4 above).
+
+Notes: as an icon, line or badge edge on the light background, five accents are under 3:1 (all but Festival ember, Indigo workshop and Ink and vermilion's ink): use them as fills with their label, or a darker step (DR-002). Festival ember pairs a red primary with a green accent, so its error red and success green move clearly away from both (rule 6) and every state keeps an icon (DR-003). Ink and vermilion's accent is ink, not a hue: use it for filled highlight cards and tags, not as a second action color. Night lantern's cream yellow reads as gold: if the app has IAP, mark premium with another cue (rule 9). Like the recipes, these have no semantic set, dark accent or dark border: derive and measure them.
+
 ## Suggesting a palette (stage 3)
 
 1. Read the BRIEF: audience, mood words, brand colors already fixed, platforms, whether there is a dark appearance, and IAA/IAP. Ask for what is missing. Never invent a brand color.
-2. Propose two or three options: a recipe above, a Wada combination turned into roles, or the brand's own color run through the ramp steps. Say in one line why each fits the brief.
+2. Propose two or three options: a recipe above, a Wada starter palette, another Wada combination turned into roles, or the brand's own color run through the ramp steps. Say in one line why each fits the brief.
 3. For each, draw one style tile on page Design: a sample screen (header, list, primary button, a badge, an error field), the ramps, and the dark version if the app has one.
 4. Add a contrast table under the tile: each text, icon and control pair with its ratio, light and dark. Fails are fixed before showing, or flagged.
 5. After the designer picks, write the values into App Color and the rule "Color: <recipe or source>, why: <reason>" through the Approval loop. Then run the done check and offer the color review.

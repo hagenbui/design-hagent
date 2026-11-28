@@ -41,6 +41,8 @@ Prefer the iOS and Android system transitions. Motion tokens are for custom moti
 - Reduce Motion (iOS) or Remove animations (Android): slides and scales become a duration-sm fade, or no motion. A rule, not a Figma mode.
 - Never block input while motion plays; the person can tap or cancel. (Apple HIG Motion)
 - Close controls on paywalls, ads and dialogs appear at once, with no delayed fade and no motion that moves the tap area.
+- Haptics: system patterns only (notification success, warning, error; impact light, medium, heavy; selection), paired with a visible change and used sparingly: task success, picker and toggle ticks, before a destructive step, snap points. Never on every tap or scroll, never the only signal. Name it with the transition, "Done · Push · Success haptic". (Apple HIG Playing haptics)
+- Gestures follow the finger from the first frame and keep momentum on release; reversible swipe actions may fire mid-swipe, destructive ones only on release; sheets and popovers grow from the element that opened them. (references/identity.md, "Premium finish")
 - Waits: under 1 s nothing, 1 to 10 s a looping spinner or skeleton (linear), over 10 s progress and a Cancel. (NN/g response times)
 
 ## Building motion in Figma
@@ -50,4 +52,4 @@ Prefer the iOS and Android system transitions. Motion tokens are for custom moti
 - Keyframes go on children, never on a top-level frame. A screenshot shows only the resting state; exporting video is slow, so check timing by reading the keyframes unless the designer asks for a video.
 - Motion follows the Approval loop like any token, style or rule.
 
-Sources: Material 3 motion specs (m3.material.io/styles/motion/overview/specs), Material 3 easing and duration tokens, Apple HIG Motion (developer.apple.com/design/human-interface-guidelines/motion), NN/g response time limits.
+Sources: Material 3 motion specs (m3.material.io/styles/motion/overview/specs), Material 3 easing and duration tokens, Apple HIG Motion (developer.apple.com/design/human-interface-guidelines/motion), Apple HIG Playing haptics (developer.apple.com/design/human-interface-guidelines/playing-haptics), Rauno Freiberg "Invisible Details of Interaction Design" (rauno.me/craft/interaction-design), NN/g response time limits.
